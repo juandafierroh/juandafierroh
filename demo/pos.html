@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="es-CL">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>POS Lite — Sabor Urbano | NOMBRE DEL PRODUCTO</title>
+<meta name="description" content="Pantalla de venta POS Lite: turnos, venta manual, medios de pago, propina, boleta/factura y envío a cocina.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2316324A'/%3E%3Cpath d='M18 40 L18 24 M18 24 Q18 18 24 18 L24 30 Q24 24 30 24 L30 40' stroke='%23F3A66B' stroke-width='5' fill='none' stroke-linecap='round'/%3E%3Cpath d='M40 18 L40 40 M34 18 L46 18' stroke='%23FFFFFF' stroke-width='5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="../assets/css/tokens.css">
+<link rel="stylesheet" href="../assets/css/base.css">
+<link rel="stylesheet" href="../assets/css/components.css">
+<link rel="stylesheet" href="../assets/css/demo.css">
+</head>
+<body>
+<a class="rt-skip-link" href="#main">Saltar al contenido principal</a>
+
+<header class="rt-demo-header">
+  <div class="rt-container">
+    <div class="rt-demo-header__brand"><a href="../index.html">← Volver al sitio</a></div>
+    <div>
+      <div class="rt-demo-header__title">Sabor Urbano · Providencia</div>
+      <div class="rt-demo-header__meta">POS Lite de demostración — datos ficticios</div>
+    </div>
+  </div>
+</header>
+<nav class="rt-demo-subnav" aria-label="Navegación de demostraciones">
+  <div class="rt-container">
+    <a href="menu.html">Carta digital</a>
+    <a href="dashboard.html">Dashboard</a>
+    <a href="kitchen.html">Cocina / KDS</a>
+    <a href="pos.html">POS Lite</a>
+    <a href="customers.html">Clientes</a>
+    <a href="integrations.html">Integraciones</a>
+    <a href="settings.html">Configuración</a>
+  </div>
+</nav>
+
+<main id="main" class="rt-demo-main">
+  <div class="rt-container">
+    <div class="rt-shift-banner rt-shift-banner--closed" id="shift-banner">
+      <div>
+        <strong id="shift-banner-title">Turno cerrado</strong>
+        <div id="shift-banner-detail" style="font-size:0.85rem;">Abre un turno para comenzar a vender.</div>
+      </div>
+      <button class="rt-btn rt-btn--dark rt-btn--sm" id="shift-toggle-btn" type="button">Abrir turno</button>
+    </div>
+
+    <div id="pos-content">
+      <div class="rt-menu-toolbar">
+        <div class="rt-menu-search">
+          <svg width="18" height="18" aria-hidden="true"><use href="#icon-search"></use></svg>
+          <input type="search" id="pos-search" placeholder="Buscar productos..." aria-label="Buscar productos">
+        </div>
+      </div>
+      <div class="rt-category-rail" id="pos-category-rail" role="tablist" aria-label="Categorías"></div>
+
+      <div class="rt-pos-layout">
+        <div class="rt-pos-product-grid" id="pos-product-grid"></div>
+
+        <aside class="rt-pos-ticket" aria-label="Venta actual">
+          <h2 style="font-size:1.1rem;margin-bottom:1rem;">Venta actual</h2>
+
+          <div class="rt-field">
+            <label for="pos-customer">Cliente (opcional)</label>
+            <input type="text" id="pos-customer" placeholder="Nombre o teléfono">
+          </div>
+          <div class="rt-field">
+            <label for="pos-channel">Canal</label>
+            <select id="pos-channel">
+              <option value="pos">Caja</option>
+              <option value="qr">Carta QR</option>
+              <option value="whatsapp">WhatsApp</option>
+              <option value="phone">Teléfono</option>
+              <option value="web">Web</option>
+            </select>
+          </div>
+          <div class="rt-toggle-row" role="group" aria-label="Mesa o retiro" id="pos-fulfillment-toggle">
+            <button type="button" data-fulfillment="mesa" aria-pressed="true">Mesa</button>
+            <button type="button" data-fulfillment="retiro" aria-pressed="false">Retiro</button>
+          </div>
+          <div class="rt-field" id="pos-table-field">
+            <label for="pos-table-number">Número de mesa</label>
+            <input type="text" id="pos-table-number" value="5">
+          </div>
+
+          <div id="pos-ticket-items"></div>
+          <div class="rt-cart-empty" id="pos-ticket-empty">Sin productos en la venta.</div>
+
+          <div class="rt-field" style="margin-top:1rem;">
+            <label for="pos-discount">Descuento (CLP)</label>
+            <input type="number" id="pos-discount" min="0" step="500" value="0">
+          </div>
+
+          <p style="font-weight:700;font-size:0.85rem;margin-bottom:0.5rem;">Propina</p>
+          <div class="rt-tip-row" role="group" aria-label="Propina" id="pos-tip-row">
+            <button type="button" data-tip="0" aria-pressed="false">0%</button>
+            <button type="button" data-tip="0.10" aria-pressed="false">10%</button>
+            <button type="button" data-tip="0.12" aria-pressed="false">12%</button>
+            <button type="button" data-tip="0.15" aria-pressed="false">15%</button>
+            <button type="button" data-tip="custom" aria-pressed="false">Otro</button>
+          </div>
+          <div class="rt-field" id="pos-tip-custom-field" hidden>
+            <label for="pos-tip-custom">Monto de propina</label>
+            <input type="number" id="pos-tip-custom" min="0" step="500">
+          </div>
+
+          <div class="rt-cart-totals" id="pos-totals"></div>
+
+          <p style="font-weight:700;font-size:0.85rem;margin-bottom:0.5rem;">Medio de pago</p>
+          <div class="rt-toggle-row" role="group" aria-label="Medio de pago" id="pos-payment-method" style="flex-wrap:wrap;">
+            <button type="button" data-method="efectivo" aria-pressed="true">Efectivo</button>
+            <button type="button" data-method="tarjeta">Tarjeta externa</button>
+            <button type="button" data-method="mercadopago">Mercado Pago</button>
+            <button type="button" data-method="transferencia">Transferencia</button>
+          </div>
+          <p class="rt-field__hint">Mercado Pago Point (terminal física) — <span class="rt-badge rt-badge--roadmap">Próximamente</span></p>
+
+          <div class="rt-btn-group" style="flex-direction:column;align-items:stretch;margin-top:1rem;">
+            <button class="rt-btn rt-btn--primary" id="pos-create-order" type="button">Crear venta y enviar a cocina</button>
+            <button class="rt-btn rt-btn--outline" id="pos-print" type="button"><svg width="16" height="16" aria-hidden="true"><use href="#icon-printer"></use></svg> Imprimir comanda</button>
+            <button class="rt-btn rt-btn--outline" id="pos-invoice" type="button"><svg width="16" height="16" aria-hidden="true"><use href="#icon-receipt"></use></svg> Solicitar boleta o factura</button>
+          </div>
+        </aside>
+      </div>
+
+      <section class="rt-card" style="margin-top:2rem;" id="shift-summary-card" hidden>
+        <h3>Resumen del turno</h3>
+        <div class="rt-stat-row" id="shift-summary-stats"></div>
+        <div class="rt-table-wrap" style="margin-top:1rem;">
+          <table class="rt-table rt-table--stack">
+            <thead><tr><th>Hora</th><th>Cliente</th><th>Medio de pago</th><th>Total</th></tr></thead>
+            <tbody id="shift-sales-tbody"></tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+  </div>
+</main>
+
+<!-- Modal: abrir/cerrar turno -->
+<div class="rt-modal-overlay" id="shift-modal" data-rt-modal hidden>
+  <div class="rt-modal" role="dialog" aria-modal="true" aria-labelledby="shift-modal-title">
+    <div class="rt-modal__head">
+      <h2 id="shift-modal-title">Turno</h2>
+      <button class="rt-modal__close" type="button" data-rt-modal-close aria-label="Cerrar"><svg width="16" height="16"><use href="#icon-x"></use></svg></button>
+    </div>
+    <div id="shift-modal-body"></div>
+  </div>
+</div>
+
+<!-- Modal: producto con modificadores -->
+<div class="rt-modal-overlay" id="pos-product-modal" data-rt-modal hidden>
+  <div class="rt-modal" role="dialog" aria-modal="true" aria-labelledby="pos-product-modal-title">
+    <div class="rt-modal__head">
+      <h2 id="pos-product-modal-title">Producto</h2>
+      <button class="rt-modal__close" type="button" data-rt-modal-close aria-label="Cerrar" data-rt-modal-autofocus><svg width="16" height="16"><use href="#icon-x"></use></svg></button>
+    </div>
+    <div id="pos-product-modal-body"></div>
+  </div>
+</div>
+
+<!-- Modal: boleta / factura -->
+<div class="rt-modal-overlay" id="invoice-modal" data-rt-modal hidden>
+  <div class="rt-modal" role="dialog" aria-modal="true" aria-labelledby="invoice-modal-title">
+    <div class="rt-modal__head">
+      <h2 id="invoice-modal-title">Documento tributario</h2>
+      <button class="rt-modal__close" type="button" data-rt-modal-close aria-label="Cerrar"><svg width="16" height="16"><use href="#icon-x"></use></svg></button>
+    </div>
+    <div id="invoice-modal-body"></div>
+  </div>
+</div>
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+  <symbol id="icon-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="10.5" cy="10.5" r="6"/><path d="M15 15 20 20"/></symbol>
+  <symbol id="icon-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M5 5l14 14M19 5 5 19"/></symbol>
+  <symbol id="icon-printer" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 8V4h11v4"/><rect x="3.5" y="8" width="17" height="8" rx="1.4"/><path d="M6.5 14v6h11v-6"/></symbol>
+  <symbol id="icon-receipt" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3.5h12v17l-2.5-1.6L13 20.5l-2.5-1.6L8 20.5l-2-1.6Z"/><path d="M8.5 8h7M8.5 11.5h7M8.5 15h4.5"/></symbol>
+  <symbol id="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12.5 9.5 17.5 19.5 6.5"/></symbol>
+</svg>
+
+<script src="../assets/js/demo-data.js"></script>
+<script src="../assets/js/restaurant-api.js"></script>
+<script src="../assets/js/components.js"></script>
+<script src="../assets/js/navigation.js"></script>
+<script src="../assets/js/pos-demo.js"></script>
+</body>
+</html>

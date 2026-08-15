@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="es-CL">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NOMBRE DEL PRODUCTO — Precios</title>
+<meta name="description" content="Planes referenciales en CLP para Conecta, Conecta + Voice AI y POS Lite. Valores ilustrativos, mensuales, más IVA, por local. Cotiza según tu restaurante.">
+<meta property="og:title" content="NOMBRE DEL PRODUCTO — Precios">
+<meta property="og:description" content="Un plan para cada etapa de tu restaurante: Conecta, Omnicanal (Conecta + Voice AI) y POS Lite. Precios referenciales en pesos chilenos.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_CL">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2316324A'/%3E%3Cpath d='M18 40 L18 24 M18 24 Q18 18 24 18 L24 30 Q24 24 30 24 L30 40' stroke='%23F3A66B' stroke-width='5' fill='none' stroke-linecap='round'/%3E%3Cpath d='M40 18 L40 40 M34 18 L46 18' stroke='%23FFFFFF' stroke-width='5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/css/tokens.css">
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/components.css">
+<link rel="stylesheet" href="assets/css/pages.css">
+<script>
+  // ------------------------------------------------------------------
+  // Editar aquí los valores de los planes (CLP, mensual, + IVA, por local).
+  // No son precios definitivos: son valores referenciales de demostración.
+  // ------------------------------------------------------------------
+  const PRICING_PLANS = [
+    {
+      id: "conecta",
+      name: "Plan Conecta",
+      tagline: "Para locales que ya tienen POS",
+      priceFrom: 49990,
+      highlight: false,
+      features: [
+        "Carta digital QR",
+        "Pedidos por WhatsApp",
+        "CRM con GoHighLevel",
+        "Pagos: Mercado Pago y links de pago",
+        "Integración con tu POS o modo puente",
+        "Panel de control omnicanal"
+      ]
+    },
+    {
+      id: "omnicanal",
+      name: "Plan Omnicanal",
+      tagline: "Conecta + agente telefónico con IA",
+      priceFrom: 89990,
+      highlight: true,
+      features: [
+        "Todo lo de Plan Conecta",
+        "Agente telefónico con IA (Voice AI)",
+        "Pedidos por teléfono, 24/7",
+        "Pago previo a la preparación",
+        "Analítica de voz: llamadas, conversión y transferencias"
+      ]
+    },
+    {
+      id: "poslite",
+      name: "Plan POS Lite",
+      tagline: "Todo incluido, sin POS previo",
+      priceFrom: 119990,
+      highlight: false,
+      features: [
+        "Todo lo de Plan Omnicanal",
+        "Caja propia con apertura y cierre de turno",
+        "KDS de cocina",
+        "Mesas simples",
+        "Boleta y factura con Bsale",
+        "Reportes de caja y por canal"
+      ]
+    }
+  ];
+</script>
+</head>
+<body>
+<a class="rt-skip-link" href="#main">Saltar al contenido principal</a>
+
+<header class="rt-header">
+  <div class="rt-container rt-header__bar">
+    <a class="rt-logo" href="index.html"><span class="rt-logo__mark">ND</span> NOMBRE DEL PRODUCTO</a>
+    <nav class="rt-nav" data-rt-nav id="site-nav" aria-label="Navegación principal">
+      <ul class="rt-nav__list">
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="sin-pos.html">Sin POS (Conecta)</a></li>
+        <li><a href="pos-lite.html">POS Lite</a></li>
+        <li><a href="agentes-ia.html">Agentes IA</a></li>
+        <li><a href="fidelizacion.html">Fidelización</a></li>
+        <li><a href="integraciones.html">Integraciones</a></li>
+        <li><a href="precios.html" aria-current="page">Precios</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+      </ul>
+      <div class="rt-nav__cta">
+        <a class="rt-btn rt-btn--outline rt-btn--sm" href="demo/menu.html">Ver demo</a>
+        <a class="rt-btn rt-btn--primary rt-btn--sm" href="#cta">Solicitar demostración</a>
+      </div>
+    </nav>
+    <button class="rt-nav-toggle" type="button" data-rt-nav-toggle aria-expanded="false" aria-controls="site-nav" aria-label="Abrir menú de navegación">
+      <svg width="22" height="22" aria-hidden="true"><use href="#icon-menu"></use></svg>
+    </button>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- HERO -->
+  <section class="rt-section rt-hero">
+    <div class="rt-container">
+      <p class="rt-eyebrow">Precios</p>
+      <h1>Un plan para cada etapa de tu restaurante.</h1>
+      <p class="rt-lead">Los valores que ves a continuación son referenciales e ilustrativos, no definitivos: dependen del número de locales, del volumen de pedidos y de las integraciones que necesites. Se editan en un solo lugar del código de esta página.</p>
+    </div>
+  </section>
+
+  <!-- PLANES -->
+  <section class="rt-section rt-section--alt" id="planes">
+    <div class="rt-container">
+      <div id="planes-grid" class="rt-grid rt-grid--3"></div>
+      <p class="rt-field__hint rt-center" style="margin-top:2rem;max-width:60ch;margin-left:auto;margin-right:auto;">Los valores son referenciales y no constituyen una oferta comercial vinculante. Escríbenos para una cotización según tu restaurante.</p>
+      <div class="rt-center" style="margin-top:1.25rem;">
+        <a class="rt-btn rt-btn--primary" href="mailto:hola@nombredelproducto.cl?subject=Quiero%20una%20cotizaci%C3%B3n">Solicitar cotización</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMPARAR FUNCIONALIDADES -->
+  <section class="rt-section" id="comparar">
+    <div class="rt-container rt-center" style="max-width:640px;">
+      <p class="rt-eyebrow">¿Cuál elegir?</p>
+      <h2>Compara todas las funcionalidades en detalle.</h2>
+      <p class="rt-lead rt-center">Revisa la comparación funcional completa entre Conecta (sin POS propio) y POS Lite: 32 funcionalidades, una por una.</p>
+      <a class="rt-btn rt-btn--outline" href="index.html#comparacion">Ver comparación funcional completa</a>
+    </div>
+  </section>
+
+  <!-- CTA FINAL -->
+  <section class="rt-section rt-section--dark" id="cta">
+    <div class="rt-container rt-center" style="max-width:640px;">
+      <h2>Encuentra el plan correcto para tu restaurante.</h2>
+      <p class="rt-lead rt-center">Cuéntanos cuántos locales tienes y qué sistema usas hoy: te proponemos el plan y el modo de conexión que mejor calce.</p>
+      <div class="rt-btn-group" style="justify-content:center;">
+        <a class="rt-btn rt-btn--primary" href="mailto:hola@nombredelproducto.cl?subject=Quiero%20una%20demostraci%C3%B3n">Solicitar demostración</a>
+        <a class="rt-btn rt-btn--outline" href="integraciones.html">Ver integraciones</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="rt-footer">
+  <div class="rt-container">
+    <div class="rt-footer__grid">
+      <div>
+        <a class="rt-logo" href="index.html" style="color:#fff;"><span class="rt-logo__mark">ND</span> NOMBRE DEL PRODUCTO</a>
+        <p style="margin-top:1rem;font-size:0.9rem;">Plataforma omnicanal de ventas, atención y recurrencia para restaurantes chilenos. Sitio y prototipo de demostración — datos ficticios.</p>
+      </div>
+      <div>
+        <h3 class="rt-footer__heading">Producto</h3>
+        <ul class="rt-footer__list">
+          <li><a href="sin-pos.html">Sin POS (Conecta)</a></li>
+          <li><a href="pos-lite.html">POS Lite</a></li>
+          <li><a href="agentes-ia.html">Agentes de IA</a></li>
+          <li><a href="fidelizacion.html">Fidelización</a></li>
+          <li><a href="integraciones.html">Integraciones</a></li>
+          <li><a href="precios.html">Precios</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="rt-footer__heading">Demostraciones</h3>
+        <ul class="rt-footer__list">
+          <li><a href="demo/menu.html">Carta digital</a></li>
+          <li><a href="demo/dashboard.html">Dashboard</a></li>
+          <li><a href="demo/kitchen.html">Cocina / KDS</a></li>
+          <li><a href="demo/pos.html">POS Lite</a></li>
+          <li><a href="demo/customers.html">Clientes</a></li>
+          <li><a href="demo/integrations.html">Integraciones</a></li>
+          <li><a href="demo/settings.html">Configuración</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="rt-footer__heading">Compañía</h3>
+        <ul class="rt-footer__list">
+          <li><a href="faq.html">Preguntas frecuentes</a></li>
+          <li><a href="mailto:hola@nombredelproducto.cl">hola@nombredelproducto.cl</a></li>
+          <li><a href="#cta">Solicitar demostración</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="rt-footer__bottom">
+      <span>© <span data-rt-year></span> NOMBRE DEL PRODUCTO. Prototipo funcional — datos y precios ilustrativos.</span>
+      <span>Hecho para el mercado gastronómico chileno.</span>
+    </div>
+  </div>
+</footer>
+
+<!-- rt- Sprite de iconos SVG (ver /assets/icons/sprite.svg) -->
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+  <symbol id="icon-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h3.2l1.4 4.4-2.1 1.7a12.6 12.6 0 0 0 6.4 6.4l1.7-2.1L20 15.8V19a1.5 1.5 0 0 1-1.6 1.5A15.5 15.5 0 0 1 3.5 5.6 1.5 1.5 0 0 1 5 4Z"/></symbol>
+  <symbol id="icon-chat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5h16v10H9.5L5.5 19v-3.5H4v-10Z"/><path d="M8 9.5h8M8 12.5h5"/></symbol>
+  <symbol id="icon-qr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><rect x="4" y="4" width="6" height="6" rx="0.8"/><rect x="14" y="4" width="6" height="6" rx="0.8"/><rect x="4" y="14" width="6" height="6" rx="0.8"/><path d="M14 14h2.2v2.2H14zM17.8 14H20v2.2h-2.2zM14 17.8h2.2V20H14zM17.8 17.8H20V20h-2.2z" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="icon-card" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5.5" width="17" height="13" rx="1.6"/><path d="M3.5 9.5h17M7 14.5h4"/></symbol>
+  <symbol id="icon-chef" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 11.5a3 3 0 0 1-1-5.8A3.4 3.4 0 0 1 9 3.7a3 3 0 0 1 6 0 3.4 3.4 0 0 1 3.5 1.9 3 3 0 0 1-1 5.9"/><path d="M6.5 11.5V16h11v-4.5M6 20h12l-.6-4H6.6z"/></symbol>
+  <symbol id="icon-users" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><path d="M3.5 19c0-3 2.5-5 5.5-5s5.5 2 5.5 5"/><circle cx="17" cy="9" r="2.4"/><path d="M15 14.2c2.4.3 4 2 4.5 4.3"/></symbol>
+  <symbol id="icon-refresh" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12a7.5 7.5 0 0 1 12.6-5.5L19 8"/><path d="M19 4v4h-4M19.5 12a7.5 7.5 0 0 1-12.6 5.5L5 16"/><path d="M5 20v-4h4"/></symbol>
+  <symbol id="icon-star" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M12 3.5l2.5 5.2 5.7.7-4.2 4 1.1 5.7-5.1-2.8-5.1 2.8 1.1-5.7-4.2-4 5.7-.7Z"/></symbol>
+  <symbol id="icon-chart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V4M4 20h16"/><path d="M8 16v-4M12.5 16V8M17 16v-7"/></symbol>
+  <symbol id="icon-plug" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3v4M15 3v4M6.5 7h11v3.5a5.5 5.5 0 0 1-11 0Z"/><path d="M12 15.5V21"/></symbol>
+  <symbol id="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12.5 9.5 17.5 19.5 6.5"/></symbol>
+  <symbol id="icon-arrow-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12h15M13.5 6l6 6-6 6"/></symbol>
+  <symbol id="icon-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></symbol>
+  <symbol id="icon-alert" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4 3 20h18Z"/><path d="M12 10.5v4M12 17h.01"/></symbol>
+  <symbol id="icon-printer" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 8V4h11v4"/><rect x="3.5" y="8" width="17" height="8" rx="1.4"/><path d="M6.5 14v6h11v-6"/></symbol>
+  <symbol id="icon-receipt" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3.5h12v17l-2.5-1.6L13 20.5l-2.5-1.6L8 20.5l-2-1.6Z"/><path d="M8.5 8h7M8.5 11.5h7M8.5 15h4.5"/></symbol>
+  <symbol id="icon-cash" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="11" rx="1.6"/><circle cx="12" cy="12.5" r="2.6"/><path d="M6.5 7v11M17.5 7v11"/></symbol>
+  <symbol id="icon-truck" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h10v9H3z"/><path d="M13 10.5h4l3.5 3v2.5H13z"/><circle cx="7.5" cy="18" r="1.6"/><circle cx="17" cy="18" r="1.6"/></symbol>
+  <symbol id="icon-store" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9.5 5 4h14l1 5.5"/><path d="M4 9.5a2.6 2.6 0 0 0 5 1 2.6 2.6 0 0 0 5 0 2.6 2.6 0 0 0 5 0 2.6 2.6 0 0 0 5-1"/><path d="M5.5 11v9h13v-9"/></symbol>
+  <symbol id="icon-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="10.5" cy="10.5" r="6"/><path d="M15 15 20 20"/></symbol>
+  <symbol id="icon-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 4.5v15M4.5 12h15"/></symbol>
+  <symbol id="icon-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 6.5h16M4 12h16M4 17.5h16"/></symbol>
+  <symbol id="icon-heart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.3-9.3-8.7C1.4 8.4 3 5 6.4 5c2 0 3.3 1 5.6 3.5C14.3 6 15.6 5 17.6 5 21 5 22.6 8.4 21.3 11.3 19 15.7 12 20 12 20Z"/></symbol>
+  <symbol id="icon-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5 19 6v6c0 5-3 8-7 8.5-4-.5-7-3.5-7-8.5V6Z"/><path d="M9 12l2 2 4-4.5"/></symbol>
+  <symbol id="icon-mic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3.5" width="6" height="10" rx="3"/><path d="M5.5 11.5a6.5 6.5 0 0 0 13 0M12 18v2.5M9 20.5h6"/></symbol>
+  <symbol id="icon-table" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 8.5h17M3.5 8.5 5 20M20.5 8.5 19 20M8 20l.6-6.5M16 20l-.6-6.5"/><path d="M2.5 8.5 4 4h16l1.5 4.5"/></symbol>
+</svg>
+
+<script src="assets/js/components.js"></script>
+<script src="assets/js/navigation.js"></script>
+<script>
+  // Renderiza las tarjetas de planes a partir de PRICING_PLANS (definido en <head>).
+  (function () {
+    var formatter = new Intl.NumberFormat("es-CL", { style: "currency", currency: "CLP", maximumFractionDigits: 0 });
+    var grid = document.getElementById("planes-grid");
+    if (!grid || typeof PRICING_PLANS === "undefined") return;
+
+    function featureItem(text) {
+      var li = document.createElement("li");
+      var icon = '<svg width="16" height="16" aria-hidden="true"><use href="#icon-check"></use></svg>';
+      li.innerHTML = icon + "<span>" + text + "</span>";
+      return li;
+    }
+
+    PRICING_PLANS.forEach(function (plan) {
+      var card = document.createElement("div");
+      card.className = "rt-card rt-plan" + (plan.highlight ? " rt-plan--highlight" : "");
+
+      if (plan.highlight) {
+        var badge = document.createElement("span");
+        badge.className = "rt-plan__badge";
+        badge.textContent = "Más elegido";
+        card.appendChild(badge);
+      }
+
+      var header = document.createElement("div");
+      header.innerHTML =
+        "<h3>" + plan.name + "</h3>" +
+        '<p class="rt-muted">' + plan.tagline + "</p>";
+      card.appendChild(header);
+
+      var price = document.createElement("p");
+      price.className = "rt-plan__price";
+      price.innerHTML = "Desde " + formatter.format(plan.priceFrom) + ' <small>+ IVA / mes por local</small>';
+      card.appendChild(price);
+
+      var list = document.createElement("ul");
+      list.className = "rt-plan__list";
+      plan.features.forEach(function (f) {
+        list.appendChild(featureItem(f));
+      });
+      card.appendChild(list);
+
+      var cta = document.createElement("a");
+      cta.className = "rt-btn " + (plan.highlight ? "rt-btn--primary" : "rt-btn--dark") + " rt-btn--block";
+      cta.href = "mailto:hola@nombredelproducto.cl?subject=Quiero%20una%20cotizaci%C3%B3n%20del%20" + encodeURIComponent(plan.name);
+      cta.textContent = "Cotizar " + plan.name;
+      card.appendChild(cta);
+
+      grid.appendChild(card);
+    });
+  })();
+</script>
+</body>
+</html>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es-CL">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard del dueño — Sabor Urbano | NOMBRE DEL PRODUCTO</title>
+<meta name="description" content="Panel omnicanal del dueño: ventas por canal, clientes en riesgo, reactivaciones, feedback y estado de integraciones.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2316324A'/%3E%3Cpath d='M18 40 L18 24 M18 24 Q18 18 24 18 L24 30 Q24 24 30 24 L30 40' stroke='%23F3A66B' stroke-width='5' fill='none' stroke-linecap='round'/%3E%3Cpath d='M40 18 L40 40 M34 18 L46 18' stroke='%23FFFFFF' stroke-width='5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="../assets/css/tokens.css">
+<link rel="stylesheet" href="../assets/css/base.css">
+<link rel="stylesheet" href="../assets/css/components.css">
+<link rel="stylesheet" href="../assets/css/demo.css">
+</head>
+<body>
+<a class="rt-skip-link" href="#main">Saltar al contenido principal</a>
+
+<header class="rt-demo-header">
+  <div class="rt-container">
+    <div class="rt-demo-header__brand"><a href="../index.html">← Volver al sitio</a></div>
+    <div>
+      <div class="rt-demo-header__title">Sabor Urbano · Providencia</div>
+      <div class="rt-demo-header__meta">Panel del dueño — datos ficticios</div>
+    </div>
+  </div>
+</header>
+<nav class="rt-demo-subnav" aria-label="Navegación de demostraciones">
+  <div class="rt-container">
+    <a href="menu.html">Carta digital</a>
+    <a href="dashboard.html">Dashboard</a>
+    <a href="kitchen.html">Cocina / KDS</a>
+    <a href="pos.html">POS Lite</a>
+    <a href="customers.html">Clientes</a>
+    <a href="integrations.html">Integraciones</a>
+    <a href="settings.html">Configuración</a>
+  </div>
+</nav>
+
+<main id="main" class="rt-demo-main">
+  <div class="rt-container">
+
+    <div class="rt-dash-filters">
+      <select id="filter-range" aria-label="Rango de fecha">
+        <option value="hoy">Hoy</option>
+        <option value="semana">Esta semana</option>
+        <option value="mes">Este mes</option>
+      </select>
+      <select id="filter-channel" aria-label="Canal">
+        <option value="todos">Todos los canales</option>
+      </select>
+      <div class="rt-switcher" data-rt-switcher role="group" aria-label="Modalidad" style="margin-left:auto;">
+        <button class="rt-switcher__btn" type="button" data-rt-switcher-btn="conecta" aria-pressed="true">Conecta</button>
+        <button class="rt-switcher__btn" type="button" data-rt-switcher-btn="poslite" aria-pressed="false">POS Lite</button>
+      </div>
+    </div>
+
+    <div data-rt-switcher-target="conecta">
+      <p class="rt-field__hint" style="margin-bottom:1rem;">Vista Conecta: la caja, turnos e inventario se administran en tu POS existente. Este panel muestra pedidos, canales, clientes y reactivación.</p>
+    </div>
+    <div data-rt-switcher-target="poslite" hidden>
+      <p class="rt-field__hint" style="margin-bottom:1rem;">Vista POS Lite: incluye además reportes de caja y turnos, disponibles en la pantalla <a href="pos.html">POS Lite</a>.</p>
+    </div>
+
+    <div class="rt-stat-row" id="kpi-row" style="margin-bottom:2rem;"></div>
+
+    <div class="rt-grid rt-grid--2" style="margin-bottom:2rem;">
+      <div class="rt-card rt-chart-card">
+        <h3>Ventas de la semana</h3>
+        <div class="rt-bar-chart" id="sales-bar-chart"></div>
+      </div>
+      <div class="rt-card rt-chart-card">
+        <h3>Ventas por canal</h3>
+        <div class="rt-channel-bars" id="channel-bars"></div>
+      </div>
+    </div>
+
+    <div class="rt-grid rt-grid--2" style="margin-bottom:2rem;align-items:start;">
+      <div class="rt-card">
+        <h3>Productos más vendidos</h3>
+        <div class="rt-table-wrap">
+          <table class="rt-table rt-table--stack">
+            <thead><tr><th>Producto</th><th>Unidades</th></tr></thead>
+            <tbody id="top-products-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+      <div class="rt-card">
+        <h3>Alertas</h3>
+        <div class="rt-alert-list" id="alert-list"></div>
+      </div>
+    </div>
+
+    <div class="rt-grid rt-grid--2" style="margin-bottom:2rem;align-items:start;">
+      <div class="rt-card">
+        <div style="display:flex;justify-content:space-between;align-items:center;">
+          <h3>Clientes en riesgo</h3>
+          <a class="rt-btn rt-btn--outline rt-btn--sm" href="customers.html">Ver todos</a>
+        </div>
+        <div id="risk-customers"></div>
+      </div>
+      <div class="rt-card">
+        <h3>Reactivaciones (últimos 30 días)</h3>
+        <div class="rt-stat-row">
+          <div class="rt-stat"><div class="rt-stat__value">14</div><div class="rt-stat__label">Elegibles</div></div>
+          <div class="rt-stat"><div class="rt-stat__value">11</div><div class="rt-stat__label">Contactados</div></div>
+          <div class="rt-stat"><div class="rt-stat__value">5</div><div class="rt-stat__label">Regresaron</div></div>
+          <div class="rt-stat"><div class="rt-stat__value">$186.500</div><div class="rt-stat__label">Venta atribuida</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="rt-card">
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.75rem;">
+        <h3>Pedidos</h3>
+        <span class="rt-badge rt-badge--neutral" id="orders-count-badge"></span>
+      </div>
+      <div class="rt-table-wrap">
+        <table class="rt-table rt-table--stack">
+          <thead><tr><th>Pedido</th><th>Canal</th><th>Mesa / Retiro</th><th>Comercial</th><th>Pago</th><th>Cocina</th><th>Total</th></tr></thead>
+          <tbody id="orders-tbody"></tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+  <symbol id="icon-alert" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4 3 20h18Z"/><path d="M12 10.5v4M12 17h.01"/></symbol>
+</svg>
+
+<script src="../assets/js/demo-data.js"></script>
+<script src="../assets/js/restaurant-api.js"></script>
+<script src="../assets/js/components.js"></script>
+<script src="../assets/js/navigation.js"></script>
+<script src="../assets/js/dashboard-demo.js"></script>
+</body>
+</html>

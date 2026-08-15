@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="es-CL">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fidelización — NOMBRE DEL PRODUCTO</title>
+<meta name="description" content="Reactivación y fidelización individual para restaurantes: cada cliente tiene su propio ciclo de visitas, y el sistema actúa según ese ciclo, no con descuentos masivos a toda la base.">
+<meta property="og:title" content="Fidelización — NOMBRE DEL PRODUCTO">
+<meta property="og:description" content="El sistema aprende el ritmo de visita de cada cliente, detecta cuándo se atrasa respecto de su propio ciclo y activa una acción relevante, con grupo de control para medir el efecto real.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_CL">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2316324A'/%3E%3Cpath d='M18 40 L18 24 M18 24 Q18 18 24 18 L24 30 Q24 24 30 24 L30 40' stroke='%23F3A66B' stroke-width='5' fill='none' stroke-linecap='round'/%3E%3Cpath d='M40 18 L40 40 M34 18 L46 18' stroke='%23FFFFFF' stroke-width='5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/css/tokens.css">
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/components.css">
+<link rel="stylesheet" href="assets/css/pages.css">
+</head>
+<body>
+<a class="rt-skip-link" href="#main">Saltar al contenido principal</a>
+
+<header class="rt-header">
+  <div class="rt-container rt-header__bar">
+    <a class="rt-logo" href="index.html"><span class="rt-logo__mark">ND</span> NOMBRE DEL PRODUCTO</a>
+    <nav class="rt-nav" data-rt-nav id="site-nav" aria-label="Navegación principal">
+      <ul class="rt-nav__list">
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="sin-pos.html">Sin POS (Conecta)</a></li>
+        <li><a href="pos-lite.html">POS Lite</a></li>
+        <li><a href="agentes-ia.html">Agentes IA</a></li>
+        <li><a href="fidelizacion.html" aria-current="page">Fidelización</a></li>
+        <li><a href="integraciones.html">Integraciones</a></li>
+        <li><a href="precios.html">Precios</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+      </ul>
+      <div class="rt-nav__cta">
+        <a class="rt-btn rt-btn--outline rt-btn--sm" href="demo/menu.html">Ver demo</a>
+        <a class="rt-btn rt-btn--primary rt-btn--sm" href="#cta">Solicitar demostración</a>
+      </div>
+    </nav>
+    <button class="rt-nav-toggle" type="button" data-rt-nav-toggle aria-expanded="false" aria-controls="site-nav" aria-label="Abrir menú de navegación">
+      <svg width="22" height="22" aria-hidden="true"><use href="#icon-menu"></use></svg>
+    </button>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- HERO -->
+  <section class="rt-section rt-hero">
+    <div class="rt-container">
+      <p class="rt-eyebrow">Fidelización y reactivación</p>
+      <h1>No todos tus clientes deben volver el mismo día.</h1>
+      <p class="rt-lead" style="max-width:760px;">El sistema aprende el ritmo propio de cada cliente, detecta cuándo se está atrasando respecto de su propio ciclo y activa una sola acción relevante, en vez de mandar el mismo descuento a toda la base al mismo tiempo.</p>
+      <div class="rt-btn-group" style="margin-top:1.75rem;">
+        <a class="rt-btn rt-btn--primary" href="demo/customers.html">Ver clientes de ejemplo</a>
+        <a class="rt-btn rt-btn--outline" href="mailto:hola@nombredelproducto.cl?subject=Quiero%20una%20demostraci%C3%B3n">Solicitar demostración</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PERFIL DEL CLIENTE -->
+  <section class="rt-section rt-section--alt" id="perfil">
+    <div class="rt-container">
+      <div class="rt-section-head rt-section-head--center">
+        <p class="rt-eyebrow">Perfil del cliente</p>
+        <h2>Cómo se calcula el ciclo de cada persona.</h2>
+        <p class="rt-lead rt-center">Ninguna regla se aplica de forma pareja: cada perfil se construye con el historial real de ese cliente.</p>
+      </div>
+      <div class="rt-pill-list rt-center" style="justify-content:center;">
+        <span class="rt-pill">Fecha de última visita</span>
+        <span class="rt-pill">Historial e intervalos entre visitas</span>
+        <span class="rt-pill">Frecuencia y variabilidad</span>
+        <span class="rt-pill">Día y horario habitual</span>
+        <span class="rt-pill">Ticket promedio</span>
+        <span class="rt-pill">Cambio de gasto</span>
+        <span class="rt-pill">Productos favoritos</span>
+        <span class="rt-pill">Canal habitual</span>
+        <span class="rt-pill">Respuesta a campañas</span>
+        <span class="rt-pill">Reclamos recientes</span>
+        <span class="rt-pill">Uso de descuentos</span>
+        <span class="rt-pill">Valor estimado del cliente</span>
+        <span class="rt-pill">Riesgo de abandono</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- DOS CLIENTES, DOS CICLOS -->
+  <section class="rt-section" id="dos-ciclos">
+    <div class="rt-container">
+      <div class="rt-section-head rt-section-head--center">
+        <p class="rt-eyebrow">Ejemplo</p>
+        <h2>Dos clientes, dos ciclos distintos.</h2>
+        <p class="rt-lead rt-center">El mismo número de días desde la última visita significa cosas distintas para cada persona.</p>
+      </div>
+      <div class="rt-grid rt-grid--2">
+        <div class="rt-card">
+          <span class="rt-badge rt-badge--soon">Reactivar</span>
+          <h3 style="margin-top:0.8rem;">Claudia Soto</h3>
+          <p class="rt-muted">Visita cada 9 a 12 días. Han pasado <strong>18 días</strong> desde su última visita.</p>
+          <div class="rt-cycle-bar" role="img" aria-label="18 de 12 días, fuera de su ciclo habitual">
+            <div class="rt-cycle-bar__fill rt-cycle-bar__fill--danger" style="width:100%;"></div>
+          </div>
+          <p class="rt-muted">Producto favorito: <strong>Cheesecake</strong>.</p>
+          <p class="rt-muted">Está fuera de su ciclo habitual: la acción recomendada es un recordatorio con su producto favorito.</p>
+        </div>
+        <div class="rt-card">
+          <span class="rt-badge rt-badge--available">Sin acción</span>
+          <h3 style="margin-top:0.8rem;">Juan Pérez</h3>
+          <p class="rt-muted">Visita cada 40 a 55 días. Han pasado <strong>26 días</strong> desde su última visita.</p>
+          <div class="rt-cycle-bar" role="img" aria-label="26 de 55 días, todavía dentro de su ciclo habitual">
+            <div class="rt-cycle-bar__fill rt-cycle-bar__fill--ok" style="width:47%;"></div>
+          </div>
+          <p class="rt-muted">Producto favorito: <strong>Pizza pepperoni</strong>.</p>
+          <p class="rt-muted">Todavía está dentro de su ciclo habitual: no corresponde contactarlo por ahora.</p>
+        </div>
+      </div>
+      <p class="rt-field__hint rt-center" style="margin-top:1.5rem;">Claudia lleva más días sin visitar en términos absolutos, pero es Juan quien lleva más días sin visitar en relación con su propio ciclo. El sistema no usa el mismo umbral para todos: compara a cada cliente contra su propio historial, no contra un promedio general.</p>
+    </div>
+  </section>
+
+  <!-- ACCIONES POSIBLES -->
+  <section class="rt-section rt-section--alt" id="acciones">
+    <div class="rt-container">
+      <div class="rt-section-head rt-section-head--center">
+        <p class="rt-eyebrow">Acciones posibles</p>
+        <h2>Nunca la misma acción para todos.</h2>
+        <p class="rt-lead rt-center">El sistema elige una acción proporcional a la situación del cliente. Nunca se envía un descuento masivo a toda la base.</p>
+      </div>
+      <div class="rt-pill-list rt-center" style="justify-content:center;">
+        <span class="rt-pill">Recordatorio simple</span>
+        <span class="rt-pill">Novedad del menú</span>
+        <span class="rt-pill">Recordatorio con su producto favorito</span>
+        <span class="rt-pill">Puntos adicionales</span>
+        <span class="rt-pill">Upgrade de producto</span>
+        <span class="rt-pill">Acompañamiento de cortesía</span>
+        <span class="rt-pill">Beneficio en horario valle</span>
+        <span class="rt-pill">Descuento pequeño</span>
+        <span class="rt-pill">Descuento mayor, solo cuando se justifica</span>
+      </div>
+      <p class="rt-field__hint rt-center" style="margin-top:1.25rem;">El descuento mayor queda reservado para clientes de alto valor con riesgo real de abandono; no es la primera opción ni la más frecuente.</p>
+    </div>
+  </section>
+
+  <!-- CUMPLEAÑOS -->
+  <section class="rt-section" id="cumpleanos">
+    <div class="rt-container rt-grid rt-grid--2" style="align-items:center;">
+      <div>
+        <p class="rt-eyebrow">Cumpleaños</p>
+        <h2>Un dato más, no toda la estrategia.</h2>
+        <p class="rt-lead">El cumpleaños se puede usar como un disparador adicional dentro del mismo motor de reactivación, junto al ciclo de visitas, el producto favorito y el canal habitual del cliente. No reemplaza el análisis del ciclo individual: lo complementa.</p>
+      </div>
+      <div class="rt-card">
+        <div class="rt-card__icon"><svg width="24" height="24"><use href="#icon-star"></use></svg></div>
+        <h4>Ejemplo</h4>
+        <p class="rt-muted">Un cliente que cumple años y además está por atrasarse en su ciclo puede recibir un beneficio combinado; uno que cumple años pero visita con normalidad puede recibir solo un saludo, sin descuento.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- MÉTRICAS DE REACTIVACIÓN -->
+  <section class="rt-section rt-section--alt" id="metricas">
+    <div class="rt-container">
+      <div class="rt-section-head rt-section-head--center">
+        <p class="rt-eyebrow">Métricas de reactivación</p>
+        <h2>Se mide el efecto real, no solo el envío.</h2>
+        <p class="rt-lead rt-center">Cifras de ejemplo, con datos ilustrativos de un mes de operación.</p>
+      </div>
+      <div class="rt-stat-row">
+        <div class="rt-stat"><div class="rt-stat__value">58</div><div class="rt-stat__label">Clientes elegibles</div></div>
+        <div class="rt-stat"><div class="rt-stat__value">46</div><div class="rt-stat__label">Clientes contactados</div></div>
+        <div class="rt-stat"><div class="rt-stat__value">12</div><div class="rt-stat__label">Grupo de control</div></div>
+        <div class="rt-stat"><div class="rt-stat__value">19</div><div class="rt-stat__label">Clientes que regresaron</div></div>
+        <div class="rt-stat"><div class="rt-stat__value">$412.300</div><div class="rt-stat__label">Venta generada</div></div>
+        <div class="rt-stat"><div class="rt-stat__value">$187.900</div><div class="rt-stat__label">Margen incremental</div></div>
+        <div class="rt-stat"><div class="rt-stat__value">$34.500</div><div class="rt-stat__label">Costo del incentivo</div></div>
+        <div class="rt-stat"><div class="rt-stat__value">3%</div><div class="rt-stat__label">Tasa de baja (opt-out)</div></div>
+      </div>
+      <p class="rt-field__hint" style="margin-top:1rem;">Ejemplo ilustrativo. El <strong>grupo de control</strong> es un grupo de clientes elegibles que deliberadamente no se contacta, para poder comparar cuántos habrían vuelto de todos modos y así medir el efecto incremental real de la reactivación.</p>
+    </div>
+  </section>
+
+  <!-- FEEDBACK Y RESEÑAS -->
+  <section class="rt-section" id="feedback">
+    <div class="rt-container">
+      <div class="rt-section-head rt-section-head--center">
+        <p class="rt-eyebrow">Feedback y reseñas</p>
+        <h2>Los casos negativos se gestionan en privado primero.</h2>
+        <p class="rt-lead rt-center">Después de cada pedido se envía una encuesta breve. Si algo salió mal, se abre un caso privado antes de invitar a una reseña pública.</p>
+      </div>
+      <div class="rt-grid rt-grid--2" style="align-items:flex-start;">
+        <div>
+          <h3>Qué se recoge</h3>
+          <div class="rt-pill-list" style="margin-top:0.9rem;">
+            <span class="rt-pill">Encuesta posterior</span>
+            <span class="rt-pill">Nota general</span>
+            <span class="rt-pill">Comentario libre</span>
+            <span class="rt-pill">Categoría del problema</span>
+            <span class="rt-pill">Comida</span>
+            <span class="rt-pill">Tiempo de espera</span>
+            <span class="rt-pill">Atención</span>
+            <span class="rt-pill">Precio</span>
+            <span class="rt-pill">Pedido incorrecto</span>
+            <span class="rt-pill">Producto faltante</span>
+            <span class="rt-pill">Cobro</span>
+            <span class="rt-pill">Delivery</span>
+          </div>
+        </div>
+        <div>
+          <h3>Qué pasa con una nota baja</h3>
+          <ul style="margin-top:0.9rem;display:grid;gap:0.6rem;">
+            <li>Alerta al dueño del restaurante en el momento.</li>
+            <li>Creación de un caso privado, sin publicación automática.</li>
+            <li>Borrador de respuesta sugerido para el equipo.</li>
+            <li>Compensación dentro de límites definidos por el restaurante.</li>
+            <li>Seguimiento posterior y medición de si el cliente regresó.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="rt-card" style="margin-top:2rem;max-width:640px;">
+        <span class="rt-badge rt-badge--error">Caso abierto</span>
+        <h4 style="margin-top:0.7rem;">Caso ilustrativo: Claudia Soto</h4>
+        <p class="rt-muted">Reportó un <strong>pedido incorrecto</strong> en su última visita. El caso quedó abierto para seguimiento del equipo y todavía no se ha cerrado.</p>
+      </div>
+
+      <p class="rt-field__hint" style="margin-top:1.5rem;max-width:720px;">La invitación a dejar una reseña pública se envía a todos los clientes por igual: no queda condicionada solo a quienes calificaron bien. La diferencia es el orden: primero se atiende el problema en privado, y la invitación a reseñar en público llega igual para todos.</p>
+    </div>
+  </section>
+
+  <!-- VER MÁS -->
+  <section class="rt-section rt-section--alt" id="ver-mas">
+    <div class="rt-container rt-center">
+      <p class="rt-eyebrow">Ver en acción</p>
+      <h2>Revisa los datos de ejemplo.</h2>
+      <div class="rt-btn-group" style="justify-content:center;margin-top:1rem;">
+        <a class="rt-btn rt-btn--dark" href="demo/customers.html">Ver el CRM de clientes de demostración</a>
+        <a class="rt-btn rt-btn--outline" href="demo/dashboard.html">Ver reactivaciones en el panel del dueño</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA FINAL -->
+  <section class="rt-section rt-section--dark" id="cta">
+    <div class="rt-container rt-center" style="max-width:640px;">
+      <h2>Haz que cada cliente vuelva en su propio momento.</h2>
+      <p class="rt-lead rt-center">Agenda una demostración con datos reales de tu restaurante, o explora el CRM de clientes de ejemplo.</p>
+      <div class="rt-btn-group" style="justify-content:center;">
+        <a class="rt-btn rt-btn--primary" href="mailto:hola@nombredelproducto.cl?subject=Quiero%20una%20demostraci%C3%B3n">Solicitar demostración</a>
+        <a class="rt-btn rt-btn--outline" href="demo/customers.html">Ver clientes de ejemplo</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="rt-footer">
+  <div class="rt-container">
+    <div class="rt-footer__grid">
+      <div>
+        <a class="rt-logo" href="index.html" style="color:#fff;"><span class="rt-logo__mark">ND</span> NOMBRE DEL PRODUCTO</a>
+        <p style="margin-top:1rem;font-size:0.9rem;">Plataforma omnicanal de ventas, atención y recurrencia para restaurantes chilenos. Sitio y prototipo de demostración — datos ficticios.</p>
+      </div>
+      <div>
+        <h3 class="rt-footer__heading">Producto</h3>
+        <ul class="rt-footer__list">
+          <li><a href="sin-pos.html">Sin POS (Conecta)</a></li>
+          <li><a href="pos-lite.html">POS Lite</a></li>
+          <li><a href="agentes-ia.html">Agentes de IA</a></li>
+          <li><a href="fidelizacion.html">Fidelización</a></li>
+          <li><a href="integraciones.html">Integraciones</a></li>
+          <li><a href="precios.html">Precios</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="rt-footer__heading">Demostraciones</h3>
+        <ul class="rt-footer__list">
+          <li><a href="demo/menu.html">Carta digital</a></li>
+          <li><a href="demo/dashboard.html">Dashboard</a></li>
+          <li><a href="demo/kitchen.html">Cocina / KDS</a></li>
+          <li><a href="demo/pos.html">POS Lite</a></li>
+          <li><a href="demo/customers.html">Clientes</a></li>
+          <li><a href="demo/integrations.html">Integraciones</a></li>
+          <li><a href="demo/settings.html">Configuración</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="rt-footer__heading">Compañía</h3>
+        <ul class="rt-footer__list">
+          <li><a href="faq.html">Preguntas frecuentes</a></li>
+          <li><a href="mailto:hola@nombredelproducto.cl">hola@nombredelproducto.cl</a></li>
+          <li><a href="#cta">Solicitar demostración</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="rt-footer__bottom">
+      <span>© <span data-rt-year></span> NOMBRE DEL PRODUCTO. Prototipo funcional — datos y precios ilustrativos.</span>
+      <span>Hecho para el mercado gastronómico chileno.</span>
+    </div>
+  </div>
+</footer>
+
+<!-- rt- Sprite de iconos SVG (ver /assets/icons/sprite.svg) -->
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+  <symbol id="icon-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h3.2l1.4 4.4-2.1 1.7a12.6 12.6 0 0 0 6.4 6.4l1.7-2.1L20 15.8V19a1.5 1.5 0 0 1-1.6 1.5A15.5 15.5 0 0 1 3.5 5.6 1.5 1.5 0 0 1 5 4Z"/></symbol>
+  <symbol id="icon-chat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5h16v10H9.5L5.5 19v-3.5H4v-10Z"/><path d="M8 9.5h8M8 12.5h5"/></symbol>
+  <symbol id="icon-qr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><rect x="4" y="4" width="6" height="6" rx="0.8"/><rect x="14" y="4" width="6" height="6" rx="0.8"/><rect x="4" y="14" width="6" height="6" rx="0.8"/><path d="M14 14h2.2v2.2H14zM17.8 14H20v2.2h-2.2zM14 17.8h2.2V20H14zM17.8 17.8H20V20h-2.2z" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="icon-card" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5.5" width="17" height="13" rx="1.6"/><path d="M3.5 9.5h17M7 14.5h4"/></symbol>
+  <symbol id="icon-chef" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 11.5a3 3 0 0 1-1-5.8A3.4 3.4 0 0 1 9 3.7a3 3 0 0 1 6 0 3.4 3.4 0 0 1 3.5 1.9 3 3 0 0 1-1 5.9"/><path d="M6.5 11.5V16h11v-4.5M6 20h12l-.6-4H6.6z"/></symbol>
+  <symbol id="icon-users" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><path d="M3.5 19c0-3 2.5-5 5.5-5s5.5 2 5.5 5"/><circle cx="17" cy="9" r="2.4"/><path d="M15 14.2c2.4.3 4 2 4.5 4.3"/></symbol>
+  <symbol id="icon-refresh" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12a7.5 7.5 0 0 1 12.6-5.5L19 8"/><path d="M19 4v4h-4M19.5 12a7.5 7.5 0 0 1-12.6 5.5L5 16"/><path d="M5 20v-4h4"/></symbol>
+  <symbol id="icon-star" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M12 3.5l2.5 5.2 5.7.7-4.2 4 1.1 5.7-5.1-2.8-5.1 2.8 1.1-5.7-4.2-4 5.7-.7Z"/></symbol>
+  <symbol id="icon-chart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V4M4 20h16"/><path d="M8 16v-4M12.5 16V8M17 16v-7"/></symbol>
+  <symbol id="icon-plug" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3v4M15 3v4M6.5 7h11v3.5a5.5 5.5 0 0 1-11 0Z"/><path d="M12 15.5V21"/></symbol>
+  <symbol id="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12.5 9.5 17.5 19.5 6.5"/></symbol>
+  <symbol id="icon-arrow-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12h15M13.5 6l6 6-6 6"/></symbol>
+  <symbol id="icon-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></symbol>
+  <symbol id="icon-alert" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4 3 20h18Z"/><path d="M12 10.5v4M12 17h.01"/></symbol>
+  <symbol id="icon-printer" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 8V4h11v4"/><rect x="3.5" y="8" width="17" height="8" rx="1.4"/><path d="M6.5 14v6h11v-6"/></symbol>
+  <symbol id="icon-receipt" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3.5h12v17l-2.5-1.6L13 20.5l-2.5-1.6L8 20.5l-2-1.6Z"/><path d="M8.5 8h7M8.5 11.5h7M8.5 15h4.5"/></symbol>
+  <symbol id="icon-cash" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="11" rx="1.6"/><circle cx="12" cy="12.5" r="2.6"/><path d="M6.5 7v11M17.5 7v11"/></symbol>
+  <symbol id="icon-truck" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h10v9H3z"/><path d="M13 10.5h4l3.5 3v2.5H13z"/><circle cx="7.5" cy="18" r="1.6"/><circle cx="17" cy="18" r="1.6"/></symbol>
+  <symbol id="icon-store" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9.5 5 4h14l1 5.5"/><path d="M4 9.5a2.6 2.6 0 0 0 5 1 2.6 2.6 0 0 0 5 0 2.6 2.6 0 0 0 5 0 2.6 2.6 0 0 0 5-1"/><path d="M5.5 11v9h13v-9"/></symbol>
+  <symbol id="icon-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="10.5" cy="10.5" r="6"/><path d="M15 15 20 20"/></symbol>
+  <symbol id="icon-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 4.5v15M4.5 12h15"/></symbol>
+  <symbol id="icon-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 6.5h16M4 12h16M4 17.5h16"/></symbol>
+  <symbol id="icon-heart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.3-9.3-8.7C1.4 8.4 3 5 6.4 5c2 0 3.3 1 5.6 3.5C14.3 6 15.6 5 17.6 5 21 5 22.6 8.4 21.3 11.3 19 15.7 12 20 12 20Z"/></symbol>
+  <symbol id="icon-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5 19 6v6c0 5-3 8-7 8.5-4-.5-7-3.5-7-8.5V6Z"/><path d="M9 12l2 2 4-4.5"/></symbol>
+  <symbol id="icon-mic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3.5" width="6" height="10" rx="3"/><path d="M5.5 11.5a6.5 6.5 0 0 0 13 0M12 18v2.5M9 20.5h6"/></symbol>
+  <symbol id="icon-table" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 8.5h17M3.5 8.5 5 20M20.5 8.5 19 20M8 20l.6-6.5M16 20l-.6-6.5"/><path d="M2.5 8.5 4 4h16l1.5 4.5"/></symbol>
+</svg>
+
+<script src="assets/js/components.js"></script>
+<script src="assets/js/navigation.js"></script>
+</body>
+</html>
