@@ -148,5 +148,14 @@
 
 /* ============ FAQ: buscador ============ */
 .rt-faq-search { position: relative; max-width: 480px; margin: 0 auto 2.5rem; }
-.rt-faq-search input { padding-left: 2.6rem; }
+.rt-faq-search input {
+  width: 100%;
+  padding: 0.7rem 0.9rem 0.7rem 2.6rem;
+  border: 1.5px solid var(--color-border-strong);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface);
+  color: var(--color-text);
+  min-height: 44px;
+}
+.rt-faq-search input:focus { border-color: var(--color-primary); }
 .rt-faq-search svg { position: absolute; left: 0.85rem; top: 50%; transform: translateY(-50%); color: var(--color-muted); pointer-events: none; }

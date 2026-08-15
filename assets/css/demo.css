@@ -16,7 +16,7 @@
 .rt-demo-header .rt-container { display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
 .rt-demo-header__brand { display: flex; align-items: center; gap: 0.6rem; font-weight: 700; }
 .rt-demo-header__brand a { color: #fff; text-decoration: none; font-size: 0.85rem; opacity: 0.85; }
-.rt-demo-header__title { font-size: 1.05rem; }
+.rt-demo-header__title { font-size: 1.05rem; margin: 0; color: #fff; font-weight: 700; }
 .rt-demo-header__meta { font-size: 0.78rem; color: #9FB0BF; }
 
 .rt-demo-subnav { background: var(--color-surface-alt); border-bottom: 1px solid var(--color-border); }
