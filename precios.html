@@ -34,33 +34,41 @@
       id: "growth",
       name: "Growth",
       tagline: "Ordena tu base de clientes y empieza a medir tus campañas.",
+      idealFor: "Ideal si recién quieres dejar de perder datos de clientes en WhatsApp y planillas sueltas.",
       priceFrom: "Desde $69.990 + IVA por local",
       highlight: false,
+      ctaText: "Empezar con Growth",
       features: ["CRM", "Campañas", "Feedback", "Segmentación", "Reactivación básica", "Dashboard"]
     },
     {
       id: "growth-ai",
       name: "Growth AI",
       tagline: "Agentes de IA que atienden y convierten, sobre la base de Growth.",
+      idealFor: "Ideal si estás perdiendo llamadas o WhatsApp que hoy nadie alcanza a responder a tiempo.",
       priceFrom: "Desde $129.990 + IVA por local",
       highlight: true,
+      ctaText: "Quiero Growth AI",
       features: ["Todo lo de Growth", "WhatsApp AI", "Web Agent", "Campañas con IA", "Recuperación de oportunidades", "Customer Intelligence"]
     },
     {
       id: "growth-360",
       name: "Growth 360",
       tagline: "La inteligencia completa: voz, reactivación individual y analítica avanzada.",
+      idealFor: "Ideal para restaurantes o cadenas que quieren maximizar recurrencia y medir cada peso invertido.",
       priceFrom: "Desde $219.990 + IVA por local",
       highlight: false,
+      ctaText: "Hablar de Growth 360",
       features: ["Todo lo de Growth AI", "Voice AI", "Reactivación individual", "Revenue Intelligence", "Integraciones", "Analítica avanzada"]
     },
     {
       id: "operations-lite",
       name: "Add-on Operations Lite",
       tagline: "Módulo operacional opcional, para restaurantes sin sistema propio.",
+      idealFor: "Ideal si todavía operas con caja registradora, cuaderno o un sistema que ya no te sirve.",
       priceFrom: "Desde $39.990 + IVA por local",
       highlight: false,
       isAddon: true,
+      ctaText: "Agregar Operations Lite",
       features: ["Pedidos", "KDS", "Caja básica", "Bsale", "Turnos", "Mesas simples"]
     }
   ];
@@ -104,6 +112,11 @@
       <h1>Elige el nivel de inteligencia que tu restaurante necesita hoy.</h1>
       <p class="rt-lead">Tres planes de crecimiento — Growth, Growth AI y Growth 360 — más Operations Lite como complemento operacional opcional para quienes no tienen ningún sistema todavía.</p>
       <p class="rt-field__hint" style="margin-top:1rem;">Los valores de esta página son referenciales e ilustrativos, propios de este prototipo. No representan una oferta comercial vinculante ni se procesa ningún cobro real.</p>
+
+      <div class="rt-card" style="margin-top:2rem; display:flex; gap:1rem; align-items:flex-start; max-width:640px;">
+        <svg width="22" height="22" style="color:var(--color-ai); flex-shrink:0;"><use href="#icon-sparkles"></use></svg>
+        <p style="margin:0; font-size:0.92rem;"><strong>Caso ilustrativo — Sabor Urbano, un mes con Growth 360:</strong> 1.248 oportunidades, 42 clientes reactivados y $1.860.000 en ventas atribuidas. <span class="rt-muted">Datos demostrativos del panel incluido en este prototipo, no resultados reales de un cliente.</span></p>
+      </div>
     </div>
   </section>
 
@@ -145,6 +158,14 @@
         <div class="rt-accordion__item">
           <h3><button class="rt-accordion__trigger" data-rt-accordion-trigger aria-expanded="false" aria-controls="precio-faq-2">¿Por qué no hay un precio único?<svg class="rt-accordion__icon" width="20" height="20"><use href="#icon-plus"></use></svg></button></h3>
           <div class="rt-accordion__panel" id="precio-faq-2" data-rt-accordion-panel><div class="rt-accordion__panel-inner">Porque el costo real depende del número de locales, del volumen de conversaciones y pedidos, y de las integraciones que necesites. La cotización final se conversa caso a caso, no se calcula automáticamente en este sitio.</div></div>
+        </div>
+        <div class="rt-accordion__item">
+          <h3><button class="rt-accordion__trigger" data-rt-accordion-trigger aria-expanded="false" aria-controls="precio-faq-3">¿Hay permanencia mínima o puedo cambiar de plan después?<svg class="rt-accordion__icon" width="20" height="20"><use href="#icon-plus"></use></svg></button></h3>
+          <div class="rt-accordion__panel" id="precio-faq-3" data-rt-accordion-panel><div class="rt-accordion__panel-inner">Buscamos que puedas empezar con Growth y subir a Growth AI o Growth 360 cuando lo necesites, sin partir de cero. Los términos exactos de permanencia se acuerdan en la propuesta comercial de tu caso.</div></div>
+        </div>
+        <div class="rt-accordion__item">
+          <h3><button class="rt-accordion__trigger" data-rt-accordion-trigger aria-expanded="false" aria-controls="precio-faq-4">¿Qué pasa si tengo varios locales?<svg class="rt-accordion__icon" width="20" height="20"><use href="#icon-plus"></use></svg></button></h3>
+          <div class="rt-accordion__panel" id="precio-faq-4" data-rt-accordion-panel><div class="rt-accordion__panel-inner">Los planes se cotizan por local, con descuentos por volumen a partir de la segunda sucursal. Cuéntanos cuántos locales tienes en el formulario de contacto y te proponemos la estructura correcta.</div></div>
         </div>
       </div>
     </div>
@@ -246,7 +267,8 @@
       }
 
       var header = document.createElement("div");
-      header.innerHTML = "<h3>" + plan.name + "</h3><p class=\"rt-muted\">" + plan.tagline + "</p>";
+      header.innerHTML = "<h3>" + plan.name + "</h3><p class=\"rt-muted\">" + plan.tagline + "</p>" +
+        (plan.idealFor ? "<p style=\"font-size:0.82rem; font-weight:700; color:var(--color-accent-dark); margin-top:0.5rem;\">" + plan.idealFor + "</p>" : "");
       card.appendChild(header);
 
       var price = document.createElement("p");
@@ -264,7 +286,7 @@
       cta.className = "rt-btn " + (plan.highlight ? "rt-btn--primary" : "rt-btn--dark") + " rt-btn--block";
       cta.style.marginTop = "1rem";
       cta.href = "index.html#cta";
-      cta.textContent = "Solicitar demostración";
+      cta.textContent = plan.ctaText || "Solicitar demostración";
       card.appendChild(cta);
 
       return card;
