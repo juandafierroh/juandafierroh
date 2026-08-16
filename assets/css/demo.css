@@ -279,6 +279,7 @@
 
 /* ============ Clientes (customers.html) ============ */
 .rt-customer-layout { display: grid; grid-template-columns: 1fr 360px; gap: 1.5rem; align-items: start; }
+.rt-customer-layout > * { min-width: 0; }
 @media (max-width: 980px) { .rt-customer-layout { grid-template-columns: 1fr; } }
 .rt-customer-row { cursor: pointer; }
 .rt-customer-row.is-active { background: rgba(217,123,63,0.08); }

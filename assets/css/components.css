@@ -85,21 +85,23 @@
 }
 .rt-nav-toggle svg { width: 22px; height: 22px; }
 
-@media (max-width: 900px) {
+@media (max-width: 1560px) {
   .rt-nav-toggle { display: flex; }
   .rt-nav {
     position: fixed;
-    inset: var(--header-height) 0 0 0;
+    top: var(--header-height);
+    bottom: 0;
+    left: 100%;
+    width: 100%;
     background: var(--color-surface);
     flex-direction: column;
     align-items: stretch;
     padding: 1.5rem 1.25rem;
     gap: 1.5rem;
-    transform: translateX(100%);
-    transition: transform var(--transition-base);
+    transition: left var(--transition-base);
     overflow-y: auto;
   }
-  .rt-nav.is-open { transform: translateX(0); }
+  .rt-nav.is-open { left: 0; }
   .rt-nav__list { flex-direction: column; gap: 0.25rem; font-size: 1.05rem; }
   .rt-nav__list a { display: block; padding: 0.75rem 0.25rem; }
   .rt-nav__cta { flex-direction: column; align-items: stretch; }
