@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="es-CL">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Campañas — Recurra (demo)</title>
+<meta name="description" content="Demo funcional del asistente de campañas de Recurra: elige objetivo y audiencia, genera el mensaje con IA, define canal y envío, y simula resultados con grupo de control.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2316324A'/%3E%3Cpath d='M20 44 Q20 20 44 20' stroke='%23D97B3F' stroke-width='5' fill='none' stroke-linecap='round'/%3E%3Cpath d='M36 14l8 6-8 6' stroke='%23D97B3F' stroke-width='5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="../assets/css/tokens.css">
+<link rel="stylesheet" href="../assets/css/base.css">
+<link rel="stylesheet" href="../assets/css/components.css">
+<link rel="stylesheet" href="../assets/css/demo.css">
+</head>
+<body>
+<a class="rt-skip-link" href="#main">Saltar al contenido principal</a>
+
+<header class="rt-demo-header">
+  <div class="rt-container">
+    <div class="rt-demo-header__brand">
+      <a href="../index.html">← Sitio de Recurra</a>
+    </div>
+    <div>
+      <p class="rt-demo-header__title">Campañas</p>
+      <p class="rt-demo-header__meta">Sabor Urbano · Providencia · Datos demostrativos</p>
+    </div>
+    <div><span class="rt-badge rt-badge--neutral">Prototipo</span></div>
+  </div>
+</header>
+<nav class="rt-demo-subnav" aria-label="Navegación de la demo">
+  <div class="rt-container">
+    <a href="growth-dashboard.html">Dashboard</a>
+    <a href="campaigns.html" aria-current="page">Campañas</a>
+    <a href="agent-center.html">Centro de agentes</a>
+    <a href="customer-360.html">Cliente 360</a>
+    <a href="reactivation.html">Reactivación</a>
+    <a href="reputation.html">Reputación</a>
+    <a href="funnel.html">Funnel</a>
+    <a href="integrations.html">Integraciones</a>
+    <a href="operations.html">Operación</a>
+  </div>
+</nav>
+
+<main id="main" class="rt-demo-main">
+  <div class="rt-container">
+
+    <div class="rt-card" style="background:var(--color-ai-light); border:none; margin-bottom:1.5rem; display:flex; gap:0.75rem; align-items:center;">
+      <svg width="20" height="20" style="color:var(--color-ai-dark); flex-shrink:0;"><use href="#icon-sparkles"></use></svg>
+      <p style="margin:0; font-size:0.88rem; color:var(--color-ai-dark);" id="demo-notice">Cargando datos demostrativos…</p>
+    </div>
+
+    <div id="cf-init-error" class="rt-error-state" hidden>
+      <svg width="40" height="40"><use href="#icon-alert"></use></svg>
+      <p>No se pudo cargar el asistente de campañas.</p>
+    </div>
+
+    <div id="cf-wizard-wrap" class="rt-customer-layout" style="margin-bottom:2.5rem;">
+      <div class="rt-card">
+        <h2 style="display:flex; align-items:center; gap:0.5rem; margin-bottom:1.5rem;">
+          <svg width="22" height="22" style="color:var(--color-accent)"><use href="#icon-megaphone"></use></svg>
+          Nueva campaña
+        </h2>
+
+        <form id="campaign-form" novalidate>
+          <div class="rt-field">
+            <label for="cf-name">Nombre de la campaña</label>
+            <input type="text" id="cf-name" name="name" placeholder="Ej: Reactivación clientes de agosto" required>
+          </div>
+
+          <div class="rt-grid rt-grid--2" style="gap:1rem;">
+            <div class="rt-field">
+              <label for="cf-objective">Objetivo</label>
+              <select id="cf-objective" required>
+                <option value="">Selecciona un objetivo</option>
+              </select>
+            </div>
+            <div class="rt-field">
+              <label for="cf-audience">Audiencia</label>
+              <select id="cf-audience" required>
+                <option value="">Selecciona una audiencia</option>
+              </select>
+              <p class="rt-field__hint" id="cf-audience-hint">El alcance estimado aparece en el resumen →</p>
+            </div>
+          </div>
+
+          <div class="rt-field">
+            <label id="cf-message-label" for="cf-message">Mensaje</label>
+            <div class="rt-grid rt-grid--2" style="gap:0.75rem; margin-bottom:0.75rem;">
+              <input type="text" id="cf-customer-name" placeholder="Nombre de cliente (opcional)" aria-label="Nombre de cliente para el mensaje de ejemplo">
+              <input type="text" id="cf-favorite-product" placeholder="Producto favorito (opcional)" aria-label="Producto favorito para el mensaje de ejemplo">
+            </div>
+            <button type="button" class="rt-btn rt-btn--dark rt-btn--sm" id="cf-generate-btn">
+              <svg width="16" height="16"><use href="#icon-sparkles"></use></svg>
+              Generar mensaje con IA
+            </button>
+            <p class="rt-field__hint" id="cf-generate-status" aria-live="polite" style="min-height:1.2em;"></p>
+            <textarea id="cf-message" aria-labelledby="cf-message-label" placeholder="Escribe el mensaje o genera uno con IA…" required></textarea>
+          </div>
+
+          <div class="rt-field">
+            <span id="cf-channel-label" style="display:block; font-weight:700; font-size:0.88rem; margin-bottom:0.4rem; color:var(--color-primary-dark);">Canal</span>
+            <div class="rt-toggle-row" role="group" aria-labelledby="cf-channel-label" id="cf-channel-group">
+              <button type="button" data-channel="WhatsApp" aria-pressed="true">WhatsApp</button>
+              <button type="button" data-channel="Email" aria-pressed="false">Email</button>
+              <button type="button" data-channel="Instagram" aria-pressed="false">Instagram</button>
+              <button type="button" data-channel="Web" aria-pressed="false">Web</button>
+            </div>
+          </div>
+
+          <div class="rt-field">
+            <span id="cf-timing-label" style="display:block; font-weight:700; font-size:0.88rem; margin-bottom:0.4rem; color:var(--color-primary-dark);">Envío</span>
+            <div class="rt-toggle-row" role="group" aria-labelledby="cf-timing-label" id="cf-timing-group">
+              <button type="button" data-timing="now" aria-pressed="true">Enviar ahora</button>
+              <button type="button" data-timing="schedule" aria-pressed="false">Programar</button>
+            </div>
+            <div id="cf-schedule-fields" style="display:flex; gap:0.75rem; margin-top:0.75rem;" hidden>
+              <input type="date" id="cf-date" aria-label="Fecha de envío">
+              <input type="time" id="cf-time" aria-label="Hora de envío">
+            </div>
+          </div>
+
+          <p class="rt-field__error" id="cf-form-error" role="alert" hidden></p>
+
+          <button type="submit" class="rt-btn rt-btn--primary rt-btn--block" id="cf-submit">Crear campaña</button>
+        </form>
+      </div>
+
+      <aside class="rt-card rt-customer-panel" aria-label="Resumen de la campaña">
+        <h3>Resumen</h3>
+        <div class="rt-stat-row" style="margin-bottom:1rem;">
+          <div class="rt-stat">
+            <div class="rt-stat__value" id="cf-reach-value">—</div>
+            <div class="rt-stat__label">Alcance estimado</div>
+          </div>
+          <div class="rt-stat">
+            <div class="rt-stat__value" id="cf-control-value">—</div>
+            <div class="rt-stat__label">Grupo de control</div>
+          </div>
+        </div>
+        <p class="rt-muted" style="font-size:0.82rem; display:flex; gap:0.5rem;">
+          <svg width="16" height="16" style="color:var(--color-muted); flex-shrink:0; margin-top:0.1rem;"><use href="#icon-shield"></use></svg>
+          <span>Reservamos automáticamente entre 15% y 20% de la audiencia como grupo de control: no reciben el mensaje, para poder comparar sus resultados frente a quienes sí lo reciben.</span>
+        </p>
+        <hr class="rt-divider" style="margin:1.5rem 0;">
+        <div style="display:grid; gap:0.6rem; font-size:0.88rem;">
+          <div style="display:flex; justify-content:space-between; gap:0.5rem;"><span class="rt-muted">Objetivo</span><strong id="cf-summary-objective">—</strong></div>
+          <div style="display:flex; justify-content:space-between; gap:0.5rem;"><span class="rt-muted">Canal</span><strong id="cf-summary-channel">WhatsApp</strong></div>
+          <div style="display:flex; justify-content:space-between; gap:0.5rem;"><span class="rt-muted">Envío</span><strong id="cf-summary-timing">Ahora</strong></div>
+        </div>
+      </aside>
+    </div>
+
+    <h2>Todas las campañas</h2>
+    <div id="cmp-loading" style="display:grid; gap:0.6rem; margin-bottom:1rem;" aria-live="polite">
+      <div class="rt-skeleton" style="height:44px;"></div>
+      <div class="rt-skeleton" style="height:44px;"></div>
+      <div class="rt-skeleton" style="height:44px;"></div>
+    </div>
+
+    <div id="cmp-content" hidden>
+      <div class="rt-table-wrap">
+        <table class="rt-table rt-table--stack">
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Objetivo</th>
+              <th>Audiencia</th>
+              <th>Canal</th>
+              <th>Estado</th>
+              <th class="rt-table__center">Enviados</th>
+              <th class="rt-table__center">Abiertos</th>
+              <th class="rt-table__center">Convertidos</th>
+              <th class="rt-table__center">Grupo control</th>
+              <th>Ingresos</th>
+            </tr>
+          </thead>
+          <tbody id="cmp-tbody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div id="cmp-error" class="rt-error-state" hidden>
+      <svg width="40" height="40"><use href="#icon-alert"></use></svg>
+      <p>No se pudieron cargar las campañas. <button class="rt-btn rt-btn--sm rt-btn--outline" id="cmp-retry" type="button">Reintentar</button></p>
+    </div>
+
+    <p class="rt-muted" style="font-size:0.85rem; margin-top:1.5rem;">Todas las campañas, mensajes y resultados de este panel son ficticios y se generan localmente para esta demostración — no se envía ningún mensaje real.</p>
+
+  </div>
+</main>
+
+<!-- rt- Sprite de iconos (ver /assets/icons/sprite.svg) -->
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+  <symbol id="icon-alert" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4 3 20h18Z"/><path d="M12 10.5v4M12 17h.01"/></symbol>
+  <symbol id="icon-sparkles" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5l1.4 3.8 3.8 1.4-3.8 1.4L12 14l-1.4-3.9-3.8-1.4 3.8-1.4Z"/><path d="M18.5 14.5l.8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8Z"/></symbol>
+  <symbol id="icon-megaphone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 10.5v3l3 .6v-4.2Z"/><path d="M6.5 9.9 17 6v12l-10.5-3.9Z"/><path d="M17 6a4 4 0 0 1 0 12"/><path d="M7.3 14.3l1 4.7"/></symbol>
+  <symbol id="icon-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5 19 6v6c0 5-3 8-7 8.5-4-.5-7-3.5-7-8.5V6Z"/><path d="M9 12l2 2 4-4.5"/></symbol>
+</svg>
+
+<script src="../assets/js/demo-data.js"></script>
+<script src="../assets/js/growth-platform-api.js"></script>
+<script src="../assets/js/components.js"></script>
+<script src="../assets/js/navigation.js"></script>
+<script src="../assets/js/campaigns-demo.js"></script>
+</body>
+</html>
