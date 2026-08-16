@@ -26,6 +26,7 @@
     email: document.getElementById("panel-email"),
     stats: document.getElementById("panel-stats"),
     cycleWrap: document.getElementById("panel-cycle-wrap"),
+    cycleBar: document.getElementById("panel-cycle-bar"),
     cycleFill: document.getElementById("panel-cycle-fill"),
     cycleText: document.getElementById("panel-cycle-text"),
     nextVisit: document.getElementById("panel-next-visit"),
@@ -138,14 +139,12 @@
 
     const cycle = cycleInfo(customer);
     if (cycle.hasCycle) {
-      els.cycleWrap.hidden = false;
+      els.cycleBar.hidden = false;
       els.cycleFill.className = "rt-cycle-bar__fill rt-cycle-bar__fill--" + cycle.state;
       els.cycleFill.style.width = cycle.pct + "%";
       els.cycleText.textContent = `Ciclo habitual: ${cycle.cycleMinDays}–${cycle.cycleMaxDays} días · ${cycle.lastVisitDaysAgo} días sin visitar`;
     } else {
-      els.cycleWrap.hidden = false;
-      els.cycleFill.className = "rt-cycle-bar__fill";
-      els.cycleFill.style.width = "0%";
+      els.cycleBar.hidden = true;
       els.cycleText.textContent = "Sin patrón todavía — aún no hay suficientes visitas para calcular un ciclo.";
     }
     els.nextVisit.textContent = customer.nextExpectedVisit;

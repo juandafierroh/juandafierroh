@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NOMBRE DEL PRODUCTO — Centro de integraciones</title>
-<meta name="description" content="Cómo se conecta la plataforma a Toteat, Fudo, Justo, Bsale, WooCommerce, Mercado Pago, GoHighLevel, WPCafe y Print Bridge: integración nativa, modo puente, mapeo de productos y estado en vivo de cada conector.">
-<meta property="og:title" content="NOMBRE DEL PRODUCTO — Centro de integraciones">
-<meta property="og:description" content="Estado en vivo de cada conector, cómo funciona el modo puente y el mapeo de productos entre tu POS y la plataforma.">
+<title>Integraciones — Recurra</title>
+<meta name="description" content="Cómo Recurra se conecta a WPCafe, WooCommerce, Mercado Pago, Bsale, GoHighLevel, Toteat, Fudo, Justo, KDS y Print Bridge: integración nativa, parcial o modo puente, y modalidad Connect para restaurantes que ya tienen POS.">
+<meta property="og:title" content="Integraciones — Recurra">
+<meta property="og:description" content="Agrega una capa de crecimiento con IA sin reemplazar la operación que ya funciona. Modalidad Connect, modo puente y estado en vivo de cada conector.">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="es_CL">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2316324A'/%3E%3Cpath d='M18 40 L18 24 M18 24 Q18 18 24 18 L24 30 Q24 24 30 24 L30 40' stroke='%23F3A66B' stroke-width='5' fill='none' stroke-linecap='round'/%3E%3Cpath d='M40 18 L40 40 M34 18 L46 18' stroke='%23FFFFFF' stroke-width='5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2316324A'/%3E%3Cpath d='M20 44 Q20 20 44 20' stroke='%23D97B3F' stroke-width='5' fill='none' stroke-linecap='round'/%3E%3Cpath d='M36 14l8 6-8 6' stroke='%23D97B3F' stroke-width='5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
 <link rel="stylesheet" href="assets/css/tokens.css">
 <link rel="stylesheet" href="assets/css/base.css">
 <link rel="stylesheet" href="assets/css/components.css">
@@ -20,20 +20,21 @@
 
 <header class="rt-header">
   <div class="rt-container rt-header__bar">
-    <a class="rt-logo" href="index.html"><span class="rt-logo__mark">ND</span> NOMBRE DEL PRODUCTO</a>
+    <a class="rt-logo" href="index.html"><span class="rt-logo__mark">R</span> Recurra</a>
     <nav class="rt-nav" data-rt-nav id="site-nav" aria-label="Navegación principal">
       <ul class="rt-nav__list">
         <li><a href="index.html">Inicio</a></li>
-        <li><a href="sin-pos.html">Sin POS (Conecta)</a></li>
-        <li><a href="pos-lite.html">POS Lite</a></li>
+        <li><a href="crecimiento-ia.html">Crecimiento IA</a></li>
         <li><a href="agentes-ia.html">Agentes IA</a></li>
-        <li><a href="fidelizacion.html">Fidelización</a></li>
+        <li><a href="clientes.html">Clientes</a></li>
+        <li><a href="recurrencia.html">Recurrencia</a></li>
+        <li><a href="reputacion.html">Reputación</a></li>
+        <li><a href="inteligencia.html">Inteligencia</a></li>
         <li><a href="integraciones.html" aria-current="page">Integraciones</a></li>
         <li><a href="precios.html">Precios</a></li>
-        <li><a href="faq.html">FAQ</a></li>
       </ul>
       <div class="rt-nav__cta">
-        <a class="rt-btn rt-btn--outline rt-btn--sm" href="demo/menu.html">Ver demo</a>
+        <a class="rt-btn rt-btn--outline rt-btn--sm" href="demo/growth-dashboard.html">Ver la plataforma</a>
         <a class="rt-btn rt-btn--primary rt-btn--sm" href="#cta">Solicitar demostración</a>
       </div>
     </nav>
@@ -45,421 +46,165 @@
 
 <main id="main">
 
-  <!-- HERO -->
+  <!-- 1. HERO -->
   <section class="rt-section rt-hero">
     <div class="rt-container">
-      <p class="rt-eyebrow">Integraciones</p>
-      <h1>Conecta tu operación actual o usa POS Lite.</h1>
-      <p class="rt-lead">La plataforma está construida para conectarse a lo que tu restaurante ya usa, no para reemplazarlo. Cuando tu POS tiene API, la sincronización es automática. Cuando no la tiene, un modo puente mantiene la cocina funcionando mientras la venta se concilia después.</p>
+      <p class="rt-eyebrow">Capa operacional</p>
+      <h1>Conecta el crecimiento con la operación que ya tienes.</h1>
+      <p class="rt-lead" style="max-width:760px;">Cuando un agente de IA genera un pedido, una reserva o un pago, Recurra lo conecta con tu POS, tu sistema de pagos o tu facturación — sin pedirte que cambies de sistema.</p>
       <div class="rt-btn-group" style="margin-top:1.75rem;">
-        <a class="rt-btn rt-btn--dark" href="sin-pos.html">Cómo funciona Conecta</a>
-        <a class="rt-btn rt-btn--outline" href="demo/integrations.html">Ver panel de integraciones</a>
+        <a class="rt-btn rt-btn--primary" href="demo/integrations.html">Ver el centro de integraciones</a>
+        <a class="rt-btn rt-btn--outline" href="operaciones.html">Conocer Operations Lite</a>
       </div>
       <p class="rt-field__hint" style="margin-top:1.25rem;">Estados y cifras de esta página son ilustrativos, del restaurante ficticio "Sabor Urbano".</p>
     </div>
   </section>
 
-  <!-- CÓMO FUNCIONAN LAS INTEGRACIONES -->
-  <section class="rt-section rt-section--alt" id="como-funcionan">
+  <!-- 2. MODALIDAD CONNECT -->
+  <section class="rt-section rt-section--alt" id="connect">
+    <div class="rt-container">
+      <div class="rt-section-head rt-section-head--center">
+        <span class="rt-badge rt-badge--integration">Modalidad Connect</span>
+        <h2 style="margin-top:0.75rem;">Agrega una capa de crecimiento sin reemplazar la operación que ya funciona.</h2>
+        <p class="rt-lead rt-center">Para restaurantes que ya tienen POS. Tu sistema sigue administrando caja, inventario, mesas, boletas y cierre — Recurra agrega inteligencia artificial, agentes, CRM, campañas, conversión, reactivación, reputación y analítica por encima, sin fricción.</p>
+      </div>
+
+      <div class="rt-bridge" style="margin-bottom:2.5rem;" aria-label="Diagrama de modalidad Connect">
+        <div class="rt-bridge__node rt-bridge__node--active"><svg width="24" height="24"><use href="#icon-sparkles"></use></svg><p style="margin-top:0.5rem; font-weight:700;">Recurra IA</p><p class="rt-muted" style="font-size:0.82rem;">Agentes, campañas, CRM, reputación, analítica</p></div>
+        <div class="rt-flow__arrow" style="flex:0 0 auto;"><svg width="20" height="20"><use href="#icon-arrow-right"></use></svg></div>
+        <div class="rt-bridge__node"><svg width="24" height="24"><use href="#icon-store"></use></svg><p style="margin-top:0.5rem; font-weight:700;">Tu POS</p><p class="rt-muted" style="font-size:0.82rem;">Caja, inventario, mesas, boletas, cierre</p></div>
+        <div class="rt-flow__arrow" style="flex:0 0 auto;"><svg width="20" height="20"><use href="#icon-arrow-right"></use></svg></div>
+        <div class="rt-bridge__node"><svg width="24" height="24"><use href="#icon-chef"></use></svg><p style="margin-top:0.5rem; font-weight:700;">Cocina</p><p class="rt-muted" style="font-size:0.82rem;">Recibe el pedido ya confirmado</p></div>
+      </div>
+
+      <div class="rt-grid rt-grid--2">
+        <div class="rt-card">
+          <h3>Tu POS sigue haciendo</h3>
+          <ul class="rt-pillar-card__feature-list">
+            <li>Caja y turnos</li>
+            <li>Inventario y stock</li>
+            <li>Mesas y salón</li>
+            <li>Boletas y facturación</li>
+            <li>Cierre diario</li>
+          </ul>
+        </div>
+        <div class="rt-card">
+          <h3>Recurra agrega</h3>
+          <ul class="rt-pillar-card__feature-list">
+            <li>Agentes de IA (voz, WhatsApp, web)</li>
+            <li>CRM y perfil 360 del cliente</li>
+            <li>Campañas y conversión inteligente</li>
+            <li>Reactivación y recurrencia</li>
+            <li>Reputación, recuperación y analítica</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. MODOS DE INTEGRACIÓN -->
+  <section class="rt-section" id="modos">
     <div class="rt-container">
       <div class="rt-section-head rt-section-head--center">
         <p class="rt-eyebrow">Cómo funcionan las integraciones</p>
-        <h2>Dos formas de conectar la plataforma a tu operación.</h2>
+        <h2>Tres formas de conectar la plataforma a tu operación.</h2>
         <p class="rt-lead rt-center">La diferencia importa para lo que puedes esperar de cada conector: cuánto se sincroniza solo y cuánto queda en manos del equipo.</p>
       </div>
-      <div class="rt-grid rt-grid--2">
+      <div class="rt-grid rt-grid--3">
         <div class="rt-card">
           <span class="rt-badge rt-badge--available">Integración nativa</span>
-          <h3 style="margin-top:0.8rem;">API oficial del sistema.</h3>
-          <p class="rt-muted">Cuando el POS o la herramienta expone una API oficial (Toteat, Justo, Bsale, WooCommerce, Mercado Pago, GoHighLevel), los pedidos, productos y precios se sincronizan automáticamente en ambos sentidos. No hay redigitación ni pasos manuales.</p>
+          <h3 style="margin-top:0.8rem;">Sincronización automática.</h3>
+          <p class="rt-muted">Pedido, pago y estado se sincronizan automáticamente en ambos sentidos con el sistema. No hay redigitación ni pasos manuales.</p>
+        </div>
+        <div class="rt-card">
+          <span class="rt-badge rt-badge--beta">Integración parcial</span>
+          <h3 style="margin-top:0.8rem;">Sincronización acotada.</h3>
+          <p class="rt-muted">Parte del flujo se sincroniza automáticamente (por ejemplo, productos y pedidos), pero algunos pasos todavía requieren confirmación o ajuste manual.</p>
         </div>
         <div class="rt-card">
           <span class="rt-badge rt-badge--integration">Modo puente</span>
-          <h3 style="margin-top:0.8rem;">Cuando el sistema no tiene API.</h3>
-          <p class="rt-muted">Si el POS del restaurante es cerrado, los pedidos pagados llegan igual a cocina mediante Print Bridge (impresora de comandas) o el KDS propio de la plataforma. La venta se concilia después, de forma manual, en el sistema existente — sin sincronizar automáticamente caja, stock ni mesas.</p>
+          <h3 style="margin-top:0.8rem;">Sin API disponible.</h3>
+          <p class="rt-muted">El pedido pagado llega a cocina vía KDS propio o Print Bridge (impresora de comandas). La venta se concilia después, de forma manual, en el sistema existente.</p>
         </div>
       </div>
 
-      <div class="rt-bridge" style="margin-top:2.5rem;" aria-label="Diagrama de modo puente">
-        <div class="rt-bridge__node rt-bridge__node--active">
-          <svg width="22" height="22" aria-hidden="true"><use href="#icon-card"></use></svg>
-          <h4 style="margin-top:0.6rem;">Pedido pagado</h4>
-          <p class="rt-muted" style="font-size:0.85rem;">Pago confirmado por WhatsApp, teléfono o carta QR.</p>
+      <div class="rt-card" style="margin-top:2rem;">
+        <h3>Modo puente en detalle</h3>
+        <p class="rt-muted" style="margin-bottom:1.5rem;">Así se sigue un pedido cuando el POS del restaurante no tiene una API disponible.</p>
+        <div class="rt-bridge" aria-label="Diagrama de modo puente">
+          <div class="rt-bridge__node rt-bridge__node--active">
+            <svg width="22" height="22"><use href="#icon-card"></use></svg>
+            <h4 style="margin-top:0.6rem;">Pedido pagado</h4>
+            <p class="rt-muted" style="font-size:0.85rem;">Pago confirmado por WhatsApp, teléfono o carta QR.</p>
+          </div>
+          <div class="rt-bridge__node rt-bridge__node--active">
+            <svg width="22" height="22"><use href="#icon-printer"></use></svg>
+            <h4 style="margin-top:0.6rem;">KDS / Print Bridge</h4>
+            <p class="rt-muted" style="font-size:0.85rem;">Aparece en la pantalla de cocina o se imprime la comanda.</p>
+          </div>
+          <div class="rt-bridge__node rt-bridge__node--active">
+            <svg width="22" height="22"><use href="#icon-chef"></use></svg>
+            <h4 style="margin-top:0.6rem;">Cocina</h4>
+            <p class="rt-muted" style="font-size:0.85rem;">El equipo prepara el pedido igual que cualquier otra comanda.</p>
+          </div>
+          <div class="rt-bridge__node">
+            <svg width="22" height="22"><use href="#icon-refresh"></use></svg>
+            <h4 style="margin-top:0.6rem;">Conciliación manual</h4>
+            <p class="rt-muted" style="font-size:0.85rem;">La venta se registra después en el POS existente, a mano.</p>
+          </div>
         </div>
-        <div class="rt-bridge__node rt-bridge__node--active">
-          <svg width="22" height="22" aria-hidden="true"><use href="#icon-printer"></use></svg>
-          <h4 style="margin-top:0.6rem;">Print Bridge / KDS propio</h4>
-          <p class="rt-muted" style="font-size:0.85rem;">El pedido se imprime o se muestra en la pantalla de cocina de la plataforma.</p>
-        </div>
-        <div class="rt-bridge__node rt-bridge__node--active">
-          <svg width="22" height="22" aria-hidden="true"><use href="#icon-chef"></use></svg>
-          <h4 style="margin-top:0.6rem;">Cocina</h4>
-          <p class="rt-muted" style="font-size:0.85rem;">El equipo prepara el pedido igual que cualquier otra comanda.</p>
-        </div>
-        <div class="rt-bridge__node">
-          <svg width="22" height="22" aria-hidden="true"><use href="#icon-refresh"></use></svg>
-          <h4 style="margin-top:0.6rem;">Conciliación posterior</h4>
-          <p class="rt-muted" style="font-size:0.85rem;">La venta se registra después en el POS existente, de forma manual.</p>
-        </div>
+        <p class="rt-field__hint" style="margin-top:1.25rem;"><strong>Importante:</strong> en modo puente no hay sincronización en tiempo real de caja, stock ni mesas — esa sincronización automática solo la ofrece la integración nativa.</p>
       </div>
-      <p class="rt-field__hint" style="margin-top:1rem;">En modo puente no hay sincronización automática de caja, stock ni mesas: solo la integración nativa la ofrece.</p>
     </div>
   </section>
 
-  <!-- CONECTORES DISPONIBLES -->
-  <section class="rt-section" id="conectores">
+  <!-- 4. CONECTORES -->
+  <section class="rt-section rt-section--alt" id="conectores">
     <div class="rt-container">
       <div class="rt-section-head rt-section-head--center">
-        <p class="rt-eyebrow">Conectores disponibles</p>
+        <p class="rt-eyebrow">Conectores</p>
         <h2>Estado en vivo de cada conector.</h2>
-        <p class="rt-lead rt-center">Panel de ejemplo del restaurante "Sabor Urbano". Cada conector muestra su última sincronización, volumen procesado y errores pendientes.</p>
+        <p class="rt-lead rt-center">Panel de ejemplo de Sabor Urbano, obtenido con <code>GrowthPlatformAPI.getIntegrations()</code>.</p>
       </div>
-      <div class="rt-grid rt-grid--3">
-
-        <div class="rt-card rt-integration-card">
-          <div class="rt-integration-card__head">
-            <div>
-              <h4>Toteat</h4>
-              <span class="rt-muted" style="font-size:0.8rem;">POS</span>
-            </div>
-            <span class="rt-badge rt-badge--available">Conectado</span>
-          </div>
-          <div class="rt-integration-card__meta">
-            <span>Última sync: <strong>hace 4 minutos</strong></span>
-            <span>Productos sincronizados: <strong>148</strong></span>
-            <span>Pedidos enviados: <strong>342</strong></span>
-            <span>Errores: <strong>0</strong></span>
-          </div>
-        </div>
-
-        <div class="rt-card rt-integration-card">
-          <div class="rt-integration-card__head">
-            <div>
-              <h4>Fudo</h4>
-              <span class="rt-muted" style="font-size:0.8rem;">POS</span>
-            </div>
-            <span class="rt-badge rt-badge--neutral">No disponible</span>
-          </div>
-          <div class="rt-integration-card__meta">
-            <span>Última sync: <strong>—</strong></span>
-            <span>Productos sincronizados: <strong>—</strong></span>
-            <span>Pedidos enviados: <strong>—</strong></span>
-          </div>
-          <p class="rt-muted" style="font-size:0.85rem;">Integración autorizada en evaluación.</p>
-        </div>
-
-        <div class="rt-card rt-integration-card">
-          <div class="rt-integration-card__head">
-            <div>
-              <h4>Justo</h4>
-              <span class="rt-muted" style="font-size:0.8rem;">POS</span>
-            </div>
-            <span class="rt-badge rt-badge--integration">Sincronizando</span>
-          </div>
-          <div class="rt-integration-card__meta">
-            <span>Última sync: <strong>en curso</strong></span>
-            <span>Productos sincronizados: <strong>96</strong></span>
-            <span>Pedidos enviados: <strong>54</strong></span>
-            <span>Errores: <strong>0</strong></span>
-          </div>
-        </div>
-
-        <div class="rt-card rt-integration-card">
-          <div class="rt-integration-card__head">
-            <div>
-              <h4>Bsale</h4>
-              <span class="rt-muted" style="font-size:0.8rem;">Documentos tributarios</span>
-            </div>
-            <span class="rt-badge rt-badge--available">Conectado</span>
-          </div>
-          <div class="rt-integration-card__meta">
-            <span>Última sync: <strong>hace 6 minutos</strong></span>
-            <span>Documentos emitidos: <strong>128</strong></span>
-            <span>Errores: <strong>1</strong></span>
-          </div>
-        </div>
-
-        <div class="rt-card rt-integration-card">
-          <div class="rt-integration-card__head">
-            <div>
-              <h4>WooCommerce</h4>
-              <span class="rt-muted" style="font-size:0.8rem;">Web / Menú</span>
-            </div>
-            <span class="rt-badge rt-badge--available">Conectado</span>
-          </div>
-          <div class="rt-integration-card__meta">
-            <span>Última sync: <strong>hace 9 minutos</strong></span>
-            <span>Productos sincronizados: <strong>148</strong></span>
-            <span>Pedidos enviados: <strong>12</strong></span>
-            <span>Errores: <strong>0</strong></span>
-          </div>
-        </div>
-
-        <div class="rt-card rt-integration-card">
-          <div class="rt-integration-card__head">
-            <div>
-              <h4>Mercado Pago</h4>
-              <span class="rt-muted" style="font-size:0.8rem;">Pagos</span>
-            </div>
-            <span class="rt-badge rt-badge--available">Conectado</span>
-          </div>
-          <div class="rt-integration-card__meta">
-            <span>Última sync: <strong>hace 2 minutos</strong></span>
-            <span>Pedidos enviados: <strong>289</strong></span>
-            <span>Errores: <strong>0</strong></span>
-          </div>
-        </div>
-
-        <div class="rt-card rt-integration-card">
-          <div class="rt-integration-card__head">
-            <div>
-              <h4>GoHighLevel</h4>
-              <span class="rt-muted" style="font-size:0.8rem;">CRM / Automatización</span>
-            </div>
-            <span class="rt-badge rt-badge--available">Conectado</span>
-          </div>
-          <div class="rt-integration-card__meta">
-            <span>Última sync: <strong>hace 3 minutos</strong></span>
-            <span>Errores: <strong>0</strong></span>
-          </div>
-        </div>
-
-        <div class="rt-card rt-integration-card">
-          <div class="rt-integration-card__head">
-            <div>
-              <h4>WPCafe</h4>
-              <span class="rt-muted" style="font-size:0.8rem;">Web / Menú</span>
-            </div>
-            <span class="rt-badge rt-badge--error">Con error</span>
-          </div>
-          <div class="rt-integration-card__meta">
-            <span>Última sync: <strong>hace 3 horas</strong></span>
-            <span>Productos sincronizados: <strong>140 / 148</strong></span>
-            <span>Errores: <strong>1</strong></span>
-          </div>
-          <p class="rt-muted" style="font-size:0.85rem;">8 productos con conflicto de precio.</p>
-        </div>
-
-        <div class="rt-card rt-integration-card" id="print-bridge-card">
-          <div class="rt-integration-card__head">
-            <div>
-              <h4>Print Bridge</h4>
-              <span class="rt-muted" style="font-size:0.8rem;">Cocina</span>
-            </div>
-            <span class="rt-badge rt-badge--error">Con error</span>
-          </div>
-          <div class="rt-integration-card__meta">
-            <span>Último contacto: <strong>hace 22 minutos</strong></span>
-            <span>Errores: <strong>1</strong></span>
-          </div>
-          <p class="rt-muted" style="font-size:0.85rem;">Impresora de cocina sin respuesta.</p>
-          <div class="rt-integration-card__actions">
-            <button class="rt-btn rt-btn--sm rt-btn--outline" type="button" data-rt-integration-retry="Print Bridge">Reintentar</button>
-            <a class="rt-btn rt-btn--sm rt-btn--outline" href="demo/integrations.html">Configurar</a>
-          </div>
-        </div>
-
-        <div class="rt-card rt-integration-card">
-          <div class="rt-integration-card__head">
-            <div>
-              <h4>KDS propio</h4>
-              <span class="rt-muted" style="font-size:0.8rem;">Cocina</span>
-            </div>
-            <span class="rt-badge rt-badge--available">Conectado</span>
-          </div>
-          <div class="rt-integration-card__meta">
-            <span>Última sync: <strong>hace 1 minuto</strong></span>
-            <span>Pedidos enviados: <strong>342</strong></span>
-            <span>Errores: <strong>0</strong></span>
-          </div>
-        </div>
-
-        <div class="rt-card rt-integration-card">
-          <div class="rt-integration-card__head">
-            <div>
-              <h4>API personalizada</h4>
-              <span class="rt-muted" style="font-size:0.8rem;">Otro</span>
-            </div>
-            <span class="rt-badge rt-badge--neutral">No disponible</span>
-          </div>
-          <div class="rt-integration-card__meta">
-            <span>Última sync: <strong>—</strong></span>
-          </div>
-          <p class="rt-muted" style="font-size:0.85rem;">Para sistemas propios o de terceros que expongan una API compatible.</p>
-        </div>
-
+      <div id="integrations-loading" class="rt-grid rt-grid--3" aria-live="polite">
+        <div class="rt-skeleton" style="height:150px;"></div>
+        <div class="rt-skeleton" style="height:150px;"></div>
+        <div class="rt-skeleton" style="height:150px;"></div>
+        <div class="rt-skeleton" style="height:150px;"></div>
+        <div class="rt-skeleton" style="height:150px;"></div>
+        <div class="rt-skeleton" style="height:150px;"></div>
+      </div>
+      <div id="integrations-grid" class="rt-grid rt-grid--3" hidden></div>
+      <div id="integrations-error" class="rt-error-state" hidden>
+        <svg width="40" height="40"><use href="#icon-alert"></use></svg>
+        <p>No se pudo cargar el estado de las integraciones. <button class="rt-btn rt-btn--sm rt-btn--outline" id="integrations-retry" type="button">Reintentar</button></p>
       </div>
     </div>
   </section>
 
-  <!-- MAPEO DE PRODUCTOS -->
-  <section class="rt-section rt-section--alt" id="mapeo">
+  <!-- 5. OPERATIONS LITE (compacto) -->
+  <section class="rt-section">
     <div class="rt-container">
-      <div class="rt-section-head rt-section-head--center">
-        <p class="rt-eyebrow">Mapeo de productos</p>
-        <h2>Cada producto local, vinculado a su equivalente en el POS.</h2>
-        <p class="rt-lead rt-center">El Menú Maestro guarda producto local, producto y SKU en el POS, variantes y modificadores. El sistema marca advertencias cuando hay conflictos de precio o productos sin correspondencia.</p>
-      </div>
-      <div class="rt-table-wrap">
-        <table class="rt-table rt-table--stack">
-          <thead>
-            <tr><th scope="col">Producto local</th><th scope="col">SKU POS</th><th scope="col">Variantes / modificadores</th><th scope="col">Estado de mapeo</th></tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td data-label="Producto local">Hamburguesa Doble</td>
-              <td data-label="SKU POS">SKU-1042</td>
-              <td data-label="Variantes">Sin cebolla, extra palta</td>
-              <td data-label="Estado"><span class="rt-badge rt-badge--available">Mapeado</span></td>
-            </tr>
-            <tr>
-              <td data-label="Producto local">Pizza Pepperoni Familiar</td>
-              <td data-label="SKU POS">SKU-2210</td>
-              <td data-label="Variantes">Masa delgada / masa gruesa</td>
-              <td data-label="Estado"><span class="rt-badge rt-badge--available">Mapeado</span></td>
-            </tr>
-            <tr>
-              <td data-label="Producto local">Combo Almuerzo Ejecutivo</td>
-              <td data-label="SKU POS">SKU-3390</td>
-              <td data-label="Variantes">—</td>
-              <td data-label="Estado"><span class="rt-badge rt-badge--error">Conflicto de precio</span></td>
-            </tr>
-            <tr>
-              <td data-label="Producto local">Jugo Natural Frutilla</td>
-              <td data-label="SKU POS">—</td>
-              <td data-label="Variantes">—</td>
-              <td data-label="Estado"><span class="rt-badge rt-badge--neutral">Sin correspondencia</span></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <p class="rt-field__hint" style="margin-top:1rem;">Leyenda: <span class="rt-badge rt-badge--available">Mapeado</span> <span class="rt-badge rt-badge--error">Conflicto de precio</span> <span class="rt-badge rt-badge--neutral">Sin correspondencia</span></p>
-    </div>
-  </section>
-
-  <!-- MODO PUENTE EN DETALLE -->
-  <section class="rt-section" id="modo-puente-detalle">
-    <div class="rt-container">
-      <div class="rt-section-head rt-section-head--center">
-        <p class="rt-eyebrow">Modo puente en detalle</p>
-        <h2>Ocho pasos, del pedido a la venta registrada.</h2>
-        <p class="rt-lead rt-center">Así se sigue un pedido cuando el POS del restaurante no tiene API disponible.</p>
-      </div>
-      <div class="rt-flow">
-        <div class="rt-flow__step">
-          <svg width="22" height="22"><use href="#icon-phone"></use></svg>
-          <h4>Pedido recibido</h4>
-          <p class="rt-muted">Por teléfono con IA, WhatsApp o carta QR.</p>
-        </div>
-        <div class="rt-flow__arrow" aria-hidden="true"><svg width="20" height="20"><use href="#icon-arrow-right"></use></svg></div>
-        <div class="rt-flow__step">
-          <svg width="22" height="22"><use href="#icon-card"></use></svg>
-          <h4>Pago confirmado</h4>
-          <p class="rt-muted">Se aprueba antes de liberar el pedido a cocina.</p>
-        </div>
-        <div class="rt-flow__arrow" aria-hidden="true"><svg width="20" height="20"><use href="#icon-arrow-right"></use></svg></div>
-        <div class="rt-flow__step">
-          <svg width="22" height="22"><use href="#icon-chef"></use></svg>
-          <h4>Enviado a KDS</h4>
-          <p class="rt-muted">Aparece en la pantalla de cocina propia de la plataforma.</p>
-        </div>
-        <div class="rt-flow__arrow" aria-hidden="true"><svg width="20" height="20"><use href="#icon-arrow-right"></use></svg></div>
-        <div class="rt-flow__step">
-          <svg width="22" height="22"><use href="#icon-printer"></use></svg>
-          <h4>Enviado a impresora</h4>
-          <p class="rt-muted">Print Bridge imprime la comanda si el local usa impresora.</p>
-        </div>
-        <div class="rt-flow__arrow" aria-hidden="true"><svg width="20" height="20"><use href="#icon-arrow-right"></use></svg></div>
-        <div class="rt-flow__step">
-          <svg width="22" height="22"><use href="#icon-clock"></use></svg>
-          <h4>Estado de impresión</h4>
-          <p class="rt-muted">Impreso, en cola o con error de impresora.</p>
-        </div>
-        <div class="rt-flow__arrow" aria-hidden="true"><svg width="20" height="20"><use href="#icon-arrow-right"></use></svg></div>
-        <div class="rt-flow__step">
-          <svg width="22" height="22"><use href="#icon-alert"></use></svg>
-          <h4>Conciliación pendiente</h4>
-          <p class="rt-muted">La venta queda marcada como no registrada en el POS.</p>
-        </div>
-        <div class="rt-flow__arrow" aria-hidden="true"><svg width="20" height="20"><use href="#icon-arrow-right"></use></svg></div>
-        <div class="rt-flow__step">
-          <svg width="22" height="22"><use href="#icon-receipt"></use></svg>
-          <h4>Exportar venta</h4>
-          <p class="rt-muted">Resumen listo para digitarlo en el sistema existente.</p>
-        </div>
-        <div class="rt-flow__arrow" aria-hidden="true"><svg width="20" height="20"><use href="#icon-arrow-right"></use></svg></div>
-        <div class="rt-flow__step">
-          <svg width="22" height="22"><use href="#icon-check"></use></svg>
-          <h4>Marcada como registrada</h4>
-          <p class="rt-muted">El equipo confirma que ya quedó en el POS.</p>
+      <div class="rt-card" style="max-width:760px; margin:0 auto; display:flex; gap:1.25rem; align-items:flex-start; flex-wrap:wrap;">
+        <div class="rt-card__icon" style="margin-bottom:0;"><svg width="24" height="24"><use href="#icon-store"></use></svg></div>
+        <div style="flex:1 1 260px;">
+          <span class="rt-badge rt-badge--neutral">Módulo operacional opcional</span>
+          <h3 style="margin-top:0.75rem;">¿No tienes un sistema todavía?</h3>
+          <p class="rt-muted">Cuando el restaurante no dispone de ningún sistema, Operations Lite completa la operación básica: pedidos, caja, KDS, turnos y mesas simples.</p>
+          <a class="rt-btn rt-btn--outline" href="operaciones.html">Ver Operations Lite <svg width="16" height="16"><use href="#icon-arrow-right"></use></svg></a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ESTADO DE PRINT BRIDGE -->
-  <section class="rt-section rt-section--alt" id="print-bridge">
-    <div class="rt-container">
-      <div class="rt-section-head rt-section-head--center">
-        <p class="rt-eyebrow">Estado de Print Bridge</p>
-        <h2>Visibilidad completa de la impresión en cocina.</h2>
-        <p class="rt-lead rt-center">Print Bridge es el puente entre pedidos pagados y una cocina que solo tiene impresora, sin KDS ni POS abierto.</p>
-      </div>
-      <div class="rt-stat-row">
-        <div class="rt-stat">
-          <p class="rt-stat__label">Estado</p>
-          <p class="rt-stat__value" style="font-size:1.1rem;"><span class="rt-badge rt-badge--error">Offline</span></p>
-        </div>
-        <div class="rt-stat">
-          <p class="rt-stat__label">Último contacto</p>
-          <p class="rt-stat__value" style="font-size:1.1rem;">hace 22 min</p>
-        </div>
-        <div class="rt-stat">
-          <p class="rt-stat__label">Impresora cocina</p>
-          <p class="rt-stat__value" style="font-size:1.1rem;"><span class="rt-badge rt-badge--error">Sin respuesta</span></p>
-        </div>
-        <div class="rt-stat">
-          <p class="rt-stat__label">Impresora barra</p>
-          <p class="rt-stat__value" style="font-size:1.1rem;"><span class="rt-badge rt-badge--available">Operativa</span></p>
-        </div>
-        <div class="rt-stat">
-          <p class="rt-stat__label">Cola de impresión</p>
-          <p class="rt-stat__value">3</p>
-        </div>
-        <div class="rt-stat">
-          <p class="rt-stat__label">Trabajos fallidos</p>
-          <p class="rt-stat__value">1</p>
-        </div>
-      </div>
-      <div class="rt-btn-group" style="margin-top:1.5rem;">
-        <button class="rt-btn rt-btn--outline" type="button" data-rt-integration-retry="Print Bridge">Reintentar conexión</button>
-        <button class="rt-btn rt-btn--outline" type="button" data-rt-print-test>Impresión de prueba</button>
-        <a class="rt-btn rt-btn--dark" href="demo/integrations.html">Ver panel completo de integraciones</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- MÁS INFORMACIÓN -->
-  <section class="rt-section" id="mas-informacion">
-    <div class="rt-container rt-center" style="max-width:640px;">
-      <p class="rt-eyebrow">Sigue explorando</p>
-      <h2>Compara Conecta y POS Lite en detalle.</h2>
-      <p class="rt-lead rt-center">Revisa las 32 funcionalidades comparadas entre ambas modalidades, o entiende a fondo cómo funciona Conecta.</p>
-      <div class="rt-btn-group" style="justify-content:center;">
-        <a class="rt-btn rt-btn--outline" href="index.html#comparacion">Ver comparación funcional completa</a>
-        <a class="rt-btn rt-btn--outline" href="sin-pos.html">Conocer Conecta</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA FINAL -->
+  <!-- 6. CTA FINAL -->
   <section class="rt-section rt-section--dark" id="cta">
-    <div class="rt-container rt-center" style="max-width:640px;">
+    <div class="rt-container rt-center" style="max-width:680px;">
       <h2>Cuéntanos qué sistema usas hoy.</h2>
-      <p class="rt-lead rt-center">Te mostramos si tu POS tiene integración nativa disponible o si conviene partir con modo puente.</p>
+      <p class="rt-lead rt-center">Te mostramos si tu POS tiene integración nativa disponible o si conviene partir en modo puente.</p>
       <div class="rt-btn-group" style="justify-content:center;">
-        <a class="rt-btn rt-btn--primary" href="mailto:hola@nombredelproducto.cl?subject=Quiero%20una%20demostraci%C3%B3n%20de%20integraciones">Solicitar demostración</a>
-        <a class="rt-btn rt-btn--outline" href="precios.html">Ver precios</a>
+        <a class="rt-btn rt-btn--primary" href="demo/integrations.html">Ver el centro de integraciones</a>
+        <a class="rt-btn rt-btn--outline" href="operaciones.html">Ver Operations Lite</a>
       </div>
     </div>
   </section>
@@ -470,97 +215,120 @@
   <div class="rt-container">
     <div class="rt-footer__grid">
       <div>
-        <a class="rt-logo" href="index.html" style="color:#fff;"><span class="rt-logo__mark">ND</span> NOMBRE DEL PRODUCTO</a>
-        <p style="margin-top:1rem;font-size:0.9rem;">Plataforma omnicanal de ventas, atención y recurrencia para restaurantes chilenos. Sitio y prototipo de demostración — datos ficticios.</p>
+        <a class="rt-logo" href="index.html" style="color:#fff;"><span class="rt-logo__mark">R</span> Recurra</a>
+        <p style="margin-top:1rem; color:#9FB0BF; font-size:0.9rem;">Restaurant Growth AI Platform. Prototipo con datos demostrativos de Sabor Urbano, sucursal Providencia.</p>
       </div>
       <div>
-        <h3 class="rt-footer__heading">Producto</h3>
+        <p class="rt-footer__heading">Plataforma</p>
         <ul class="rt-footer__list">
-          <li><a href="sin-pos.html">Sin POS (Conecta)</a></li>
-          <li><a href="pos-lite.html">POS Lite</a></li>
-          <li><a href="agentes-ia.html">Agentes de IA</a></li>
-          <li><a href="fidelizacion.html">Fidelización</a></li>
+          <li><a href="crecimiento-ia.html">Crecimiento IA</a></li>
+          <li><a href="agentes-ia.html">Agentes IA</a></li>
+          <li><a href="clientes.html">Clientes</a></li>
+          <li><a href="recurrencia.html">Recurrencia</a></li>
+          <li><a href="reputacion.html">Reputación</a></li>
+          <li><a href="inteligencia.html">Inteligencia</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="rt-footer__heading">Operación</p>
+        <ul class="rt-footer__list">
           <li><a href="integraciones.html">Integraciones</a></li>
+          <li><a href="operaciones.html">Operations Lite</a></li>
           <li><a href="precios.html">Precios</a></li>
+          <li><a href="index.html#faq">FAQ</a></li>
         </ul>
       </div>
       <div>
-        <h3 class="rt-footer__heading">Demostraciones</h3>
+        <p class="rt-footer__heading">Demos</p>
         <ul class="rt-footer__list">
-          <li><a href="demo/menu.html">Carta digital</a></li>
-          <li><a href="demo/dashboard.html">Dashboard</a></li>
-          <li><a href="demo/kitchen.html">Cocina / KDS</a></li>
-          <li><a href="demo/pos.html">POS Lite</a></li>
-          <li><a href="demo/customers.html">Clientes</a></li>
-          <li><a href="demo/integrations.html">Integraciones</a></li>
-          <li><a href="demo/settings.html">Configuración</a></li>
-        </ul>
-      </div>
-      <div>
-        <h3 class="rt-footer__heading">Compañía</h3>
-        <ul class="rt-footer__list">
-          <li><a href="faq.html">Preguntas frecuentes</a></li>
-          <li><a href="mailto:hola@nombredelproducto.cl">hola@nombredelproducto.cl</a></li>
-          <li><a href="#cta">Solicitar demostración</a></li>
+          <li><a href="demo/growth-dashboard.html">Dashboard de crecimiento</a></li>
+          <li><a href="demo/campaigns.html">Campañas</a></li>
+          <li><a href="demo/agent-center.html">Centro de agentes</a></li>
+          <li><a href="demo/customer-360.html">Cliente 360</a></li>
+          <li><a href="demo/reactivation.html">Reactivación</a></li>
         </ul>
       </div>
     </div>
     <div class="rt-footer__bottom">
-      <span>© <span data-rt-year></span> NOMBRE DEL PRODUCTO. Prototipo funcional — datos y precios ilustrativos.</span>
-      <span>Hecho para el mercado gastronómico chileno.</span>
+      <span>© <span data-rt-year></span> Recurra — Prototipo demostrativo, sin datos reales.</span>
+      <span>Construido con HTML5, CSS3 y JavaScript vanilla.</span>
     </div>
   </div>
 </footer>
 
-<!-- rt- Sprite de iconos SVG (ver /assets/icons/sprite.svg) -->
+<!-- rt- Sprite de iconos SVG (subconjunto usado en esta página; ver /assets/icons/sprite.svg) -->
 <svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
-  <symbol id="icon-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h3.2l1.4 4.4-2.1 1.7a12.6 12.6 0 0 0 6.4 6.4l1.7-2.1L20 15.8V19a1.5 1.5 0 0 1-1.6 1.5A15.5 15.5 0 0 1 3.5 5.6 1.5 1.5 0 0 1 5 4Z"/></symbol>
-  <symbol id="icon-chat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5h16v10H9.5L5.5 19v-3.5H4v-10Z"/><path d="M8 9.5h8M8 12.5h5"/></symbol>
-  <symbol id="icon-qr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><rect x="4" y="4" width="6" height="6" rx="0.8"/><rect x="14" y="4" width="6" height="6" rx="0.8"/><rect x="4" y="14" width="6" height="6" rx="0.8"/><path d="M14 14h2.2v2.2H14zM17.8 14H20v2.2h-2.2zM14 17.8h2.2V20H14zM17.8 17.8H20V20h-2.2z" fill="currentColor" stroke="none"/></symbol>
-  <symbol id="icon-card" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5.5" width="17" height="13" rx="1.6"/><path d="M3.5 9.5h17M7 14.5h4"/></symbol>
-  <symbol id="icon-chef" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 11.5a3 3 0 0 1-1-5.8A3.4 3.4 0 0 1 9 3.7a3 3 0 0 1 6 0 3.4 3.4 0 0 1 3.5 1.9 3 3 0 0 1-1 5.9"/><path d="M6.5 11.5V16h11v-4.5M6 20h12l-.6-4H6.6z"/></symbol>
-  <symbol id="icon-users" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><path d="M3.5 19c0-3 2.5-5 5.5-5s5.5 2 5.5 5"/><circle cx="17" cy="9" r="2.4"/><path d="M15 14.2c2.4.3 4 2 4.5 4.3"/></symbol>
-  <symbol id="icon-refresh" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12a7.5 7.5 0 0 1 12.6-5.5L19 8"/><path d="M19 4v4h-4M19.5 12a7.5 7.5 0 0 1-12.6 5.5L5 16"/><path d="M5 20v-4h4"/></symbol>
-  <symbol id="icon-star" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M12 3.5l2.5 5.2 5.7.7-4.2 4 1.1 5.7-5.1-2.8-5.1 2.8 1.1-5.7-4.2-4 5.7-.7Z"/></symbol>
-  <symbol id="icon-chart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V4M4 20h16"/><path d="M8 16v-4M12.5 16V8M17 16v-7"/></symbol>
-  <symbol id="icon-plug" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3v4M15 3v4M6.5 7h11v3.5a5.5 5.5 0 0 1-11 0Z"/><path d="M12 15.5V21"/></symbol>
-  <symbol id="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12.5 9.5 17.5 19.5 6.5"/></symbol>
-  <symbol id="icon-arrow-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12h15M13.5 6l6 6-6 6"/></symbol>
-  <symbol id="icon-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></symbol>
-  <symbol id="icon-alert" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4 3 20h18Z"/><path d="M12 10.5v4M12 17h.01"/></symbol>
-  <symbol id="icon-printer" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 8V4h11v4"/><rect x="3.5" y="8" width="17" height="8" rx="1.4"/><path d="M6.5 14v6h11v-6"/></symbol>
-  <symbol id="icon-receipt" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3.5h12v17l-2.5-1.6L13 20.5l-2.5-1.6L8 20.5l-2-1.6Z"/><path d="M8.5 8h7M8.5 11.5h7M8.5 15h4.5"/></symbol>
-  <symbol id="icon-cash" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="11" rx="1.6"/><circle cx="12" cy="12.5" r="2.6"/><path d="M6.5 7v11M17.5 7v11"/></symbol>
-  <symbol id="icon-truck" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h10v9H3z"/><path d="M13 10.5h4l3.5 3v2.5H13z"/><circle cx="7.5" cy="18" r="1.6"/><circle cx="17" cy="18" r="1.6"/></symbol>
-  <symbol id="icon-store" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9.5 5 4h14l1 5.5"/><path d="M4 9.5a2.6 2.6 0 0 0 5 1 2.6 2.6 0 0 0 5 0 2.6 2.6 0 0 0 5 0 2.6 2.6 0 0 0 5-1"/><path d="M5.5 11v9h13v-9"/></symbol>
-  <symbol id="icon-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="10.5" cy="10.5" r="6"/><path d="M15 15 20 20"/></symbol>
-  <symbol id="icon-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 4.5v15M4.5 12h15"/></symbol>
   <symbol id="icon-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 6.5h16M4 12h16M4 17.5h16"/></symbol>
-  <symbol id="icon-heart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.3-9.3-8.7C1.4 8.4 3 5 6.4 5c2 0 3.3 1 5.6 3.5C14.3 6 15.6 5 17.6 5 21 5 22.6 8.4 21.3 11.3 19 15.7 12 20 12 20Z"/></symbol>
-  <symbol id="icon-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5 19 6v6c0 5-3 8-7 8.5-4-.5-7-3.5-7-8.5V6Z"/><path d="M9 12l2 2 4-4.5"/></symbol>
-  <symbol id="icon-mic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3.5" width="6" height="10" rx="3"/><path d="M5.5 11.5a6.5 6.5 0 0 0 13 0M12 18v2.5M9 20.5h6"/></symbol>
-  <symbol id="icon-table" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 8.5h17M3.5 8.5 5 20M20.5 8.5 19 20M8 20l.6-6.5M16 20l-.6-6.5"/><path d="M2.5 8.5 4 4h16l1.5 4.5"/></symbol>
+  <symbol id="icon-sparkles" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5l1.4 3.8 3.8 1.4-3.8 1.4L12 14l-1.4-3.9-3.8-1.4 3.8-1.4Z"/><path d="M18.5 14.5l.8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8Z"/></symbol>
+  <symbol id="icon-arrow-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12h15M13.5 6l6 6-6 6"/></symbol>
+  <symbol id="icon-store" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9.5 5 4h14l1 5.5"/><path d="M4 9.5a2.6 2.6 0 0 0 5 1 2.6 2.6 0 0 0 5 0 2.6 2.6 0 0 0 5 0 2.6 2.6 0 0 0 5-1"/><path d="M5.5 11v9h13v-9"/></symbol>
+  <symbol id="icon-chef" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 11.5a3 3 0 0 1-1-5.8A3.4 3.4 0 0 1 9 3.7a3 3 0 0 1 6 0 3.4 3.4 0 0 1 3.5 1.9 3 3 0 0 1-1 5.9"/><path d="M6.5 11.5V16h11v-4.5M6 20h12l-.6-4H6.6z"/></symbol>
+  <symbol id="icon-printer" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 8V4h11v4"/><rect x="3.5" y="8" width="17" height="8" rx="1.4"/><path d="M6.5 14v6h11v-6"/></symbol>
+  <symbol id="icon-card" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5.5" width="17" height="13" rx="1.6"/><path d="M3.5 9.5h17M7 14.5h4"/></symbol>
+  <symbol id="icon-refresh" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12a7.5 7.5 0 0 1 12.6-5.5L19 8"/><path d="M19 4v4h-4M19.5 12a7.5 7.5 0 0 1-12.6 5.5L5 16"/><path d="M5 20v-4h4"/></symbol>
+  <symbol id="icon-alert" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4 3 20h18Z"/><path d="M12 10.5v4M12 17h.01"/></symbol>
 </svg>
 
+<script src="assets/js/demo-data.js"></script>
+<script src="assets/js/growth-platform-api.js"></script>
 <script src="assets/js/components.js"></script>
 <script src="assets/js/navigation.js"></script>
 <script>
-  // Botones de ejemplo del panel de integraciones: no llaman a ningún backend real,
-  // solo muestran una notificación (toast) para ilustrar el comportamiento esperado.
-  (function () {
-    document.querySelectorAll("[data-rt-integration-retry]").forEach(function (btn) {
-      btn.addEventListener("click", function () {
-        var name = btn.getAttribute("data-rt-integration-retry");
-        if (window.RTToast) window.RTToast.show("Reintentando conexión con " + name + "…", "warning");
-      });
-    });
-    var printTest = document.querySelector("[data-rt-print-test]");
-    if (printTest) {
-      printTest.addEventListener("click", function () {
-        if (window.RTToast) window.RTToast.show("Impresión de prueba enviada a la impresora de cocina.", "success");
-      });
+  document.addEventListener("DOMContentLoaded", function () {
+    var MODE_LABEL = { nativa: "Integración nativa", parcial: "Integración parcial", puente: "Modo puente" };
+    var MODE_BADGE = { nativa: "rt-badge--available", parcial: "rt-badge--beta", puente: "rt-badge--integration" };
+    var STATUS_LABEL = { conectado: "Conectado", sincronizando: "Sincronizando", error: "Con error" };
+    var STATUS_COLOR = { conectado: "var(--color-state-available-fg)", sincronizando: "var(--color-state-integration-fg)", error: "var(--color-state-error-fg)" };
+
+    function integrationCardHTML(item) {
+      var modeBadge = MODE_BADGE[item.mode] || "rt-badge--neutral";
+      var modeLabel = MODE_LABEL[item.mode] || item.mode;
+      var statusLabel = STATUS_LABEL[item.status] || item.status;
+      var statusColor = STATUS_COLOR[item.status] || "var(--color-muted)";
+      var lastSync = window.RTFormat ? window.RTFormat.dateTime(item.lastSync) : item.lastSync;
+      return (
+        '<div class="rt-card rt-integration-card">' +
+          '<div class="rt-integration-card__head">' +
+            '<div>' +
+              "<h4>" + item.name + "</h4>" +
+              '<span class="rt-muted" style="font-size:0.8rem;">' + item.category + "</span>" +
+            "</div>" +
+            '<span class="rt-badge ' + modeBadge + '">' + modeLabel + "</span>" +
+          "</div>" +
+          '<div class="rt-integration-card__meta">' +
+            '<span>Estado: <strong style="color:' + statusColor + ';">' + statusLabel + "</strong></span>" +
+            "<span>Última sincronización: <strong>" + lastSync + "</strong></span>" +
+          "</div>" +
+        "</div>"
+      );
     }
-  })();
+
+    function loadIntegrations() {
+      var loading = document.getElementById("integrations-loading");
+      var grid = document.getElementById("integrations-grid");
+      var errorState = document.getElementById("integrations-error");
+
+      loading.hidden = false;
+      grid.hidden = true;
+      errorState.hidden = true;
+
+      window.GrowthPlatformAPI.getIntegrations()
+        .then(function (list) {
+          grid.innerHTML = list.map(integrationCardHTML).join("");
+          loading.hidden = true;
+          grid.hidden = false;
+        })
+        .catch(function () {
+          loading.hidden = true;
+          errorState.hidden = false;
+        });
+    }
+
+    var retryBtn = document.getElementById("integrations-retry");
+    if (retryBtn) retryBtn.addEventListener("click", loadIntegrations);
+
+    loadIntegrations();
+  });
 </script>
 </body>
 </html>
