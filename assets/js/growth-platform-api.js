@@ -144,6 +144,11 @@
     getOrders() {
       return simulateLatency(DATA.orders);
     },
+
+    // TODO integración: estado real de cada agente de IA (Voice AI, WhatsApp Business API, widget web, QR).
+    getAgentStatus() {
+      return simulateLatency(DATA.agentStatus);
+    },
   };
 
   window.GrowthPlatformAPI = GrowthPlatformAPI;
