@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es-CL">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reactivación — Recurra (demo)</title>
+<meta name="description" content="Demo funcional de reactivación de clientes atrasados de Recurra: ciclo esperado, riesgo, acción sugerida y simulación con grupo de control.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2316324A'/%3E%3Cpath d='M20 44 Q20 20 44 20' stroke='%23D97B3F' stroke-width='5' fill='none' stroke-linecap='round'/%3E%3Cpath d='M36 14l8 6-8 6' stroke='%23D97B3F' stroke-width='5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="../assets/css/tokens.css">
+<link rel="stylesheet" href="../assets/css/base.css">
+<link rel="stylesheet" href="../assets/css/components.css">
+<link rel="stylesheet" href="../assets/css/demo.css">
+</head>
+<body>
+<a class="rt-skip-link" href="#main">Saltar al contenido principal</a>
+
+<header class="rt-demo-header">
+  <div class="rt-container">
+    <div class="rt-demo-header__brand">
+      <a href="../index.html">← Sitio de Recurra</a>
+    </div>
+    <div>
+      <p class="rt-demo-header__title">Reactivación</p>
+      <p class="rt-demo-header__meta">Sabor Urbano · Providencia · Datos demostrativos</p>
+    </div>
+    <div><span class="rt-badge rt-badge--neutral">Prototipo</span></div>
+  </div>
+</header>
+<nav class="rt-demo-subnav" aria-label="Navegación de la demo">
+  <div class="rt-container">
+    <a href="growth-dashboard.html">Dashboard</a>
+    <a href="campaigns.html">Campañas</a>
+    <a href="agent-center.html">Centro de agentes</a>
+    <a href="customer-360.html">Cliente 360</a>
+    <a href="reactivation.html" aria-current="page">Reactivación</a>
+    <a href="reputation.html">Reputación</a>
+    <a href="funnel.html">Funnel</a>
+    <a href="integrations.html">Integraciones</a>
+    <a href="operations.html">Operación</a>
+  </div>
+</nav>
+
+<main id="main" class="rt-demo-main">
+  <div class="rt-container">
+
+    <div class="rt-card" style="background:var(--color-ai-light); border:none; margin-bottom:1.5rem; display:flex; gap:0.75rem; align-items:center;">
+      <svg width="20" height="20" style="color:var(--color-ai-dark); flex-shrink:0;"><use href="#icon-sparkles"></use></svg>
+      <p style="margin:0; font-size:0.88rem; color:var(--color-ai-dark);" id="demo-notice">Cargando datos demostrativos…</p>
+    </div>
+
+    <div id="react-loading" aria-live="polite">
+      <div class="rt-skeleton" style="height:52px; margin-bottom:1rem;"></div>
+      <div class="rt-skeleton" style="height:280px;"></div>
+    </div>
+
+    <div id="react-content" hidden>
+
+      <div class="rt-card" style="margin-bottom:1.5rem;">
+        <h2 style="display:flex; align-items:center; gap:0.5rem;"><svg width="20" height="20" style="color:var(--color-ai)"><use href="#icon-shield"></use></svg> Por qué usamos un grupo de control</h2>
+        <p class="rt-muted" style="margin:0;">Antes de activar una campaña de reactivación, Recurra reserva al azar un pequeño porcentaje de clientes atrasados como <strong>grupo de control</strong> — no reciben el mensaje. Comparar su regreso natural contra el de los clientes contactados es lo único que permite medir el <strong>impacto incremental real</strong> de la campaña, y no solo una correlación con clientes que iban a volver de todas formas.</p>
+      </div>
+
+      <div class="rt-card" style="margin-bottom:1.5rem;">
+        <h3>Clientes con ciclo definido</h3>
+        <div class="rt-table-wrap">
+          <table class="rt-table rt-table--stack">
+            <thead>
+              <tr>
+                <th>Cliente</th>
+                <th>Ciclo esperado</th>
+                <th>Días sin visitar</th>
+                <th>Estado</th>
+                <th>Acción sugerida</th>
+                <th>Activar</th>
+              </tr>
+            </thead>
+            <tbody id="react-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="rt-rec-card" id="new-customer-callout">
+        <div class="rt-rec-card__icon"><svg width="20" height="20"><use href="#icon-sparkles"></use></svg></div>
+        <div>
+          <p class="rt-rec-card__title">Clientes nuevos: todavía sin ciclo</p>
+          <p class="rt-rec-card__detail" id="new-customer-detail">—</p>
+        </div>
+      </div>
+
+    </div>
+
+    <div id="react-error" class="rt-error-state" hidden>
+      <svg width="40" height="40"><use href="#icon-alert"></use></svg>
+      <p>No se pudo cargar la lista de reactivación. <button class="rt-btn rt-btn--sm rt-btn--outline" id="react-retry" type="button">Reintentar</button></p>
+    </div>
+
+  </div>
+</main>
+
+<!-- rt- Sprite de iconos (ver /assets/icons/sprite.svg) -->
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+  <symbol id="icon-alert" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4 3 20h18Z"/><path d="M12 10.5v4M12 17h.01"/></symbol>
+  <symbol id="icon-sparkles" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5l1.4 3.8 3.8 1.4-3.8 1.4L12 14l-1.4-3.9-3.8-1.4 3.8-1.4Z"/><path d="M18.5 14.5l.8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8Z"/></symbol>
+  <symbol id="icon-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5 19 6v6c0 5-3 8-7 8.5-4-.5-7-3.5-7-8.5V6Z"/><path d="M9 12l2 2 4-4.5"/></symbol>
+  <symbol id="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12.5 9.5 17.5 19.5 6.5"/></symbol>
+</svg>
+
+<script src="../assets/js/demo-data.js"></script>
+<script src="../assets/js/growth-platform-api.js"></script>
+<script src="../assets/js/components.js"></script>
+<script src="../assets/js/navigation.js"></script>
+<script src="../assets/js/reactivation-demo.js"></script>
+</body>
+</html>
