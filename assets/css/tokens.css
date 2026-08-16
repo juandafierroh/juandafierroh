@@ -7,9 +7,10 @@
 */
 
 :root {
-  /* Marca / producto (provisional) */
-  --brand-name: "NOMBRE DEL PRODUCTO";
-  --brand-name-short: "NDP";
+  /* Marca / producto (provisional — ver README "Cómo cambiar nombre") */
+  --brand-name: "Recurra";
+  --brand-name-short: "Recurra AI";
+  --brand-tagline: "Restaurant Growth AI Platform";
 
   /* Paleta principal */
   --color-primary: #16324A;        /* azul profundo — confianza / tecnología */
@@ -18,6 +19,14 @@
   --color-accent: #D97B3F;         /* cálido gastronómico — CTAs, acentos de marca */
   --color-accent-dark: #B7602A;
   --color-accent-light: #F3A66B;
+
+  --color-ai: #6E56CF;             /* violeta — inteligencia artificial, recomendaciones */
+  --color-ai-dark: #5642A6;
+  --color-ai-light: #EFEAFB;
+
+  /* Acentos decorativos (pilares, gráficos) — no llevan significado de estado */
+  --color-teal: #1C8C8C;
+  --color-rose: #C9436B;
 
   --color-success: #1E9E63;        /* pagos, éxito, reactivación */
   --color-success-dark: #157A4C;
@@ -46,6 +55,8 @@
   --color-state-roadmap-fg: #5B4B8A;
   --color-state-error-bg: #FBE7E5;
   --color-state-error-fg: #A32E25;
+  --color-state-beta-bg: #EFEAFB;
+  --color-state-beta-fg: #5642A6;
 
   /* Radios */
   --radius-sm: 8px;

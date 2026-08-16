@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es-CL">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cliente 360 — Recurra (demo)</title>
+<meta name="description" content="Demo funcional del perfil de Cliente 360 de Recurra: historial, ciclo de visitas, riesgo, productos favoritos y próxima mejor acción por cliente.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2316324A'/%3E%3Cpath d='M20 44 Q20 20 44 20' stroke='%23D97B3F' stroke-width='5' fill='none' stroke-linecap='round'/%3E%3Cpath d='M36 14l8 6-8 6' stroke='%23D97B3F' stroke-width='5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="../assets/css/tokens.css">
+<link rel="stylesheet" href="../assets/css/base.css">
+<link rel="stylesheet" href="../assets/css/components.css">
+<link rel="stylesheet" href="../assets/css/demo.css">
+</head>
+<body>
+<a class="rt-skip-link" href="#main">Saltar al contenido principal</a>
+
+<header class="rt-demo-header">
+  <div class="rt-container">
+    <div class="rt-demo-header__brand">
+      <a href="../index.html">← Sitio de Recurra</a>
+    </div>
+    <div>
+      <p class="rt-demo-header__title">Cliente 360</p>
+      <p class="rt-demo-header__meta">Sabor Urbano · Providencia · Datos demostrativos</p>
+    </div>
+    <div><span class="rt-badge rt-badge--neutral">Prototipo</span></div>
+  </div>
+</header>
+<nav class="rt-demo-subnav" aria-label="Navegación de la demo">
+  <div class="rt-container">
+    <a href="growth-dashboard.html">Dashboard</a>
+    <a href="campaigns.html">Campañas</a>
+    <a href="agent-center.html">Centro de agentes</a>
+    <a href="customer-360.html" aria-current="page">Cliente 360</a>
+    <a href="reactivation.html">Reactivación</a>
+    <a href="reputation.html">Reputación</a>
+    <a href="funnel.html">Funnel</a>
+    <a href="integrations.html">Integraciones</a>
+    <a href="operations.html">Operación</a>
+  </div>
+</nav>
+
+<main id="main" class="rt-demo-main">
+  <div class="rt-container">
+
+    <div class="rt-card" style="background:var(--color-ai-light); border:none; margin-bottom:1.5rem; display:flex; gap:0.75rem; align-items:center;">
+      <svg width="20" height="20" style="color:var(--color-ai-dark); flex-shrink:0;"><use href="#icon-sparkles"></use></svg>
+      <p style="margin:0; font-size:0.88rem; color:var(--color-ai-dark);" id="demo-notice">Cargando datos demostrativos…</p>
+    </div>
+
+    <div id="c360-loading" class="rt-customer-layout" aria-live="polite">
+      <div class="rt-card" style="display:grid; gap:0.75rem;">
+        <div class="rt-skeleton" style="height:56px;"></div>
+        <div class="rt-skeleton" style="height:56px;"></div>
+        <div class="rt-skeleton" style="height:56px;"></div>
+        <div class="rt-skeleton" style="height:56px;"></div>
+        <div class="rt-skeleton" style="height:56px;"></div>
+      </div>
+      <div class="rt-card" style="display:grid; gap:0.75rem;">
+        <div class="rt-skeleton" style="height:32px; width:60%;"></div>
+        <div class="rt-skeleton" style="height:88px;"></div>
+        <div class="rt-skeleton" style="height:140px;"></div>
+      </div>
+    </div>
+
+    <div id="c360-content" hidden>
+      <h2 class="rt-visually-hidden">Cliente 360</h2>
+      <div class="rt-customer-layout">
+
+        <div class="rt-card rt-card--flush">
+          <div id="customer-list" role="listbox" aria-label="Lista de clientes"></div>
+        </div>
+
+        <div class="rt-customer-panel">
+          <div class="rt-card">
+            <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:1rem; flex-wrap:wrap; margin-bottom:1rem;">
+              <div>
+                <h2 id="panel-name" style="margin:0 0 0.4rem;">—</h2>
+                <div id="panel-badges" style="display:flex; gap:0.5rem; flex-wrap:wrap;"></div>
+              </div>
+              <span class="rt-cycle-status" id="panel-cycle-status"></span>
+            </div>
+
+            <div style="display:grid; gap:0.3rem; font-size:0.9rem; color:var(--color-muted); margin-bottom:1.5rem;">
+              <span id="panel-channel"></span>
+              <span id="panel-phone"></span>
+              <span id="panel-email"></span>
+            </div>
+
+            <div class="rt-stat-row" id="panel-stats" style="margin-bottom:1.75rem;"></div>
+
+            <h3>Ciclo de visitas</h3>
+            <div id="panel-cycle-wrap">
+              <div class="rt-cycle-bar"><div class="rt-cycle-bar__fill" id="panel-cycle-fill"></div></div>
+              <p class="rt-muted" style="font-size:0.85rem; margin:0;" id="panel-cycle-text"></p>
+            </div>
+            <p style="font-weight:700; margin-top:0.6rem;" id="panel-next-visit"></p>
+
+            <h3 style="margin-top:1.75rem;">Productos favoritos</h3>
+            <div style="display:flex; flex-wrap:wrap; gap:0.5rem; margin-bottom:1.75rem;" id="panel-products"></div>
+
+            <div class="rt-rec-card" id="panel-rec" style="margin-bottom:1.75rem;">
+              <div class="rt-rec-card__icon"><svg width="20" height="20"><use href="#icon-sparkles"></use></svg></div>
+              <div>
+                <p class="rt-rec-card__title">Próxima mejor acción</p>
+                <p class="rt-rec-card__detail" id="panel-rec-detail">—</p>
+              </div>
+            </div>
+
+            <h3>Historial</h3>
+            <div class="rt-timeline" id="panel-timeline"></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div id="c360-error" class="rt-error-state" hidden>
+      <svg width="40" height="40"><use href="#icon-alert"></use></svg>
+      <p>No se pudo cargar el perfil del cliente. <button class="rt-btn rt-btn--sm rt-btn--outline" id="c360-retry" type="button">Reintentar</button></p>
+    </div>
+
+  </div>
+</main>
+
+<!-- rt- Sprite de iconos (ver /assets/icons/sprite.svg) -->
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+  <symbol id="icon-alert" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4 3 20h18Z"/><path d="M12 10.5v4M12 17h.01"/></symbol>
+  <symbol id="icon-sparkles" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5l1.4 3.8 3.8 1.4-3.8 1.4L12 14l-1.4-3.9-3.8-1.4 3.8-1.4Z"/><path d="M18.5 14.5l.8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8Z"/></symbol>
+  <symbol id="icon-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h3.2l1.4 4.4-2.1 1.7a12.6 12.6 0 0 0 6.4 6.4l1.7-2.1L20 15.8V19a1.5 1.5 0 0 1-1.6 1.5A15.5 15.5 0 0 1 3.5 5.6 1.5 1.5 0 0 1 5 4Z"/></symbol>
+  <symbol id="icon-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5.5" width="17" height="13" rx="1.6"/><path d="M4 6.5 12 13l8-6.5"/></symbol>
+  <symbol id="icon-star" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M12 3.5l2.5 5.2 5.7.7-4.2 4 1.1 5.7-5.1-2.8-5.1 2.8 1.1-5.7-4.2-4 5.7-.7Z"/></symbol>
+  <symbol id="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12.5 9.5 17.5 19.5 6.5"/></symbol>
+</svg>
+
+<script src="../assets/js/demo-data.js"></script>
+<script src="../assets/js/growth-platform-api.js"></script>
+<script src="../assets/js/components.js"></script>
+<script src="../assets/js/navigation.js"></script>
+<script src="../assets/js/customer-360-demo.js"></script>
+</body>
+</html>

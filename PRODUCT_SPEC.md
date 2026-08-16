@@ -1,88 +1,115 @@
-# PRODUCT_SPEC.md — NOMBRE DEL PRODUCTO
+# PRODUCT_SPEC.md — Recurra (Restaurant Growth AI Platform)
 
-Especificación funcional del prototipo. Este documento resume las decisiones de producto tomadas al construir el sitio y sirve como referencia para evolucionar el proyecto hacia una implementación real (WordPress + WooCommerce + WPCafe + Restaurant Orchestrator Lite).
+Especificación funcional del prototipo. Resume las decisiones de producto tomadas al construir el sitio y sirve como referencia para evolucionar el proyecto hacia una implementación real (WordPress + WooCommerce/WPCafe + GoHighLevel + un Restaurant Orchestrator).
 
-## 1. Propuesta de valor
+## 1. Reposicionamiento estratégico
 
-**"Atiende, cobra y hace volver a tus clientes."**
+**Categoría principal:** Plataforma de crecimiento con IA para restaurantes (Restaurant Growth AI Platform). No se presenta como POS, carta QR, bot de pedidos, sistema de comandas ni programa de puntos — esas son partes del producto, nunca su propuesta central.
 
-Una plataforma omnicanal de ventas, atención y recurrencia para restaurantes chilenos. Convierte llamadas, WhatsApp y QR en pedidos pagados, los envía al sistema que el restaurante ya usa (o a un POS Lite propio), y detecta cuándo cada cliente debería volver.
+**Promesa central:** "Convierte más consultas en visitas, pedidos y clientes frecuentes." — desde la primera búsqueda hasta la próxima visita.
 
-No es: otro chatbot, otra carta QR aislada, otro POS genérico, un sitio web de restaurante, un programa de puntos genérico, o una central telefónica.
+**Nombre del producto (provisional):** *Recurra*. Como en la versión anterior de este prototipo, el nombre es intencionalmente reemplazable — ver README §"Cómo cambiar nombre, colores y precios". El nombre evoca "recurrencia", el hilo conductor de toda la propuesta.
 
-## 2. Las dos modalidades
+## 2. El ciclo de crecimiento (flywheel)
 
-| | Conecta (sin POS propio) | POS Lite |
-|---|---|---|
-| Para quién | Restaurantes con POS/gestión existente (Toteat, Fudo, Justo, sistemas propios) | Restaurantes sin POS o con operación simple (cafeterías, food trucks, dark kitchens, panaderías, etc.) |
-| Qué hace | Capa de atención, pedidos, pagos y fidelización sobre el sistema existente | Todo lo de Conecta + caja, turnos, KDS, mesas simples y documentos tributarios |
-| Integración | Nativa (API) cuando existe, o **modo puente** (KDS/impresora + conciliación manual) cuando no | No requiere integración con un POS externo |
+Siete etapas que se retroalimentan entre sí, representadas como un diagrama circular en `index.html#ciclo`:
 
-La comparación funcional completa (32 filas) vive en `index.html#comparacion` y es la fuente única de verdad — no se duplica en otras páginas, solo se enlaza.
+1. **Atraer** — campañas, promociones, contenido, referidos, recuperación de inactivos.
+2. **Conversar** — agentes de IA en teléfono, WhatsApp, web y QR.
+3. **Convertir** — pedido, reserva, visita, pago, evento, recompra.
+4. **Atender** — conexión con cocina, POS existente o Recurra Operaciones.
+5. **Conocer** — el perfil del cliente se actualiza con cada interacción.
+6. **Hacer volver** — detección de atraso respecto del ciclo personal + acción.
+7. **Recomendar** — una buena experiencia genera reseñas, referidos y nueva atracción.
 
-### Modo puente vs. integración nativa
+## 3. Los siete pilares
 
-- **Integración nativa**: pedido, pago y estado se sincronizan automáticamente con el POS (caja, stock, mesas).
-- **Modo puente**: el pedido pagado llega a cocina vía KDS propio o Print Bridge; la venta se concilia **manualmente** después. No sincroniza caja, stock ni mesas en tiempo real. El sitio es explícito sobre esta diferencia (ver `sin-pos.html` e `integraciones.html`).
+| Pilar | Nombre en español | Página de profundidad | Objetivo |
+|---|---|---|---|
+| AI Attract | Atracción Inteligente | `crecimiento-ia.html` | Generar oportunidades y activar la base de clientes. |
+| AI Agent | Agentes Inteligentes | `agentes-ia.html` | Atender cada oportunidad por teléfono, WhatsApp, web y QR. |
+| AI Convert | Conversión Inteligente | `agentes-ia.html#conversion` | Guiar la conversación hasta la acción comercial. |
+| Customer Intelligence | Inteligencia de Clientes | `clientes.html` | Perfil 360 unificado por cliente. |
+| AI Retention | Recurrencia Inteligente | `recurrencia.html` | Ciclo personal de visita y reactivación individual. |
+| AI Reputation | Reputación y Recuperación | `reputacion.html` | Recuperar la experiencia antes de perder la relación. |
+| Revenue Intelligence | Inteligencia de Crecimiento | `inteligencia.html` | Medir qué genera visitas, pedidos y recurrencia. |
 
-## 3. Clasificación de funcionalidades
+## 4. Clasificación de funcionalidades
 
-Se usan 5 etiquetas visuales (`rt-badge`) de forma consistente en todo el sitio:
+Tres etiquetas visuales (`rt-badge`) usadas de forma consistente en todo el sitio:
 
-- **Disponible / Incluido** (`rt-badge--available`, verde) — funciona hoy en el PMV.
-- **Mediante integración** (`rt-badge--integration`, azul) — depende de conectar un sistema externo o del modo puente.
+- **Disponible** (`rt-badge--available`, verde) — funciona hoy en el PMV.
+- **En beta** (`rt-badge--beta`, violeta) — funciona con alcance limitado o en validación.
 - **Próximamente** (`rt-badge--soon`, ámbar) — siguiente etapa, no disponible aún.
-- **Roadmap** (`rt-badge--roadmap`, morado) — visión de largo plazo, explícitamente no comprometida.
-- **Error / no disponible** (`rt-badge--error` / `rt-badge--neutral`) — estados operativos (integraciones caídas, etc.), no una promesa de producto.
 
-**Regla dura seguida en todo el copy:** nunca se presenta una funcionalidad de "Próximamente" o "Roadmap" como si estuviera disponible hoy.
+Se usan además `rt-badge--integration` (depende de un conector externo), `rt-badge--roadmap` (visión de largo plazo, sin compromiso de fecha), `rt-badge--error`/`rt-badge--neutral` (estados operativos, no promesas de producto) y `rt-badge--ai` (recomendaciones/generado por IA).
 
-### PMV disponible hoy
-Carta QR, pedido para retiro, dine-in simple, WPCafe, WooCommerce, modificadores, Mercado Pago, pago previo, KDS, Bsale, GoHighLevel, Voice AI, WhatsApp, panel de pedidos, clientes/CRM, feedback, reactivación estadística inicial, POS Lite básico (caja, turnos, mesas simples).
+**Regla dura seguida en todo el copy:** nunca se presenta una funcionalidad "Próximamente" o "Roadmap" como si estuviera disponible hoy.
 
-### Próxima etapa
-Mercado Pago Point integrado, Print Bridge automático, más integraciones POS, cuenta compartida/varias rondas, división simple de cuenta, multisucursal, programas de puntos, reportes de margen.
+## 5. Recurrencia individual (no un umbral único)
 
-### Roadmap avanzado
-División por comensal, pagos parciales, inventario por receta, compras/proveedores/mermas, nutrición y alérgenos automáticos desde recetas, contaminación cruzada, predicción de preparación, benchmarking, operación offline avanzada.
+El motor de recurrencia calcula un **ciclo personal** por cliente a partir de su historial — nunca aplica una regla como "enviar promoción a todos después de 30 días". Ejemplo usado en todo el sitio:
 
-## 4. Modelo de datos (estados de orquestación)
+```text
+Claudia Soto — visita cada 9 a 12 días. Han pasado 18 días → atrasada, riesgo alto.
+Juan Pérez   — visita cada 40 a 50 días. Han pasado 26 días → dentro de su ciclo, sin acción.
+María González — una visita → estimular segunda visita, sin ciclo definido todavía.
+Rodrigo Fuentes — feedback negativo hace 2 días → caso abierto, campañas suspendidas.
+```
 
-Cuatro máquinas de estado independientes por pedido (ver `assets/js/demo-data.js` y `assets/js/restaurant-api.js`):
+Variables consideradas: recencia, frecuencia, intervalos históricos, variabilidad, ticket promedio, tendencia de gasto, día/horario habitual, productos favoritos, canal, respuesta a promociones, uso de descuentos, reclamos, valor de vida, probabilidad de regreso.
 
-- **Comercial**: Pendiente → Procesando → Completado | Cancelado | Fallido | Reembolsado.
-- **Pago**: No iniciado → Pendiente → Aprobado | Rechazado | Cancelado | Reembolsado | Contracargo.
-- **Cocina**: Bloqueado → Nuevo → Aceptado → Preparando → Listo → Entregado | Cancelado. "Bloqueado" representa un pedido remoto cuyo pago aún no se confirma — nunca llega a cocina antes de pagarse.
-- **Tributario**: No requerido → No solicitado → En cola → Emitido → Aceptado por SII | Rechazado | Nota de crédito pendiente/emitida | Error.
+Toda campaña de reactivación reserva un **grupo de control** (clientes elegibles que deliberadamente no reciben el mensaje) para medir el margen incremental real, no solo la correlación.
 
-La demo de cocina (`demo/kitchen.html`) visualiza el estado "Bloqueado" como una tarjeta inmovilizada hasta simular la confirmación de pago, ilustrando la regla **"el pago se confirma antes de liberar a cocina"**.
+## 6. Reputación ética (sin review gating)
 
-## 5. Datos de demostración
+Flujo usado en `reputacion.html` e `index.html`:
 
-Restaurante ficticio **"Sabor Urbano"**, sucursal Providencia (Santiago), moneda CLP. Ver `assets/js/demo-data.js` para el detalle completo de productos, clientes, integraciones, pedidos y casos de feedback. Todas las cifras son ilustrativas.
+```text
+Feedback para todos
+→ recuperación cuando existe un problema
+→ invitación neutral a compartir la experiencia
+```
 
-Clientes de ejemplo usados para demostrar la reactivación individual:
-- **Claudia Soto** — ciclo de 9 a 12 días, 18 días sin visitar → atrasada respecto de su propio ciclo.
-- **Juan Pérez** — ciclo de 40 a 55 días, 26 días sin visitar → todavía dentro de su ciclo, sin acción.
-- **María González** — cliente nueva, una visita → estimular segunda compra.
-- Rodrigo Fuentes (VIP) y Fernanda Rivas (en riesgo, sin consentimiento de marketing) se agregaron para enriquecer la demo de clientes.
+Explícitamente **no** se implementa el patrón "positivo → Google, negativo → ocultar". Todos los clientes reciben la misma invitación a compartir su experiencia; la recuperación siempre ocurre antes de pedir una reseña.
 
-## 6. Arquitectura de información
+## 7. La capa operacional (no es el centro del producto)
+
+Distribución de contenido del sitio: ~60% crecimiento/clientes/IA/recurrencia, ~25% agentes/conversión/experiencia, ~15% integraciones/operación — reflejado en la arquitectura de información y en que `operaciones.html` es una página secundaria, nunca enlazada desde el hero.
+
+Dos modalidades:
+
+- **Modalidad Connect** — para restaurantes que ya tienen POS (Toteat, Fudo, Justo, sistemas propios). El sistema existente sigue administrando caja, inventario, mesas y cierre; Recurra agrega IA, agentes, CRM, campañas, conversión, reactivación, reputación y analítica.
+- **Operations Lite** — módulo operacional **opcional**, solo para quienes no tienen ningún sistema: pedidos, caja básica, KDS, turnos, medios de pago, Bsale, mesas simples, reportes.
+
+Tres modos de integración explicados en `integraciones.html`: **nativa** (sincronización automática), **parcial**, y **puente** (KDS/impresora + conciliación manual, sin sincronizar caja/stock/mesas en tiempo real — el sitio es explícito sobre esta limitación).
+
+## 8. Modelo de datos (window.GP_DATA / window.GrowthPlatformAPI)
+
+Todos los datos viven en `assets/js/demo-data.js` (`window.GP_DATA`) y se leen exclusivamente a través de `assets/js/growth-platform-api.js` (`window.GrowthPlatformAPI`), que expone: `getDashboard()`, `getOpportunities()`, `getCampaigns()`, `createCampaign()`, `generateCampaignCopy()`, `getConversations()`, `getCustomers()`, `getCustomerProfile()`, `getAtRiskCustomers()`, `getRecommendations()`, `getReputationCases()`, `getFunnel()`, `getIntegrations()`, `getOrders()`. Cada método incluye un comentario `// TODO integración` señalando el punto de conexión futuro (GoHighLevel, WooCommerce/WPCafe, Mercado Pago, Bsale, un Restaurant Orchestrator).
+
+Restaurante ficticio: **Sabor Urbano**, sucursal Providencia (Santiago de Chile). Indicadores de ejemplo (todos demostrativos): 1.248 oportunidades/mes, 642 conversaciones, 231 pedidos o reservas, 36% de conversión, 87 clientes en riesgo, 42 reactivados, $1.860.000 en ventas atribuidas, 4,6 de valoración promedio, 18 casos recuperados.
+
+Clientes de ejemplo: Claudia Soto, Juan Pérez, María González, Rodrigo Fuentes y Fernanda Rivas (detalle completo en §5 y en `assets/js/demo-data.js`).
+
+## 9. Arquitectura de información
 
 | Página | Propósito |
 |---|---|
-| `index.html` | Home comercial completo: hero, problema, cómo funciona, selector Conecta/POS Lite, funcionalidades, flujo de pedido, agentes IA, reactivación, dashboard, integraciones, casos de uso, **comparación funcional completa**, FAQ, CTA. |
-| `sin-pos.html` | Explica la modalidad Conecta en detalle: integraciones, modo puente, Print Bridge, qué conserva/agrega. |
-| `pos-lite.html` | Explica POS Lite: caja, turnos, KDS, mesas, Bsale, reportes, roles, límites del PMV. |
-| `agentes-ia.html` | Voice AI y WhatsApp: capacidades, ejemplos de conversación, métricas, handoff. |
-| `fidelizacion.html` | CRM, reactivación individual, feedback, grupo de control. |
-| `integraciones.html` | Centro de integraciones (marketing): conectores, mapeo de productos, Print Bridge. |
-| `precios.html` | 3 planes (Conecta / Omnicanal / POS Lite) con precios editables en una constante JS. |
-| `faq.html` | Preguntas frecuentes con buscador. |
-| `demo/*.html` | Interfaces funcionales (ver README para el detalle de cada una). |
+| `index.html` | Home comercial completo: hero, flywheel, problema, 7 pilares, agentes, campañas, conversión, customer intelligence, recurrencia, reputación, revenue intelligence, integraciones, modalidad Connect, Operations Lite (módulo opcional), casos de uso, planes, FAQ, CTA. |
+| `crecimiento-ia.html` | Atracción Inteligente en profundidad: campañas, audiencias, leads, atribución, recomendaciones de IA, grupos de control. |
+| `agentes-ia.html` | Agentes por canal (teléfono/WhatsApp/web-QR), ejemplos de conversación, handoff, y Conversión Inteligente (`#conversion`). |
+| `clientes.html` | Perfil 360, segmentos, timeline, consentimientos. |
+| `recurrencia.html` | Ciclo individual, variables, acciones posibles, métricas de reactivación. |
+| `reputacion.html` | Feedback, sentimiento, casos, tendencias, flujo ético sin review gating. |
+| `inteligencia.html` | Dashboard, funnel, cohortes/LTV, panel de oportunidades de crecimiento. |
+| `integraciones.html` | Conectores, modos de integración, modalidad Connect. |
+| `operaciones.html` | Página secundaria: POS, KDS, Operations Lite. |
+| `precios.html` | 4 planes (Growth / Growth AI / Growth 360 / Add-on Operations Lite), precios en una constante JS editable. |
+| `demo/*.html` | 9 interfaces funcionales (ver README para el detalle de cada una). |
 
-## 7. Componentes reutilizables
+## 10. Componentes reutilizables
 
-Definidos una sola vez y compartidos por todo el sitio (`assets/css/components.css`, `assets/js/components.js`): header/nav responsive, footer, botones, tarjetas, badges de estado, tabs, acordeón, modal, tooltip, toast, tabla responsive (con variante `stack` para móvil), formularios, mockup de dispositivo, diagrama de flujo numerado, selector Conecta/POS Lite, filtro de tablas por etiqueta.
+Definidos una sola vez en `assets/css/{tokens,base,components,pages,demo}.css` y `assets/js/{components,navigation}.js`: header/nav responsive, footer, botones, tarjetas, badges de estado (7 variantes), tabs, acordeón, modal, tooltip, toast, tabla responsive (variante `stack`), formularios, mockup de dispositivo, diagrama de flujo numerado, **flywheel circular de 7 etapas**, **tarjetas de pilar**, **timeline de cliente**, **tarjeta de recomendación de IA**, **panel de oportunidades de crecimiento**, **funnel horizontal**, **estado de ciclo/riesgo**, **tarjeta de caso de reputación**, grilla de estado de agentes, selector Connect/Operations Lite, filtro por etiqueta, tablero Kanban, gráficos de barras en CSS puro.
 
-`assets/js/restaurant-api.js` expone `window.RestaurantAPI` como única puerta de entrada a los datos (ver README §Migración a WordPress) — todas las pantallas `/demo` lo usan en vez de tocar `RT_DATA` directamente.
+`assets/js/growth-platform-api.js` es la única puerta de entrada a los datos — ninguna pantalla `/demo` debería leer `GP_DATA` directamente (ver README §Migración).

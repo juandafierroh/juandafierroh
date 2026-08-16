@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="es-CL">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Recurrencia Inteligente — Recurra</title>
+<meta name="description" content="La plataforma calcula el ciclo personal de cada cliente y detecta cuándo debería volver — con grupo de control para medir el impacto real de cada acción de reactivación.">
+<meta property="og:title" content="Recurrencia Inteligente — Recurra">
+<meta property="og:description" content="No todos tus clientes deberían volver el mismo día. Ciclo individual, riesgo de abandono y grupo de control para medir la reactivación real.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_CL">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2316324A'/%3E%3Cpath d='M20 44 Q20 20 44 20' stroke='%23D97B3F' stroke-width='5' fill='none' stroke-linecap='round'/%3E%3Cpath d='M36 14l8 6-8 6' stroke='%23D97B3F' stroke-width='5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/css/tokens.css">
+<link rel="stylesheet" href="assets/css/base.css">
+<link rel="stylesheet" href="assets/css/components.css">
+<link rel="stylesheet" href="assets/css/pages.css">
+</head>
+<body>
+<a class="rt-skip-link" href="#main">Saltar al contenido principal</a>
+
+<header class="rt-header">
+  <div class="rt-container rt-header__bar">
+    <a class="rt-logo" href="index.html"><span class="rt-logo__mark">R</span> Recurra</a>
+    <nav class="rt-nav" data-rt-nav id="site-nav" aria-label="Navegación principal">
+      <ul class="rt-nav__list">
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="crecimiento-ia.html">Crecimiento IA</a></li>
+        <li><a href="agentes-ia.html">Agentes IA</a></li>
+        <li><a href="clientes.html">Clientes</a></li>
+        <li><a href="recurrencia.html" aria-current="page">Recurrencia</a></li>
+        <li><a href="reputacion.html">Reputación</a></li>
+        <li><a href="inteligencia.html">Inteligencia</a></li>
+        <li><a href="integraciones.html">Integraciones</a></li>
+        <li><a href="precios.html">Precios</a></li>
+      </ul>
+      <div class="rt-nav__cta">
+        <a class="rt-btn rt-btn--outline rt-btn--sm" href="demo/growth-dashboard.html">Ver la plataforma</a>
+        <a class="rt-btn rt-btn--primary rt-btn--sm" href="#cta">Solicitar demostración</a>
+      </div>
+    </nav>
+    <button class="rt-nav-toggle" type="button" data-rt-nav-toggle aria-expanded="false" aria-controls="site-nav" aria-label="Abrir menú de navegación">
+      <svg width="22" height="22" aria-hidden="true"><use href="#icon-menu"></use></svg>
+    </button>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- HERO -->
+  <section class="rt-section rt-hero">
+    <div class="rt-container">
+      <p class="rt-eyebrow">Pilar 5 · AI Retention</p>
+      <h1>Recurrencia Inteligente</h1>
+      <p class="rt-lead" style="max-width:760px;">No todos tus clientes deberían volver el mismo día.</p>
+      <p class="rt-muted" style="max-width:70ch;">La plataforma calcula un <strong>ciclo personal</strong> para cada cliente a partir de su propio historial de visitas. No aplica una regla única para todos — como "enviar un descuento a los 30 días" — porque un cliente que visita cada 10 días y uno que visita cada 45 no están en la misma situación cuando pasan 26 días sin volver.</p>
+      <div class="rt-status-legend" style="margin-top:1.5rem;">
+        <span class="rt-muted" style="font-weight:700; font-size:0.85rem;">Estado de las funcionalidades:</span>
+        <span class="rt-badge rt-badge--available">Disponible</span>
+        <span class="rt-badge rt-badge--beta">En beta</span>
+        <span class="rt-badge rt-badge--soon">Próximamente</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRES EJEMPLOS -->
+  <section class="rt-section rt-section--alt" id="ejemplos">
+    <div class="rt-container">
+      <div class="rt-section-head rt-section-head--center">
+        <p class="rt-eyebrow">Tres clientes, tres ciclos distintos</p>
+        <h2>El mismo número de días significa cosas distintas para cada persona.</h2>
+        <p class="rt-lead rt-center">Ejemplos con datos ficticios de Sabor Urbano, sucursal Providencia.</p>
+      </div>
+      <div class="rt-grid rt-grid--3">
+        <div class="rt-card">
+          <div class="rt-card__icon" style="background:var(--color-state-error-bg); color:var(--color-state-error-fg);"><svg width="24" height="24"><use href="#icon-alert"></use></svg></div>
+          <h3>Claudia Soto</h3>
+          <p class="rt-muted">Cliente frecuente. Visita cada 9 a 12 días. Han pasado 18 días.</p>
+          <div class="rt-cycle-bar"><div class="rt-cycle-bar__fill rt-cycle-bar__fill--danger" style="width:100%"></div></div>
+          <span class="rt-cycle-status rt-cycle-status--alto">Atrasada respecto de su ciclo</span>
+          <p class="rt-muted" style="margin-top:0.9rem; font-size:0.88rem;"><strong>Acción sugerida:</strong> novedad + producto favorito (cheesecake de maracuyá) por WhatsApp.</p>
+        </div>
+        <div class="rt-card">
+          <div class="rt-card__icon" style="background:var(--color-state-available-bg); color:var(--color-state-available-fg);"><svg width="24" height="24"><use href="#icon-check"></use></svg></div>
+          <h3>Juan Pérez</h3>
+          <p class="rt-muted">Cliente ocasional. Visita cada 40 a 50 días. Han pasado 26 días.</p>
+          <div class="rt-cycle-bar"><div class="rt-cycle-bar__fill rt-cycle-bar__fill--ok" style="width:52%"></div></div>
+          <span class="rt-cycle-status rt-cycle-status--bajo">Todavía dentro de su ciclo</span>
+          <p class="rt-muted" style="margin-top:0.9rem; font-size:0.88rem;"><strong>Acción sugerida:</strong> ninguna. No se envía ningún descuento innecesario mientras esté dentro de su ciclo.</p>
+        </div>
+        <div class="rt-card">
+          <div class="rt-card__icon" style="background:var(--color-state-integration-bg); color:var(--color-state-integration-fg);"><svg width="24" height="24"><use href="#icon-sparkles"></use></svg></div>
+          <h3>María González</h3>
+          <p class="rt-muted">Cliente nueva. Una sola visita registrada, hace 5 días.</p>
+          <div class="rt-cycle-bar"><div class="rt-cycle-bar__fill rt-cycle-bar__fill--risk" style="width:20%"></div></div>
+          <span class="rt-cycle-status rt-cycle-status--nuevo">Sin patrón todavía — primera visita</span>
+          <p class="rt-muted" style="margin-top:0.9rem; font-size:0.88rem;"><strong>Acción sugerida:</strong> estimular una segunda visita con un incentivo liviano, antes de que exista un ciclo que calcular.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VARIABLES DEL MODELO -->
+  <section class="rt-section" id="variables">
+    <div class="rt-container">
+      <div class="rt-section-head rt-section-head--center">
+        <p class="rt-eyebrow">Cómo se calcula el ciclo</p>
+        <h2>El modelo considera el comportamiento completo del cliente, no solo la última visita.</h2>
+        <p class="rt-lead rt-center">Cada variable ajusta el ciclo estimado y la urgencia de la acción recomendada.</p>
+      </div>
+      <div class="rt-pill-list rt-center" style="justify-content:center;">
+        <span class="rt-pill">Recencia</span>
+        <span class="rt-pill">Frecuencia</span>
+        <span class="rt-pill">Intervalos históricos entre visitas</span>
+        <span class="rt-pill">Variabilidad del ciclo</span>
+        <span class="rt-pill">Ticket promedio</span>
+        <span class="rt-pill">Tendencia de gasto</span>
+        <span class="rt-pill">Día y horario habitual</span>
+        <span class="rt-pill">Productos favoritos</span>
+        <span class="rt-pill">Canal preferido</span>
+        <span class="rt-pill">Respuesta a promociones anteriores</span>
+        <span class="rt-pill">Uso de descuentos</span>
+        <span class="rt-pill">Reclamos registrados</span>
+        <span class="rt-pill">Valor de vida (LTV)</span>
+        <span class="rt-pill">Probabilidad de regreso</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ACCIONES POSIBLES -->
+  <section class="rt-section rt-section--alt" id="acciones">
+    <div class="rt-container">
+      <div class="rt-section-head rt-section-head--center">
+        <p class="rt-eyebrow">Acciones de recurrencia</p>
+        <h2>No toda reactivación es un descuento.</h2>
+        <p class="rt-lead rt-center">La plataforma elige la acción según el perfil del cliente — el descuento es una opción entre muchas, no la primera.</p>
+      </div>
+      <div class="rt-grid rt-grid--2">
+        <ul class="rt-pillar-card__feature-list">
+          <li>Recordatorio simple <span class="rt-badge rt-badge--available">Disponible</span></li>
+          <li>Novedad de la carta <span class="rt-badge rt-badge--available">Disponible</span></li>
+          <li>Recomendación de producto favorito <span class="rt-badge rt-badge--available">Disponible</span></li>
+          <li>Beneficio en horario valle <span class="rt-badge rt-badge--available">Disponible</span></li>
+          <li>Descuento pequeño <span class="rt-badge rt-badge--available">Disponible</span></li>
+          <li>Oferta de recuperación <span class="rt-badge rt-badge--available">Disponible</span></li>
+          <li>Invitación a evento <span class="rt-badge rt-badge--available">Disponible</span></li>
+        </ul>
+        <ul class="rt-pillar-card__feature-list">
+          <li>Beneficio no monetario (postre, bebida de cortesía) <span class="rt-badge rt-badge--beta">En beta</span></li>
+          <li>Mensaje personal del dueño o encargado <span class="rt-badge rt-badge--beta">En beta</span></li>
+          <li>Acceso anticipado a un producto o evento <span class="rt-badge rt-badge--beta">En beta</span></li>
+          <li>Acompañamiento del equipo en la siguiente visita <span class="rt-badge rt-badge--beta">En beta</span></li>
+          <li>Puntos o programa de beneficios acumulables <span class="rt-badge rt-badge--soon">Próximamente</span></li>
+          <li>Upgrade de categoría de cliente <span class="rt-badge rt-badge--soon">Próximamente</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- MÉTRICAS -->
+  <section class="rt-section" id="metricas">
+    <div class="rt-container">
+      <div class="rt-section-head rt-section-head--center">
+        <p class="rt-eyebrow">Métricas de la campaña</p>
+        <h2>"Reactivación clientes atrasados" — un ciclo completo, medido.</h2>
+        <p class="rt-lead rt-center">Cifras ilustrativas, consistentes con los datos demostrativos de Sabor Urbano.</p>
+      </div>
+      <div class="rt-stat-row">
+        <div class="rt-stat"><div class="rt-stat__value">87</div><div class="rt-stat__label">Clientes elegibles</div></div>
+        <div class="rt-stat"><div class="rt-stat__value">72</div><div class="rt-stat__label">Clientes contactados</div></div>
+        <div class="rt-stat"><div class="rt-stat__value">24</div><div class="rt-stat__label">Clientes reactivados</div></div>
+        <div class="rt-stat"><div class="rt-stat__value">4,3 días</div><div class="rt-stat__label">Tiempo promedio hasta el regreso</div></div>
+        <div class="rt-stat"><div class="rt-stat__value">$342.000</div><div class="rt-stat__label">Venta generada</div></div>
+        <div class="rt-stat"><div class="rt-stat__value">$156.000</div><div class="rt-stat__label">Margen incremental</div></div>
+        <div class="rt-stat"><div class="rt-stat__value">$28.000</div><div class="rt-stat__label">Costo del incentivo</div></div>
+        <div class="rt-stat"><div class="rt-stat__value">2,3%</div><div class="rt-stat__label">Tasa de baja (opt-out)</div></div>
+      </div>
+      <p class="rt-field__hint rt-center" style="margin-top:1rem;">De los 87 clientes en riesgo, 15 quedaron en un grupo de control sin mensaje. Los 72 restantes recibieron la acción de reactivación; 24 volvieron a visitar el restaurante en los días siguientes.</p>
+    </div>
+  </section>
+
+  <!-- GRUPO DE CONTROL -->
+  <section class="rt-section rt-section--alt" id="grupo-control">
+    <div class="rt-container rt-grid rt-grid--2" style="align-items:center;">
+      <div>
+        <p class="rt-eyebrow">Grupo de control</p>
+        <h2>¿Volvieron por la campaña o habrían vuelto igual?</h2>
+        <p class="rt-lead">Cada campaña de reactivación reserva deliberadamente una parte de los clientes elegibles para no recibir ningún mensaje. Ese grupo de control permite comparar cuántos clientes contactados volvieron frente a cuántos habrían vuelto de todas formas, sin ninguna acción.</p>
+        <p class="rt-muted">La diferencia entre ambos grupos es el <strong>margen incremental</strong> real de la campaña — la plataforma no se atribuye una visita que habría ocurrido igual.</p>
+        <span class="rt-badge rt-badge--beta" style="margin-top:0.5rem;">Grupo de control: En beta</span>
+      </div>
+      <div class="rt-card">
+        <p class="rt-eyebrow" style="margin-bottom:0.75rem;">Campaña "Reactivación clientes atrasados"</p>
+        <ul style="list-style:none; padding:0; margin:0; display:grid; gap:0.7rem; font-size:0.95rem;">
+          <li><strong>Audiencia elegible:</strong> 87 clientes en riesgo</li>
+          <li><strong>Grupo de control (sin mensaje):</strong> 15 clientes</li>
+          <li><strong>Grupo contactado:</strong> 72 clientes</li>
+          <li><strong>Convertidos en el grupo contactado:</strong> 24</li>
+          <li><strong>Venta atribuida a la campaña:</strong> $342.000</li>
+        </ul>
+        <hr class="rt-divider" style="margin:1.25rem 0;">
+        <p class="rt-muted" style="font-size:0.85rem;">Sin un grupo de control, cualquier visita del período se atribuiría a la campaña. Con grupo de control, solo se cuenta como impacto real la diferencia frente a lo que habría pasado sin enviar nada.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA FINAL -->
+  <section class="rt-section rt-section--dark" id="cta">
+    <div class="rt-container rt-center" style="max-width:640px;">
+      <h2>Detecta a tiempo a quién debería estar volviendo.</h2>
+      <p class="rt-lead rt-center">Ciclo individual, riesgo de abandono y grupo de control, para reactivar solo a quien realmente lo necesita.</p>
+      <div class="rt-btn-group" style="justify-content:center;">
+        <a class="rt-btn rt-btn--primary" href="demo/reactivation.html">Probar la reactivación</a>
+        <a class="rt-btn rt-btn--outline" href="index.html#pilares">Ver los siete pilares</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="rt-footer">
+  <div class="rt-container">
+    <div class="rt-footer__grid">
+      <div>
+        <a class="rt-logo" href="index.html" style="color:#fff;"><span class="rt-logo__mark">R</span> Recurra</a>
+        <p style="margin-top:1rem; color:#9FB0BF; font-size:0.9rem;">Restaurant Growth AI Platform. Prototipo con datos demostrativos de Sabor Urbano, sucursal Providencia.</p>
+      </div>
+      <div>
+        <p class="rt-footer__heading">Plataforma</p>
+        <ul class="rt-footer__list">
+          <li><a href="crecimiento-ia.html">Crecimiento IA</a></li>
+          <li><a href="agentes-ia.html">Agentes IA</a></li>
+          <li><a href="clientes.html">Clientes</a></li>
+          <li><a href="recurrencia.html">Recurrencia</a></li>
+          <li><a href="reputacion.html">Reputación</a></li>
+          <li><a href="inteligencia.html">Inteligencia</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="rt-footer__heading">Operación</p>
+        <ul class="rt-footer__list">
+          <li><a href="integraciones.html">Integraciones</a></li>
+          <li><a href="operaciones.html">Operations Lite</a></li>
+          <li><a href="precios.html">Precios</a></li>
+          <li><a href="index.html#faq">FAQ</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="rt-footer__heading">Demos</p>
+        <ul class="rt-footer__list">
+          <li><a href="demo/growth-dashboard.html">Dashboard de crecimiento</a></li>
+          <li><a href="demo/campaigns.html">Campañas</a></li>
+          <li><a href="demo/agent-center.html">Centro de agentes</a></li>
+          <li><a href="demo/customer-360.html">Cliente 360</a></li>
+          <li><a href="demo/reactivation.html">Reactivación</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="rt-footer__bottom">
+      <span>© <span data-rt-year></span> Recurra — Prototipo demostrativo, sin datos reales.</span>
+      <span>Construido con HTML5, CSS3 y JavaScript vanilla.</span>
+    </div>
+  </div>
+</footer>
+
+<!-- rt- Sprite de iconos SVG (ver /assets/icons/sprite.svg) -->
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+  <symbol id="icon-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 6.5h16M4 12h16M4 17.5h16"/></symbol>
+  <symbol id="icon-alert" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4 3 20h18Z"/><path d="M12 10.5v4M12 17h.01"/></symbol>
+  <symbol id="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12.5 9.5 17.5 19.5 6.5"/></symbol>
+  <symbol id="icon-sparkles" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5l1.4 3.8 3.8 1.4-3.8 1.4L12 14l-1.4-3.9-3.8-1.4 3.8-1.4Z"/><path d="M18.5 14.5l.8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8Z"/></symbol>
+</svg>
+
+<script src="assets/js/components.js"></script>
+<script src="assets/js/navigation.js"></script>
+</body>
+</html>
