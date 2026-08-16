@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es-CL">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Operación del día — Recurra (demo)</title>
+<meta name="description" content="Demo funcional de la capa operativa de Recurra: tablero de pedidos, cocina, pagos y documentos simulados, conectada a tu POS/Bsale/KDS o al módulo opcional Operations Lite.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2316324A'/%3E%3Cpath d='M20 44 Q20 20 44 20' stroke='%23D97B3F' stroke-width='5' fill='none' stroke-linecap='round'/%3E%3Cpath d='M36 14l8 6-8 6' stroke='%23D97B3F' stroke-width='5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="../assets/css/tokens.css">
+<link rel="stylesheet" href="../assets/css/base.css">
+<link rel="stylesheet" href="../assets/css/components.css">
+<link rel="stylesheet" href="../assets/css/demo.css">
+</head>
+<body>
+<a class="rt-skip-link" href="#main">Saltar al contenido principal</a>
+
+<header class="rt-demo-header">
+  <div class="rt-container">
+    <div class="rt-demo-header__brand">
+      <a href="../index.html">← Sitio de Recurra</a>
+    </div>
+    <div>
+      <p class="rt-demo-header__title">Operación del día</p>
+      <p class="rt-demo-header__meta">Sabor Urbano · Providencia · Datos demostrativos</p>
+    </div>
+    <div><span class="rt-badge rt-badge--neutral">Prototipo</span></div>
+  </div>
+</header>
+<nav class="rt-demo-subnav" aria-label="Navegación de la demo">
+  <div class="rt-container">
+    <a href="growth-dashboard.html">Dashboard</a>
+    <a href="campaigns.html">Campañas</a>
+    <a href="agent-center.html">Centro de agentes</a>
+    <a href="customer-360.html">Cliente 360</a>
+    <a href="reactivation.html">Reactivación</a>
+    <a href="reputation.html">Reputación</a>
+    <a href="funnel.html">Funnel</a>
+    <a href="integrations.html">Integraciones</a>
+    <a href="operations.html" aria-current="page">Operación</a>
+  </div>
+</nav>
+
+<main id="main" class="rt-demo-main">
+  <div class="rt-container">
+
+    <p class="rt-lead" style="margin-bottom:1.5rem; max-width:70ch;">Esta pantalla muestra que la plataforma también puede ejecutar lo que la IA convierte: cuando una llamada, un WhatsApp o un pedido por carta QR se transforma en una venta, alguien tiene que prepararla y entregarla. Recurra se conecta a tu POS, Bsale y KDS existentes o, si aún no tienes uno, ofrece un módulo opcional y liviano — Operations Lite — solo para pedidos, cocina y documentos simples. <a href="../operaciones.html">Conoce el detalle de Operations Lite →</a></p>
+
+    <div id="ops-loading" aria-live="polite">
+      <div class="rt-skeleton" style="height:280px;"></div>
+    </div>
+
+    <div id="ops-content" hidden>
+      <section aria-labelledby="board-heading">
+        <h2 id="board-heading" class="rt-visually-hidden">Tablero de pedidos</h2>
+        <div class="rt-kds-board" id="order-board"></div>
+      </section>
+      <p class="rt-muted" style="font-size:0.82rem; margin-top:1rem;">Datos ficticios del restaurante Sabor Urbano. Los documentos generados aquí son simulados y no tienen validez tributaria.</p>
+    </div>
+
+    <div id="ops-error" class="rt-error-state" hidden>
+      <svg width="40" height="40"><use href="#icon-alert"></use></svg>
+      <p>No se pudo cargar el panel demostrativo. <button class="rt-btn rt-btn--sm rt-btn--outline" id="ops-retry" type="button">Reintentar</button></p>
+    </div>
+
+  </div>
+</main>
+
+<!-- Modal: documento / boleta simulada -->
+<div class="rt-modal-overlay" id="doc-modal" data-rt-modal hidden>
+  <div class="rt-modal" role="dialog" aria-modal="true" aria-labelledby="doc-modal-title">
+    <div class="rt-modal__head">
+      <div>
+        <h3 id="doc-modal-title" style="margin:0;">Documento simulado</h3>
+        <p class="rt-muted" style="margin:0.2rem 0 0; font-size:0.85rem;" id="doc-modal-order"></p>
+      </div>
+      <button class="rt-modal__close" type="button" data-rt-modal-close aria-label="Cerrar documento">
+        <svg width="18" height="18" style="transform:rotate(45deg);" aria-hidden="true"><use href="#icon-plus"></use></svg>
+      </button>
+    </div>
+    <div id="doc-modal-body"></div>
+  </div>
+</div>
+
+<!-- rt- Sprite de iconos (ver /assets/icons/sprite.svg) -->
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+  <symbol id="icon-alert" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4 3 20h18Z"/><path d="M12 10.5v4M12 17h.01"/></symbol>
+  <symbol id="icon-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 4.5v15M4.5 12h15"/></symbol>
+  <symbol id="icon-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h3.2l1.4 4.4-2.1 1.7a12.6 12.6 0 0 0 6.4 6.4l1.7-2.1L20 15.8V19a1.5 1.5 0 0 1-1.6 1.5A15.5 15.5 0 0 1 3.5 5.6 1.5 1.5 0 0 1 5 4Z"/></symbol>
+  <symbol id="icon-chat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5h16v10H9.5L5.5 19v-3.5H4v-10Z"/><path d="M8 9.5h8M8 12.5h5"/></symbol>
+  <symbol id="icon-qr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><rect x="4" y="4" width="6" height="6" rx="0.8"/><rect x="14" y="4" width="6" height="6" rx="0.8"/><rect x="4" y="14" width="6" height="6" rx="0.8"/><path d="M14 14h2.2v2.2H14zM17.8 14H20v2.2h-2.2zM14 17.8h2.2V20H14zM17.8 17.8H20V20h-2.2z" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="icon-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="10.5" cy="10.5" r="6"/><path d="M15 15 20 20"/></symbol>
+  <symbol id="icon-heart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.3-9.3-8.7C1.4 8.4 3 5 6.4 5c2 0 3.3 1 5.6 3.5C14.3 6 15.6 5 17.6 5 21 5 22.6 8.4 21.3 11.3 19 15.7 12 20 12 20Z"/></symbol>
+  <symbol id="icon-receipt" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3.5h12v17l-2.5-1.6L13 20.5l-2.5-1.6L8 20.5l-2-1.6Z"/><path d="M8.5 8h7M8.5 11.5h7M8.5 15h4.5"/></symbol>
+</svg>
+
+<script src="../assets/js/demo-data.js"></script>
+<script src="../assets/js/growth-platform-api.js"></script>
+<script src="../assets/js/components.js"></script>
+<script src="../assets/js/navigation.js"></script>
+<script src="../assets/js/operations-demo.js"></script>
+</body>
+</html>
