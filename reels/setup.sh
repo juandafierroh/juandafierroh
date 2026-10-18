@@ -18,7 +18,8 @@ hyperframes telemetry disable
 hyperframes browser ensure
 
 python3 -m venv "$WHISPER_ENV"
-"$WHISPER_ENV/bin/pip" install -q --upgrade pip faster-whisper
+# av 19 quitó el argumento metadata_errors que usa faster-whisper 1.2.1
+"$WHISPER_ENV/bin/pip" install -q --upgrade pip faster-whisper "av<19"
 
 rc="$HOME/.bashrc"; [ -n "${ZSH_VERSION:-}" ] || [ "$(basename "${SHELL:-}")" = zsh ] && rc="$HOME/.zshrc"
 grep -q HYPERFRAMES_NO_TELEMETRY "$rc" 2>/dev/null || echo 'export HYPERFRAMES_NO_TELEMETRY=1' >> "$rc"
