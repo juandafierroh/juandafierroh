@@ -1,0 +1,497 @@
+<!doctype html>
+<html lang="es" data-resolution="portrait">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="assets/gsap.min.js"></script>
+    <style>
+      @font-face { font-family: "Archivo"; src: url("assets/Archivo.woff2") format("woff2"); font-weight: 100 900; }
+      @font-face { font-family: "JetBrains Mono"; src: url("assets/JetBrainsMono.woff2") format("woff2"); font-weight: 600; }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { margin: 0; width: 1080px; height: 1920px; overflow: hidden; background: #0b1636; }
+      #root { position: relative; width: 100%; height: 100%; overflow: hidden; font-family: "Archivo", sans-serif; background: #0b1636; }
+
+      #aroll { position: absolute; left: 0; top: 380px; width: 1080px; height: 1920px; object-fit: cover; }
+
+      #band {
+        position: absolute; left: 0; top: 0; width: 1080px; height: 380px;
+        background:
+          radial-gradient(rgba(255,255,255,0.07) 2px, transparent 2px) 0 0 / 28px 28px,
+          linear-gradient(180deg, #0b1636 0%, #13245a 100%);
+      }
+      #accent { position: absolute; left: 0; top: 374px; width: 1080px; height: 6px; background: rgba(56,189,248,0.25); }
+      #prog { position: absolute; left: 0; top: 0; width: 100%; height: 100%; background: linear-gradient(90deg, #ff6b2c, #ffb02c); transform-origin: left center; }
+
+      #hook { position: absolute; left: 40px; top: 30px; width: 1000px; height: 320px; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 6px; }
+      .hook-line { display: block; white-space: nowrap; font-weight: 900; line-height: 1.0; letter-spacing: -0.02em; text-transform: uppercase; color: #ffffff; }
+      .hook-line.alt { color: #ff6b2c; }
+
+      .hl { position: absolute; left: 0; top: 0; width: 1080px; height: 380px; opacity: 0; visibility: hidden; }
+      .slot { position: absolute; left: 56px; top: 80px; width: 220px; height: 220px; }
+      .slot svg { position: absolute; left: 0; top: 0; overflow: visible; }
+      .hl-text {
+        position: absolute; left: 310px; top: 70px; width: 720px; height: 240px;
+        display: flex; flex-wrap: wrap; align-content: center; column-gap: 0.26em;
+        color: #ffffff; font-weight: 800; line-height: 1.04; letter-spacing: -0.02em;
+      }
+      .hl-text .w { display: inline-block; }
+      .hl-text .acc { color: #ff6b2c; }
+
+      .card { position: absolute; left: 0; top: 0; width: 220px; height: 220px; border-radius: 28px; background: #ffffff; overflow: hidden;
+              display: flex; align-items: center; justify-content: center; box-shadow: 0 12px 30px rgba(0,0,0,0.35); opacity: 0; }
+      .card img { width: 186px; height: auto; display: block; }
+      .card .shine { position: absolute; left: 0; top: -40px; width: 70px; height: 300px; background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,0.85), rgba(255,255,255,0)); }
+      .card .badge13 { position: absolute; right: 10px; top: 10px; padding: 4px 12px; border-radius: 999px; background: #ff6b2c; color: #fff; font-weight: 900; font-size: 30px; }
+
+      .broll { position: absolute; left: 60px; top: 430px; width: 960px; height: 1200px; border-radius: 30px; overflow: hidden;
+               box-shadow: 0 24px 60px rgba(0,0,0,0.55); opacity: 0; visibility: hidden; }
+      .broll img { width: 960px; height: 1200px; object-fit: cover; object-position: top; display: block; }
+
+      #captions { position: absolute; left: 0; top: 1688px; width: 1080px; height: 76px; }
+      .cg { position: absolute; left: 0; top: 0; width: 1080px; height: 76px; display: flex; justify-content: center; align-items: center; opacity: 0; visibility: hidden; }
+      .cg-inner { padding: 10px 22px; border-radius: 16px; background: rgba(8, 16, 40, 0.78); color: #ffffff; font-weight: 700;
+                  font-size: 40px; line-height: 1.1; white-space: nowrap; letter-spacing: -0.005em; }
+      .cg-inner span { color: #ffffff; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="__DURATION__" data-width="1080" data-height="1920">
+      <video id="aroll" class="clip" src="assets/aroll.mp4" playsinline data-has-audio="true"
+             data-start="0" data-duration="__DURATION__" data-track-index="0" data-volume="1"></video>
+      <div id="brolls"></div>
+      <div id="band"><div id="accent"><div id="prog"></div></div></div>
+      <div id="hook"></div>
+      <div id="headlines"></div>
+      <div id="captions"></div>
+    </div>
+    <script>
+      /*__DATA__*/
+      const NS = "http://www.w3.org/2000/svg";
+      const C = { white: "#ffffff", orange: "#ff6b2c", blue: "#38bdf8", navy: "#0f1d44", soft: "rgba(255,255,255,0.22)" };
+      const tl = gsap.timeline({ paused: true });
+
+      function S(parent, tag, attrs) {
+        const e = document.createElementNS(NS, tag);
+        for (const k in attrs) e.setAttribute(k, attrs[k]);
+        parent.appendChild(e);
+        return e;
+      }
+      function H(parent, tag, cls, text) {
+        const e = document.createElement(tag);
+        if (cls) e.className = cls;
+        if (text != null) e.textContent = text;
+        parent.appendChild(e);
+        return e;
+      }
+      function draw(el, t, d) {
+        const L = el.getTotalLength();
+        el.style.strokeDasharray = L;
+        tl.fromTo(el, { strokeDashoffset: L }, { strokeDashoffset: 0, duration: d, ease: "power2.out" }, t);
+      }
+      function pop(el, t, d) {
+        tl.fromTo(el, { scale: 0, transformOrigin: "50% 50%" }, { scale: 1, duration: d || 0.4, ease: "back.out(2)" }, t);
+      }
+      function fadeUp(el, t, d) {
+        tl.fromTo(el, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: d || 0.3, ease: "power2.out" }, t);
+      }
+      function reps(t0, t1, period) { return Math.max(1, Math.floor((t1 - t0) / period) - 1); }
+      function person(g, cx, cy, s) {
+        const p = S(g, "g", {});
+        S(p, "circle", { cx: cx, cy: cy - 32 * s, r: 18 * s, fill: C.white });
+        S(p, "path", { d: `M${cx - 32 * s} ${cy + 40 * s} Q${cx - 32 * s} ${cy - 8 * s} ${cx} ${cy - 8 * s} Q${cx + 32 * s} ${cy - 8 * s} ${cx + 32 * s} ${cy + 40 * s} Z`, fill: C.white });
+        return p;
+      }
+      function building(g, x, y, w, h) {
+        const b = S(g, "g", {});
+        S(b, "rect", { x: x, y: y, width: w, height: h, rx: 6, fill: C.white });
+        const wins = [];
+        for (let r = 0; r < 4; r++) for (let c = 0; c < 3; c++)
+          wins.push(S(b, "rect", { x: x + 9 + c * (w - 18) / 3, y: y + 12 + r * (h - 24) / 4, width: (w - 18) / 3 - 7, height: (h - 24) / 4 - 9, rx: 2, fill: C.navy }));
+        return { b, wins };
+      }
+      function checkBadge(g, cx, cy, t) {
+        const c = S(g, "circle", { cx: cx, cy: cy, r: 30, fill: C.orange, stroke: C.navy, "stroke-width": 6 });
+        const k = S(g, "path", { d: `M${cx - 13} ${cy} l9 10 l17 -20`, fill: "none", stroke: C.white, "stroke-width": 7, "stroke-linecap": "round", "stroke-linejoin": "round" });
+        pop(c, t, 0.35);
+        draw(k, t + 0.2, 0.3);
+      }
+      function calendarFrame(g) {
+        S(g, "rect", { x: 25, y: 45, width: 170, height: 150, rx: 16, fill: "none", stroke: C.white, "stroke-width": 8 });
+        S(g, "rect", { x: 25, y: 45, width: 170, height: 38, rx: 16, fill: C.orange });
+        S(g, "rect", { x: 25, y: 66, width: 170, height: 17, fill: C.orange });
+        S(g, "line", { x1: 70, y1: 30, x2: 70, y2: 58, stroke: C.white, "stroke-width": 8, "stroke-linecap": "round" });
+        S(g, "line", { x1: 150, y1: 30, x2: 150, y2: 58, stroke: C.white, "stroke-width": 8, "stroke-linecap": "round" });
+      }
+      function logoCard(slot, t, extra) {
+        const card = H(slot, "div", "card");
+        const img = H(card, "img");
+        img.src = "assets/corfo-logo.png";
+        img.alt = "CORFO";
+        const shine = H(card, "div", "shine");
+        shine.setAttribute("data-layout-allow-overflow", "");
+        if (extra) H(card, "div", "badge13", extra);
+        tl.fromTo(card, { opacity: 0, scale: 0.55, rotation: -8 }, { opacity: 1, scale: 1, rotation: 0, duration: 0.45, ease: "back.out(1.8)" }, t);
+        tl.fromTo(shine, { x: -120 }, { x: 300, duration: 0.7, ease: "power2.inOut" }, t + 0.35);
+        return card;
+      }
+
+      const G = {
+        logo(svg, slot, t0, t1, o) { logoCard(slot, o.at || t0); },
+        people(svg, slot, t0, t1) {
+          const g = S(svg, "g", {});
+          const p = person(g, 62, 120, 1.25);
+          const { b, wins } = building(g, 120, 50, 80, 130);
+          pop(p, t0 + 0.05);
+          pop(b, t0 + 0.35);
+          wins.forEach((w, i) => tl.fromTo(w, { fill: C.navy }, { fill: C.orange, duration: 0.15 }, t0 + 0.6 + i * 0.06));
+        },
+        rocket(svg, slot, t0, t1) {
+          const lines = [40, 110, 180].map((x) => S(svg, "line", { x1: x, y1: 0, x2: x, y2: 40, stroke: C.soft, "stroke-width": 6, "stroke-linecap": "round" }));
+          const g = S(svg, "g", {});
+          S(g, "path", { d: "M110 30 C134 54 140 98 132 132 L88 132 C80 98 86 54 110 30 Z", fill: C.white });
+          S(g, "circle", { cx: 110, cy: 82, r: 13, fill: C.navy, stroke: C.blue, "stroke-width": 5 });
+          S(g, "path", { d: "M88 104 L64 140 L90 132 Z", fill: C.blue });
+          S(g, "path", { d: "M132 104 L156 140 L130 132 Z", fill: C.blue });
+          const flame = S(g, "path", { d: "M94 134 Q110 186 126 134 Z", fill: C.orange });
+          tl.fromTo(g, { y: 70, opacity: 0 }, { y: 10, opacity: 1, duration: 0.5, ease: "power3.out" }, t0);
+          tl.to(g, { y: -14, duration: t1 - t0 - 0.5, ease: "power1.in" }, t0 + 0.5);
+          tl.fromTo(flame, { scaleY: 0.7, transformOrigin: "50% 0%" }, { scaleY: 1.2, duration: 0.12, yoyo: true, repeat: reps(t0, t1, 0.12), ease: "sine.inOut" }, t0);
+          lines.forEach((l, i) => tl.fromTo(l, { y: -40 }, { y: 220, duration: 0.6, repeat: reps(t0, t1, 0.6), ease: "none" }, t0 + i * 0.2));
+        },
+        chips(svg, slot, t0, t1) {
+          ["Productos", "Servicios", "Procesos"].forEach((label, i) => {
+            const g = S(svg, "g", {});
+            S(g, "rect", { x: 5, y: 22 + i * 62, width: 210, height: 50, rx: 25, fill: i === 2 ? C.orange : C.white });
+            const tx = S(g, "text", { x: 110, y: 56 + i * 62, "text-anchor": "middle", "font-family": "Archivo", "font-weight": 800, "font-size": 26, fill: i === 2 ? C.white : C.navy });
+            tx.textContent = label;
+            tl.fromTo(g, { x: -60, opacity: 0 }, { x: 0, opacity: 1, duration: 0.35, ease: "back.out(1.6)" }, t0 + 0.1 + i * 0.55);
+          });
+        },
+        bulb(svg, slot, t0, t1) {
+          const glow = S(svg, "circle", { cx: 110, cy: 95, r: 70, fill: C.orange, opacity: 0 });
+          const bulb = S(svg, "path", { d: "M84 140 C84 120 62 112 62 88 A48 48 0 1 1 158 88 C158 112 136 120 136 140 Z", fill: "none", stroke: C.white, "stroke-width": 8, "stroke-linejoin": "round" });
+          const base1 = S(svg, "line", { x1: 88, y1: 160, x2: 132, y2: 160, stroke: C.white, "stroke-width": 8, "stroke-linecap": "round" });
+          const base2 = S(svg, "line", { x1: 96, y1: 178, x2: 124, y2: 178, stroke: C.white, "stroke-width": 8, "stroke-linecap": "round" });
+          const rays = [];
+          for (let i = 0; i < 7; i++) {
+            const a = (-180 + i * 30) * Math.PI / 180;
+            rays.push(S(svg, "line", { x1: 110 + Math.cos(a) * 66, y1: 88 + Math.sin(a) * 66, x2: 110 + Math.cos(a) * 88, y2: 88 + Math.sin(a) * 88, stroke: C.orange, "stroke-width": 7, "stroke-linecap": "round" }));
+          }
+          draw(bulb, t0, 0.6);
+          draw(base1, t0 + 0.4, 0.2);
+          draw(base2, t0 + 0.5, 0.2);
+          rays.forEach((r, i) => draw(r, t0 + 0.6 + i * 0.05, 0.2));
+          tl.fromTo(glow, { opacity: 0, scale: 0.6, transformOrigin: "50% 50%" }, { opacity: 0.35, scale: 1, duration: 0.4, yoyo: true, repeat: reps(t0 + 0.7, t1, 0.4) }, t0 + 0.7);
+        },
+        personCheck(svg, slot, t0) {
+          const p = person(svg, 100, 120, 1.6);
+          pop(p, t0 + 0.05);
+          checkBadge(svg, 168, 160, t0 + 0.4);
+        },
+        buildingCheck(svg, slot, t0) {
+          const { b, wins } = building(svg, 50, 30, 110, 160);
+          pop(b, t0 + 0.05);
+          wins.forEach((w, i) => tl.fromTo(w, { fill: C.navy }, { fill: C.blue, duration: 0.12 }, t0 + 0.3 + i * 0.04));
+          checkBadge(svg, 170, 165, t0 + 0.5);
+        },
+        counter(svg, slot, t0, t1, o) {
+          const ring = S(svg, "circle", { cx: 110, cy: 110, r: 96, fill: "none", stroke: C.orange, "stroke-width": 10, "stroke-linecap": "round", transform: "rotate(-90 110 110)" });
+          S(svg, "circle", { cx: 110, cy: 110, r: 96, fill: "none", stroke: C.soft, "stroke-width": 10, opacity: 0.4 });
+          const num = S(svg, "text", { x: 110, y: 122, "text-anchor": "middle", "font-family": "Archivo", "font-weight": 900, "font-size": 62, fill: C.white });
+          const lab = S(svg, "text", { x: 110, y: 160, "text-anchor": "middle", "font-family": "JetBrains Mono", "font-weight": 600, "font-size": 19, fill: C.orange });
+          lab.textContent = "MILLONES";
+          const v = { n: o.from };
+          num.textContent = "$" + o.from;
+          draw(ring, t0, 1.0);
+          tl.fromTo(v, { n: o.from }, { n: o.to, duration: 1.0, ease: "power2.out", onUpdate: () => { num.textContent = "$" + Math.round(v.n); } }, t0 + 0.1);
+          pop(num, t0, 0.35);
+        },
+        flag(svg, slot, t0, t1) {
+          const g = S(svg, "g", {});
+          S(g, "rect", { x: 15, y: 50, width: 190, height: 62, fill: C.white });
+          S(g, "rect", { x: 15, y: 112, width: 190, height: 62, fill: "#d52b1e" });
+          S(g, "rect", { x: 15, y: 50, width: 62, height: 62, fill: "#0039a6" });
+          S(g, "path", { d: "M46 62 L50.7 76 L65 76 L53.4 84.6 L57.8 98.6 L46 90 L34.2 98.6 L38.6 84.6 L27 76 L41.3 76 Z", fill: C.white });
+          tl.fromTo(g, { scale: 0, rotation: -10, transformOrigin: "50% 50%" }, { scale: 1, rotation: 0, duration: 0.45, ease: "back.out(1.8)" }, t0);
+          tl.fromTo(g, { skewY: 0 }, { skewY: 4, duration: 0.45, yoyo: true, repeat: reps(t0 + 0.45, t1, 0.45), ease: "sine.inOut" }, t0 + 0.45);
+        },
+        globe(svg, slot, t0, t1) {
+          const g = S(svg, "g", {});
+          S(g, "circle", { cx: 110, cy: 110, r: 82, fill: "none", stroke: C.white, "stroke-width": 8 });
+          S(g, "line", { x1: 28, y1: 110, x2: 192, y2: 110, stroke: C.white, "stroke-width": 6 });
+          S(g, "path", { d: "M44 70 H176 M44 150 H176", stroke: C.white, "stroke-width": 5, fill: "none" });
+          const m1 = S(g, "ellipse", { cx: 110, cy: 110, rx: 40, ry: 82, fill: "none", stroke: C.blue, "stroke-width": 6 });
+          const dot = S(svg, "circle", { cx: 110, cy: 18, r: 11, fill: C.orange });
+          pop(g, t0);
+          tl.fromTo(m1, { attr: { rx: 80 } }, { attr: { rx: 4 }, duration: 0.7, yoyo: true, repeat: reps(t0 + 0.3, t1, 0.7), ease: "sine.inOut" }, t0 + 0.3);
+          tl.fromTo(dot, { rotation: 0, svgOrigin: "110 110" }, { rotation: 360, duration: t1 - t0, ease: "none" }, t0);
+        },
+        star(svg, slot, t0, t1) {
+          const st = S(svg, "path", { d: "M110 22 L134 82 L198 86 L148 126 L164 190 L110 154 L56 190 L72 126 L22 86 L86 82 Z", fill: C.orange });
+          const sp = [[30, 30], [190, 40], [196, 180], [24, 170]].map(([x, y]) => S(svg, "circle", { cx: x, cy: y, r: 9, fill: C.blue }));
+          tl.fromTo(st, { scale: 0, rotation: -120, transformOrigin: "50% 50%" }, { scale: 1, rotation: 0, duration: 0.6, ease: "back.out(1.6)" }, t0);
+          sp.forEach((s, i) => tl.fromTo(s, { scale: 0, transformOrigin: "50% 50%" }, { scale: 1.2, duration: 0.25, yoyo: true, repeat: reps(t0, t1, 0.5), ease: "sine.inOut" }, t0 + 0.3 + i * 0.12));
+        },
+        calendarGrid(svg, slot, t0) {
+          const g = S(svg, "g", {});
+          calendarFrame(g);
+          const cells = [];
+          for (let r = 0; r < 3; r++) for (let c = 0; c < 4; c++)
+            cells.push(S(g, "rect", { x: 40 + c * 37, y: 98 + r * 30, width: 28, height: 20, rx: 4, fill: C.soft }));
+          pop(g, t0);
+          [1, 4, 6, 9, 11].forEach((i, k) => tl.fromTo(cells[i], { fill: C.soft }, { fill: k % 2 ? C.blue : C.orange, duration: 0.15 }, t0 + 0.4 + k * 0.18));
+        },
+        chat(svg, slot, t0, t1) {
+          const g = S(svg, "g", {});
+          S(g, "path", { d: "M40 40 H180 A24 24 0 0 1 204 64 V130 A24 24 0 0 1 180 154 H92 L56 186 L62 154 H40 A24 24 0 0 1 16 130 V64 A24 24 0 0 1 40 40 Z", fill: C.white });
+          const dots = [70, 110, 150].map((x) => S(g, "circle", { cx: x, cy: 97, r: 13, fill: C.orange }));
+          pop(g, t0);
+          dots.forEach((d, i) => tl.fromTo(d, { y: 0 }, { y: -16, duration: 0.25, yoyo: true, repeat: reps(t0 + 0.3, t1, 0.25), ease: "sine.inOut" }, t0 + 0.3 + i * 0.1));
+        },
+        download(svg, slot, t0, t1) {
+          const tray = S(svg, "path", { d: "M30 140 V188 H190 V140", fill: "none", stroke: C.white, "stroke-width": 10, "stroke-linecap": "round", "stroke-linejoin": "round" });
+          const a = S(svg, "g", {});
+          S(a, "line", { x1: 110, y1: 24, x2: 110, y2: 140, stroke: C.orange, "stroke-width": 12, "stroke-linecap": "round" });
+          S(a, "path", { d: "M70 104 L110 146 L150 104", fill: "none", stroke: C.orange, "stroke-width": 12, "stroke-linecap": "round", "stroke-linejoin": "round" });
+          draw(tray, t0, 0.4);
+          tl.fromTo(a, { y: -30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.35, ease: "power2.out" }, t0 + 0.15);
+          tl.to(a, { y: 14, duration: 0.3, yoyo: true, repeat: reps(t0 + 0.5, t1, 0.3), ease: "sine.inOut" }, t0 + 0.5);
+        },
+        checklist(svg, slot, t0) {
+          [0, 1, 2].forEach((i) => {
+            const y = 32 + i * 60;
+            const box = S(svg, "rect", { x: 20, y: y, width: 44, height: 44, rx: 10, fill: "none", stroke: C.white, "stroke-width": 7 });
+            const line = S(svg, "line", { x1: 86, y1: y + 22, x2: 196, y2: y + 22, stroke: C.soft, "stroke-width": 12, "stroke-linecap": "round" });
+            const k = S(svg, "path", { d: `M29 ${y + 22} l10 11 l20 -24`, fill: "none", stroke: C.orange, "stroke-width": 8, "stroke-linecap": "round", "stroke-linejoin": "round" });
+            fadeUp(box, t0 + i * 0.1, 0.25);
+            draw(line, t0 + i * 0.1, 0.3);
+            draw(k, t0 + 0.4 + i * 0.35, 0.25);
+          });
+        },
+        calendarCheck(svg, slot, t0) {
+          const g = S(svg, "g", {});
+          calendarFrame(g);
+          const k = S(svg, "path", { d: "M74 136 l26 26 l48 -52", fill: "none", stroke: C.orange, "stroke-width": 14, "stroke-linecap": "round", "stroke-linejoin": "round" });
+          pop(g, t0);
+          draw(k, t0 + 0.45, 0.4);
+        },
+        magnifier(svg, slot, t0, t1) {
+          const doc = S(svg, "g", {});
+          S(doc, "rect", { x: 30, y: 20, width: 130, height: 175, rx: 12, fill: C.white });
+          [50, 80, 110, 140, 165].forEach((y, i) => S(doc, "rect", { x: 48, y: y, width: i % 2 ? 70 : 94, height: 12, rx: 6, fill: "#c7d2fe" }));
+          const m = S(svg, "g", {});
+          S(m, "circle", { cx: 0, cy: 0, r: 34, fill: "rgba(56,189,248,0.25)", stroke: C.orange, "stroke-width": 10 });
+          S(m, "line", { x1: 24, y1: 24, x2: 56, y2: 56, stroke: C.orange, "stroke-width": 14, "stroke-linecap": "round" });
+          fadeUp(doc, t0, 0.3);
+          tl.fromTo(m, { x: 150, y: 70, opacity: 0 }, { x: 90, y: 80, opacity: 1, duration: 0.35, ease: "power2.out" }, t0 + 0.2);
+          tl.to(m, { keyframes: [{ x: 130, y: 115, duration: 0.6 }, { x: 80, y: 140, duration: 0.6 }, { x: 120, y: 90, duration: 0.6 }], ease: "sine.inOut" }, t0 + 0.55);
+        },
+        badge(svg, slot, t0) {
+          const g = S(svg, "g", {});
+          S(g, "rect", { x: 10, y: 45, width: 200, height: 130, rx: 18, fill: C.white });
+          S(g, "rect", { x: 10, y: 45, width: 200, height: 26, rx: 13, fill: C.orange });
+          S(g, "rect", { x: 10, y: 58, width: 200, height: 13, fill: C.orange });
+          S(g, "circle", { cx: 62, cy: 120, r: 32, fill: C.navy });
+          const ini = S(g, "text", { x: 62, y: 131, "text-anchor": "middle", "font-family": "Archivo", "font-weight": 900, "font-size": 30, fill: C.white });
+          ini.textContent = "JF";
+          const l1 = S(g, "line", { x1: 110, y1: 104, x2: 190, y2: 104, stroke: C.navy, "stroke-width": 11, "stroke-linecap": "round" });
+          const l2 = S(g, "line", { x1: 110, y1: 130, x2: 168, y2: 130, stroke: "#94a3b8", "stroke-width": 9, "stroke-linecap": "round" });
+          const l3 = S(g, "line", { x1: 110, y1: 152, x2: 180, y2: 152, stroke: "#94a3b8", "stroke-width": 9, "stroke-linecap": "round" });
+          pop(g, t0);
+          draw(l1, t0 + 0.35, 0.3);
+          draw(l2, t0 + 0.5, 0.3);
+          draw(l3, t0 + 0.6, 0.3);
+        },
+        counterLogo(svg, slot, t0, t1, o) {
+          const trophy = S(svg, "g", {});
+          S(trophy, "path", { d: "M62 30 H158 V80 A48 48 0 0 1 62 80 Z", fill: C.orange });
+          S(trophy, "path", { d: "M62 44 H34 V62 A30 30 0 0 0 66 92 M158 44 H186 V62 A30 30 0 0 1 154 92", fill: "none", stroke: C.orange, "stroke-width": 9 });
+          S(trophy, "rect", { x: 100, y: 126, width: 20, height: 32, fill: C.orange });
+          S(trophy, "rect", { x: 66, y: 158, width: 88, height: 24, rx: 6, fill: C.orange });
+          const num = S(trophy, "text", { x: 110, y: 96, "text-anchor": "middle", "font-family": "Archivo", "font-weight": 900, "font-size": 54, fill: C.white });
+          const v = { n: 0 };
+          num.textContent = "0";
+          pop(trophy, t0);
+          tl.fromTo(v, { n: 0 }, { n: o.to, duration: 0.9, ease: "power2.out", onUpdate: () => { num.textContent = Math.round(v.n); } }, t0 + 0.15);
+          tl.to(trophy, { opacity: 0, scale: 0.6, transformOrigin: "50% 50%", duration: 0.2 }, o.at - 0.05);
+          logoCard(slot, o.at, "×13");
+        },
+        bars(svg, slot, t0) {
+          S(svg, "line", { x1: 14, y1: 196, x2: 206, y2: 196, stroke: C.white, "stroke-width": 6, "stroke-linecap": "round" });
+          const b1 = S(svg, "rect", { x: 34, y: 166, width: 62, height: 30, rx: 8, fill: C.blue });
+          const b2 = S(svg, "rect", { x: 124, y: 46, width: 62, height: 150, rx: 8, fill: C.orange });
+          const t1l = S(svg, "text", { x: 65, y: 154, "text-anchor": "middle", "font-family": "Archivo", "font-weight": 900, "font-size": 26, fill: C.white });
+          t1l.textContent = "$15M";
+          const t2l = S(svg, "text", { x: 155, y: 34, "text-anchor": "middle", "font-family": "Archivo", "font-weight": 900, "font-size": 26, fill: C.white });
+          t2l.textContent = "$149M";
+          tl.fromTo(b1, { scaleY: 0, transformOrigin: "50% 100%" }, { scaleY: 1, duration: 0.4, ease: "power2.out" }, t0 + 0.1);
+          tl.fromTo(b2, { scaleY: 0, transformOrigin: "50% 100%" }, { scaleY: 1, duration: 0.8, ease: "power3.out" }, t0 + 0.35);
+          fadeUp(t1l, t0 + 0.4, 0.25);
+          fadeUp(t2l, t0 + 1.0, 0.25);
+        },
+        neural(svg, slot, t0, t1) {
+          const L = [[40, [60, 160]], [110, [40, 110, 180]], [180, [70, 150]]];
+          const nodes = L.map(([x, ys]) => ys.map((y) => [x, y]));
+          const edges = [];
+          for (let a = 0; a < 2; a++) nodes[a].forEach((p) => nodes[a + 1].forEach((q) => edges.push(S(svg, "line", { x1: p[0], y1: p[1], x2: q[0], y2: q[1], stroke: C.soft, "stroke-width": 5 }))));
+          const circles = nodes.flat().map(([x, y]) => S(svg, "circle", { cx: x, cy: y, r: 17, fill: C.white, stroke: C.navy, "stroke-width": 4 }));
+          circles.forEach((c, i) => pop(c, t0 + i * 0.06, 0.3));
+          edges.forEach((e, i) => draw(e, t0 + 0.3 + i * 0.03, 0.3));
+          circles.forEach((c, i) => tl.fromTo(c, { fill: C.white }, { fill: i % 2 ? C.blue : C.orange, duration: 0.2, yoyo: true, repeat: reps(t0 + 0.8, t1, 0.4) }, t0 + 0.8 + (i % 3) * 0.13));
+        },
+        plus(svg, slot, t0) {
+          const a = S(svg, "g", {});
+          S(a, "circle", { cx: 50, cy: 110, r: 46, fill: C.white });
+          const ta = S(a, "text", { x: 50, y: 124, "text-anchor": "middle", "font-family": "Archivo", "font-weight": 900, "font-size": 40, fill: C.navy });
+          ta.textContent = "13";
+          const b = S(svg, "g", {});
+          S(b, "circle", { cx: 170, cy: 110, r: 46, fill: C.orange });
+          const tb = S(b, "text", { x: 170, y: 124, "text-anchor": "middle", "font-family": "Archivo", "font-weight": 900, "font-size": 40, fill: C.white });
+          tb.textContent = "IA";
+          const p = S(svg, "path", { d: "M110 96 V124 M96 110 H124", stroke: C.blue, "stroke-width": 9, "stroke-linecap": "round" });
+          tl.fromTo(a, { x: -60, opacity: 0 }, { x: 0, opacity: 1, duration: 0.4, ease: "power3.out" }, t0);
+          tl.fromTo(b, { x: 60, opacity: 0 }, { x: 0, opacity: 1, duration: 0.4, ease: "power3.out" }, t0 + 0.1);
+          tl.fromTo(p, { scale: 0, rotation: -90, transformOrigin: "50% 50%" }, { scale: 1, rotation: 0, duration: 0.4, ease: "back.out(2)" }, t0 + 0.45);
+        },
+        docStamp(svg, slot, t0) {
+          const doc = S(svg, "g", {});
+          S(doc, "rect", { x: 40, y: 18, width: 140, height: 184, rx: 12, fill: C.white });
+          [44, 72, 100, 128].forEach((y, i) => S(doc, "rect", { x: 60, y: y, width: i % 2 ? 64 : 100, height: 12, rx: 6, fill: "#c7d2fe" }));
+          const st = S(svg, "g", {});
+          S(st, "rect", { x: 58, y: 134, width: 156, height: 60, rx: 12, fill: C.navy, stroke: C.orange, "stroke-width": 7 });
+          const tx = S(st, "text", { x: 136, y: 175, "text-anchor": "middle", "font-family": "Archivo", "font-weight": 900, "font-size": 28, fill: C.orange });
+          tx.textContent = "LISTO";
+          fadeUp(doc, t0, 0.3);
+          tl.fromTo(st, { scale: 2.2, opacity: 0, rotation: -12, transformOrigin: "50% 50%" }, { scale: 1, opacity: 1, rotation: -12, duration: 0.3, ease: "power4.in" }, t0 + 0.6);
+        },
+        gauge(svg, slot, t0) {
+          S(svg, "path", { d: "M26 160 A84 84 0 0 1 194 160", fill: "none", stroke: C.soft, "stroke-width": 20, "stroke-linecap": "round" });
+          const arc = S(svg, "path", { d: "M26 160 A84 84 0 0 1 194 160", fill: "none", stroke: C.orange, "stroke-width": 20, "stroke-linecap": "round" });
+          const needle = S(svg, "line", { x1: 110, y1: 160, x2: 110, y2: 92, stroke: C.white, "stroke-width": 9, "stroke-linecap": "round" });
+          S(svg, "circle", { cx: 110, cy: 160, r: 14, fill: C.white });
+          const L = arc.getTotalLength();
+          arc.style.strokeDasharray = L;
+          tl.fromTo(arc, { strokeDashoffset: L }, { strokeDashoffset: L * 0.12, duration: 1.0, ease: "power2.out" }, t0 + 0.1);
+          tl.fromTo(needle, { rotation: -80, svgOrigin: "110 160" }, { rotation: 62, duration: 1.0, ease: "power2.out" }, t0 + 0.1);
+        },
+        logoWeb(svg, slot, t0, t1, o) {
+          const card = logoCard(slot, o.at);
+          tl.to(card, { opacity: 0, scale: 0.7, duration: 0.25 }, o.web - 0.25);
+          const g = S(svg, "g", {});
+          S(g, "rect", { x: 8, y: 30, width: 204, height: 160, rx: 16, fill: C.white });
+          S(g, "rect", { x: 8, y: 30, width: 204, height: 36, rx: 16, fill: "#dbe4ff" });
+          S(g, "rect", { x: 8, y: 50, width: 204, height: 16, fill: "#dbe4ff" });
+          [30, 52, 74].forEach((x, i) => S(g, "circle", { cx: x, cy: 48, r: 7, fill: [C.orange, "#fbbf24", C.blue][i] }));
+          S(g, "rect", { x: 30, y: 88, width: 160, height: 30, rx: 15, fill: C.navy });
+          const tx = S(g, "text", { x: 110, y: 110, "text-anchor": "middle", "font-family": "JetBrains Mono", "font-weight": 600, "font-size": 18, fill: C.white });
+          tx.textContent = "www";
+          const btn = S(g, "rect", { x: 60, y: 134, width: 100, height: 36, rx: 18, fill: C.orange });
+          const cur = S(svg, "path", { d: "M0 0 L0 34 L9 26 L16 42 L23 39 L16 23 L28 23 Z", fill: C.navy, stroke: C.white, "stroke-width": 3 });
+          tl.fromTo(g, { opacity: 0, scale: 0.6, transformOrigin: "50% 50%" }, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(1.8)" }, o.web);
+          tl.fromTo(cur, { x: 200, y: 210, opacity: 0 }, { x: 128, y: 150, opacity: 1, duration: 0.5, ease: "power2.out" }, o.web + 0.3);
+          tl.fromTo(btn, { scale: 1, transformOrigin: "50% 50%" }, { scale: 0.88, duration: 0.12, yoyo: true, repeat: 1 }, o.web + 0.8);
+        },
+      };
+
+      function fitBox(el, max, min, w, h) {
+        let fs = max;
+        el.style.fontSize = fs + "px";
+        while (fs > min && (el.scrollWidth > w + 1 || el.scrollHeight > h + 1)) {
+          fs -= 2;
+          el.style.fontSize = fs + "px";
+        }
+        return fs;
+      }
+      function fitLine(el, max, w) {
+        let fs = max;
+        el.style.fontSize = fs + "px";
+        while (fs > 20 && el.scrollWidth > w) {
+          fs -= 2;
+          el.style.fontSize = fs + "px";
+        }
+      }
+
+      function build() {
+        const root = document.getElementById("root");
+        tl.fromTo("#prog", { scaleX: 0 }, { scaleX: 1, duration: DATA.duration, ease: "none" }, 0);
+
+        // Gancho: dos líneas grandes en mayúsculas durante los 2 primeros segundos
+        const hook = document.getElementById("hook");
+        const l1 = H(hook, "div", "hook-line", DATA.hook.l1);
+        const l2 = H(hook, "div", "hook-line alt", DATA.hook.l2);
+        fitLine(l1, 150, 930);
+        fitLine(l2, 150, 930);
+        // Visible completo desde el fotograma 0 (es la miniatura del reel)
+        tl.fromTo(l1, { x: -24 }, { x: 0, duration: 0.5, ease: "power3.out" }, 0);
+        tl.fromTo(l2, { x: 24 }, { x: 0, duration: 0.5, ease: "power3.out" }, 0);
+        tl.fromTo([l1, l2], { scale: 1 }, { scale: 1.04, duration: 0.15, yoyo: true, repeat: 1, ease: "sine.inOut" }, 1.0);
+        tl.to([l1, l2], { opacity: 0, y: -30, duration: 0.2, ease: "power2.in" }, DATA.hook.end - 0.2);
+        tl.set([l1, l2], { visibility: "hidden" }, DATA.hook.end);
+
+        // Titulares con gráfico
+        const wrap = document.getElementById("headlines");
+        DATA.headlines.forEach(([t0, t1, text, kind, opts], i) => {
+          const hl = H(wrap, "div", "hl");
+          hl.id = "hl-" + i;
+          const slot = H(hl, "div", "slot");
+          const svg = S(slot, "svg", { viewBox: "0 0 220 220", width: 220, height: 220 });
+          const tx = H(hl, "div", "hl-text");
+          const parts = text.split("*");
+          const words = [];
+          parts.forEach((p, pi) => p.split(" ").filter(Boolean).forEach((w) => words.push(H(tx, "span", "w" + (pi % 2 ? " acc" : ""), w))));
+          fitBox(tx, 84, 40, 720, 240);
+          G[kind](svg, slot, t0, t1, opts || {});
+          tl.fromTo(hl, { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.15 }, t0);
+          tl.fromTo(slot, { x: -30 }, { x: 0, duration: 0.3, ease: "power3.out" }, t0);
+          words.forEach((w, k) => tl.fromTo(w, { opacity: 0, y: 26 }, { opacity: 1, y: 0, duration: 0.28, ease: "power3.out" }, t0 + 0.05 + k * 0.06));
+          if (t1 < DATA.duration - 0.05) {
+            tl.to(hl, { autoAlpha: 0, duration: 0.15, ease: "power1.in" }, t1 - 0.15);
+            tl.set(hl, { autoAlpha: 0 }, t1);
+          }
+        });
+
+        // Láminas del calendario (b-roll)
+        const br = document.getElementById("brolls");
+        DATA.broll.forEach((b, i) => {
+          const box = H(br, "div", "broll");
+          const img = H(box, "img");
+          img.setAttribute("data-layout-allow-overflow", "");
+          img.src = b.src;
+          img.alt = "Calendario CORFO " + (i + 1);
+          tl.fromTo(box, { autoAlpha: 0, y: 90, scale: 0.94 }, { autoAlpha: 1, y: 0, scale: 1, duration: 0.35, ease: "power3.out" }, b.start);
+          tl.fromTo(img, { scale: 1 }, { scale: 1.06, duration: b.end - b.start, ease: "none" }, b.start);
+          tl.to(box, { autoAlpha: 0, y: -40, duration: 0.22, ease: "power2.in" }, b.end - 0.22);
+          tl.set(box, { autoAlpha: 0 }, b.end);
+        });
+
+        // Subtítulos: una línea, abajo, palabra activa resaltada
+        const cap = document.getElementById("captions");
+        DATA.captions.forEach((g, gi) => {
+          const el = H(cap, "div", "cg");
+          el.id = "cg-" + gi;
+          const inner = H(el, "div", "cg-inner");
+          const spans = g.words.map((w) => H(inner, "span", null, w.t + " "));
+          spans[spans.length - 1].textContent = g.words[g.words.length - 1].t;
+          fitLine(inner, 40, 980);
+          tl.fromTo(el, { autoAlpha: 0, y: 10 }, { autoAlpha: 1, y: 0, duration: 0.1 }, g.start);
+          spans.forEach((s, k) => {
+            tl.set(s, { color: C.orange }, g.words[k].s);
+            if (k + 1 < spans.length) tl.set(s, { color: C.white }, g.words[k + 1].s);
+          });
+          if (g.end < DATA.duration - 0.05) {
+            tl.to(el, { autoAlpha: 0, duration: 0.08 }, g.end - 0.08);
+            tl.set(el, { autoAlpha: 0, visibility: "hidden" }, g.end);
+          }
+        });
+
+        tl.seek(0);
+        window.__timelines["main"] = tl;
+      }
+
+      Promise.all([
+        document.fonts.load('800 40px "Archivo"'),
+        document.fonts.load('600 20px "JetBrains Mono"'),
+      ]).then(build);
+    </script>
+  </body>
+</html>

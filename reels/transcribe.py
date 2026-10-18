@@ -23,6 +23,11 @@ def main():
     p.add_argument("-l", "--language", default="es", help="Código de idioma (default: es)")
     p.add_argument("--device", default="auto", help="cpu, cuda o auto")
     p.add_argument("--compute-type", default="int8", help="int8 (CPU), float16 (GPU)...")
+    p.add_argument(
+        "--keep-fillers",
+        action="store_true",
+        help="Pide a Whisper que transcriba muletillas (eh, este, o sea...) en vez de omitirlas",
+    )
     args = p.parse_args()
 
     model = WhisperModel(args.model, device=args.device, compute_type=args.compute_type)
@@ -30,7 +35,8 @@ def main():
         args.input,
         language=args.language,
         word_timestamps=True,
-        vad_filter=True,
+        vad_filter=not args.keep_fillers,
+        initial_prompt="Eh... mmm, este, o sea, bueno, eh, como que... ya." if args.keep_fillers else None,
     )
 
     words = []
