@@ -27,7 +27,7 @@ HEADLINES = [
     [21.4, 24.6, "Postulan personas de *Chile*", "flag", {}],
     [24.6, 26.0, "Fondos *Corfo*", "logo", {}],
     [26.0, 27.9, "También *extranjeros*", "globe", {}],
-    [27.9, 29.7, "Fondos *Startup Chile*", "star", {}],
+    [27.9, 29.7, "Fondos *Start-Up Chile*", "logoStartup", {}],
     [29.7, 31.7, "Calendario *oficial 2026*", "calendarGrid", {}],
     [31.7, 33.8, "¿Dudas? *Contáctanos*", "chat", {}],
     [33.8, 35.8, "Descarga la *guía*", "download", {}],
@@ -44,7 +44,8 @@ HEADLINES = [
     [59.1, DURATION, "Te esperamos en *capitalparanegocios.cl*", "logoWeb", {"at": 59.25, "web": 60.9}],
 ]
 
-BROLL = [  # láminas del carrusel mientras habla del calendario
+BROLL = [  # láminas del carrusel: portada al inicio y calendario cuando lo menciona
+    {"src": "assets/carrusel-01.jpg", "start": 0, "end": 2.6},
     {"src": "assets/carrusel-02.jpg", "start": 29.7, "end": 31.75},
     {"src": "assets/carrusel-03.jpg", "start": 31.75, "end": 33.8},
 ]

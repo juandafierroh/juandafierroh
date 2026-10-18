@@ -122,11 +122,12 @@
         S(g, "line", { x1: 70, y1: 30, x2: 70, y2: 58, stroke: C.white, "stroke-width": 8, "stroke-linecap": "round" });
         S(g, "line", { x1: 150, y1: 30, x2: 150, y2: 58, stroke: C.white, "stroke-width": 8, "stroke-linecap": "round" });
       }
-      function logoCard(slot, t, extra) {
+      function logoCard(slot, t, extra, src, alt, width) {
         const card = H(slot, "div", "card");
         const img = H(card, "img");
-        img.src = "assets/corfo-logo.png";
-        img.alt = "CORFO";
+        img.src = src || "assets/corfo-logo.png";
+        img.alt = alt || "CORFO";
+        if (width) img.style.width = width + "px";
         const shine = H(card, "div", "shine");
         shine.setAttribute("data-layout-allow-overflow", "");
         if (extra) H(card, "div", "badge13", extra);
@@ -137,6 +138,7 @@
 
       const G = {
         logo(svg, slot, t0, t1, o) { logoCard(slot, o.at || t0); },
+        logoStartup(svg, slot, t0, t1, o) { logoCard(slot, o.at || t0, null, "assets/startupchile-logo.png", "Start-Up Chile", 212); },
         people(svg, slot, t0, t1) {
           const g = S(svg, "g", {});
           const p = person(g, 62, 120, 1.25);
@@ -458,7 +460,12 @@
           img.setAttribute("data-layout-allow-overflow", "");
           img.src = b.src;
           img.alt = "Calendario CORFO " + (i + 1);
-          tl.fromTo(box, { autoAlpha: 0, y: 90, scale: 0.94 }, { autoAlpha: 1, y: 0, scale: 1, duration: 0.35, ease: "power3.out" }, b.start);
+          if (b.start === 0) {
+            // Visible desde el fotograma 0 (miniatura del reel)
+            tl.fromTo(box, { autoAlpha: 1 }, { autoAlpha: 1, duration: 0.01 }, 0);
+          } else {
+            tl.fromTo(box, { autoAlpha: 0, y: 90, scale: 0.94 }, { autoAlpha: 1, y: 0, scale: 1, duration: 0.35, ease: "power3.out" }, b.start);
+          }
           tl.fromTo(img, { scale: 1 }, { scale: 1.06, duration: b.end - b.start, ease: "none" }, b.start);
           tl.to(box, { autoAlpha: 0, y: -40, duration: 0.22, ease: "power2.in" }, b.end - 0.22);
           tl.set(box, { autoAlpha: 0 }, b.end);
