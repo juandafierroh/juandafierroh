@@ -18,16 +18,18 @@ Si el usuario no dice otra cosa, el reel sale así; no le vuelvas a preguntar po
 1. **Limpieza**: sin silencios, sin muletillas (eh, mmm, este, o sea…) y sin tomas repetidas. Si repite
    una frase, **se queda la última toma**.
 2. **Formato**: 1080x1920, 30 fps, H.264 + AAC.
-3. **Titulares**: arriba, encima de él, de 2 a 5 palabras, cambian cada 2–3 s y resumen lo que dice,
-   cada uno con un gráfico animado propio.
+3. **Titulares**: en una franja en el **tercio inferior** (preferencia actual; antes iba arriba), de 2 a 5
+   palabras, cambian cada 2–3 s y resumen lo que dice, cada uno con un gráfico animado propio.
 4. **Logos**: cuando nombra una herramienta o marca, su **logo real** en pantalla. Nunca un logo inventado
    ni redibujado: si no tienes el real, díselo y pídeselo.
-5. **Subtítulos**: pequeños, abajo, una sola línea, palabra activa resaltada.
+5. **Subtítulos**: pequeños, una sola línea, justo encima de la franja, palabra activa resaltada.
 6. **Gancho**: los 2 primeros segundos, dos líneas grandes en mayúsculas. Tienen que verse completas
    desde el fotograma 0, porque ese fotograma es la miniatura del reel.
 7. **Revisión**: antes de exportar, un fotograma por bloque, mirarlos y arreglar texto cortado, texto
    encima de la cara o poco contraste.
 8. **Render** con HyperFrames y decirle dónde está el archivo.
+9. **Zoom de cámara con ritmo**: cada corte con un encuadre distinto (de plano normal a primer plano),
+   empuje lento dentro del tramo y golpes de zoom en las cifras y palabras clave.
 
 Estética de su marca (ya está en la plantilla): azul marino `#0b1636`/`#13245a`, naranja `#ff6b2c`,
 celeste `#38bdf8`, tipografía Archivo (800–900) y JetBrains Mono para etiquetas. Habla español de Chile.
@@ -95,11 +97,12 @@ energía del audio (paso 3) y con las láminas del usuario.
 ## Paso 4 — Vídeo base y palabras finales
 
 ```bash
-~/.venvs/whisper/bin/python <skill>/scripts/cut_aroll.py bruto.mp4 cuts.json proyecto/assets/aroll.mp4 --anchor-y 700
+~/.venvs/whisper/bin/python <skill>/scripts/cut_aroll.py bruto.mp4 cuts.json proyecto/assets/aroll.mp4
 ```
 
-Los tramos alternan un zoom de 1,08 anclado a la altura de la cara (`--anchor-y`, píxeles del original)
-para disimular los saltos de corte. Al redondear cada tramo a fotogramas, la duración final se desplaza
+Escribe también `aroll.segments.json` (inicio/fin real de cada tramo): el zoom por corte lo anima la
+plantilla a partir de él (paso 6, `zoom`), así que no hornees zoom en el corte. Al redondear cada tramo a
+fotogramas, la duración final se desplaza
 unas centésimas, así que **transcribe de nuevo el audio de `aroll.mp4`** (large-v3, `--keep-fillers`) para
 tener tiempos exactos de subtítulos. Luego corrige a mano en un `words_final.json`: palabras mal oídas,
 marcas, URLs unidas (`capitalparanegocios.cl`), y palabras que Whisper se comió (recupéralas de la
@@ -107,11 +110,23 @@ transcripción anterior y ajusta sus tiempos con la energía). Ejemplo real: `re
 
 ## Paso 5 — Layout
 
-El vídeo va a ancho completo debajo de una franja de diseño (`layout.band`, 380 px por defecto) donde
-viven gancho y titulares. Elige `band` mirando fotogramas: la parte de arriba del pelo debe quedar por
-debajo de la franja. Si el usuario está encuadrado con mucho aire arriba, la franja puede ir encima del
-vídeo sin bajarlo: `layout.videoTop: 0`. Los subtítulos (`layout.captionsTop`, 1688 por
-defecto) van bajo la barbilla incluso en los tramos con zoom; pruébalo en fotogramas con zoom.
+Por defecto (lo que pide ahora): vídeo a pantalla completa sin desplazar y franja de gancho/titulares en el
+tercio inferior, dejando libres los últimos ~280 px (ahí Instagram pone usuario y texto del post):
+
+```json
+"layout": {"bandTop": 1280, "band": 360, "captionsTop": 1186, "videoTop": 0}
+```
+
+Subtítulos justo encima de la franja; deben quedar bajo la barbilla en todos los encuadres (compruébalo en
+los fotogramas con más zoom). La zona de arriba queda libre para el b-roll (tarjetas recortadas de sus
+láminas, solo título y monto para que se lean). Variante antigua, franja arriba: omite `bandTop` y usa
+`videoTop` = `band` (o 0 si hay mucho aire sobre la cabeza).
+
+**Zoom** (`zoom` en reel.json, ver cabecera de `make.py`): patrón de encuadres por corte
+(`[1.0, 1.14, 1.06, 1.26, 1.0, 1.18, 1.1, 1.3]`), `push` 0,05 alternando acercar/alejar, `calm` 1.0 durante
+el b-roll y `punches` en las cifras clave (el segundo exacto de la palabra en `words_final.json`). Pon
+`origin` a la **altura de la barbilla** (p. ej. `[540, 1000]`): así el zoom crece hacia arriba y la cara
+nunca baja sobre los subtítulos.
 
 ## Paso 6 — Titulares, gráficos, logos y b-roll
 

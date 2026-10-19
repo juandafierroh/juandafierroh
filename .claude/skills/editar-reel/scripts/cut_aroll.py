@@ -2,13 +2,14 @@
 """Corta el vídeo en bruto según cuts.json y lo une en un solo aroll.mp4 (CFR, 1080x1920).
 
 Uso:
-  python cut_aroll.py bruto.mp4 cuts.json aroll.mp4 [--fps 30] [--zoom 1.08] [--anchor-y 700]
+  python cut_aroll.py bruto.mp4 cuts.json aroll.mp4 [--fps 30] [--zoom 1.0] [--anchor-y 700]
 
 cuts.json: [[inicio, fin], ...] en segundos del vídeo en bruto, en orden de montaje.
 Cada tramo se codifica por separado y luego se concatena (hacer los 20+ cortes en un
-único filtergraph de ffmpeg agota la memoria). Los tramos impares llevan un zoom suave
-anclado a la altura de la cara (--anchor-y, en píxeles del original) para disimular
-los saltos de corte; cada tramo lleva fundidos de audio de 15-20 ms para evitar clics.
+único filtergraph de ffmpeg agota la memoria). Cada tramo lleva fundidos de audio de
+15-20 ms para evitar clics. Escribe además <aroll>.segments.json con el inicio/fin real de
+cada tramo en el vídeo montado: make.py lo usa para el plan de zoom por corte (el zoom se
+anima en la plantilla). --zoom > 1 hornea un zoom fijo en los tramos impares (modo antiguo).
 """
 import argparse
 import json
@@ -23,7 +24,7 @@ def main():
     p.add_argument("cuts")
     p.add_argument("out")
     p.add_argument("--fps", type=int, default=30)
-    p.add_argument("--zoom", type=float, default=1.08)
+    p.add_argument("--zoom", type=float, default=1.0)
     p.add_argument("--anchor-y", type=int, default=700)
     a = p.parse_args()
     cuts = json.loads(pathlib.Path(a.cuts).read_text())
@@ -50,6 +51,14 @@ def main():
             ], check=True)
             names.append(name)
         (tmp / "list.txt").write_text("\n".join(f"file '{n}'" for n in names))
+        segs, t = [], 0.0
+        for n in names:
+            d = float(subprocess.run(["ffprobe", "-v", "error", "-select_streams", "v:0", "-show_entries",
+                                      "stream=duration", "-of", "csv=p=0", str(tmp / n)],
+                                     capture_output=True, text=True).stdout.strip())
+            segs.append([round(t, 3), round(t + d, 3)])
+            t += d
+        pathlib.Path(a.out).with_suffix(".segments.json").write_text(json.dumps(segs))
         subprocess.run(["ffmpeg", "-v", "error", "-y", "-f", "concat", "-safe", "0",
                         "-i", str(tmp / "list.txt"), "-c", "copy", "-movflags", "+faststart", a.out], check=True)
     dur = subprocess.run(["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", a.out],

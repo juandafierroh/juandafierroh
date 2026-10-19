@@ -2,8 +2,9 @@
  "duration": 113.32,
  "words": "words_final.json",
  "layout": {
-  "band": 380,
-  "captionsTop": 1688,
+  "bandTop": 1280,
+  "band": 360,
+  "captionsTop": 1186,
   "videoTop": 0
  },
  "hook": {
@@ -367,31 +368,59 @@
  ],
  "broll": [
   {
-   "src": "assets/card-innova.jpg",
+   "src": "assets/card-innova-top.jpg",
    "start": 9.4,
    "end": 14.3,
    "alt": "Innova Región hasta $60M",
-   "top": 990,
-   "width": 760,
-   "height": 640
+   "top": 120,
+   "width": 900,
+   "height": 261
   },
   {
-   "src": "assets/card-creayvalida.jpg",
+   "src": "assets/card-creayvalida-top.jpg",
    "start": 38.5,
    "end": 43.0,
    "alt": "Crea y Valida $220.000.000",
-   "top": 1060,
-   "width": 760,
-   "height": 462
+   "top": 110,
+   "width": 900,
+   "height": 289
   },
   {
    "src": "assets/calendario-innovacion.jpg",
    "start": 85.4,
    "end": 91.7,
    "alt": "Calendario oficial CORFO Innovación 2026",
-   "top": 990,
-   "width": 900,
-   "height": 648
+   "top": 36,
+   "width": 636,
+   "height": 458
   }
- ]
+ ],
+ "zoom": {
+  "segments": "proyecto/assets/aroll.segments.json",
+  "origin": [
+   540,
+   1000
+  ],
+  "pattern": [
+   1.0,
+   1.14,
+   1.06,
+   1.26,
+   1.0,
+   1.18,
+   1.1,
+   1.3
+  ],
+  "push": 0.05,
+  "calm": 1.0,
+  "punches": [
+   1.4,
+   10.6,
+   41.04,
+   65.64,
+   87.24,
+   101.2,
+   103.18
+  ]
+ }
 }

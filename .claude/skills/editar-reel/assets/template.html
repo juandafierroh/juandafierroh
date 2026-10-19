@@ -7,15 +7,16 @@
     <style>
       @font-face { font-family: "Archivo"; src: url("assets/Archivo.woff2") format("woff2"); font-weight: 100 900; }
       @font-face { font-family: "JetBrains Mono"; src: url("assets/JetBrainsMono.woff2") format("woff2"); font-weight: 600; }
-      :root { --band: 380px; --cap-top: 1688px; }
+      :root { --band: 380px; --band-top: 0px; --cap-top: 1688px; }
       * { margin: 0; padding: 0; box-sizing: border-box; }
       html, body { margin: 0; width: 1080px; height: 1920px; overflow: hidden; background: #0b1636; }
       #root { position: relative; width: 100%; height: 100%; overflow: hidden; font-family: "Archivo", sans-serif; background: #0b1636; }
 
+      #vwrap, #vpunch { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; }
       #aroll { position: absolute; left: 0; top: var(--video-top, var(--band)); width: 1080px; height: 1920px; object-fit: cover; }
 
       #band {
-        position: absolute; left: 0; top: 0; width: 1080px; height: var(--band);
+        position: absolute; left: 0; top: var(--band-top); width: 1080px; height: var(--band);
         background:
           radial-gradient(rgba(255,255,255,0.07) 2px, transparent 2px) 0 0 / 28px 28px,
           linear-gradient(180deg, #0b1636 0%, #13245a 100%);
@@ -23,11 +24,11 @@
       #accent { position: absolute; left: 0; top: calc(var(--band) - 6px); width: 1080px; height: 6px; background: rgba(56,189,248,0.25); }
       #prog { position: absolute; left: 0; top: 0; width: 100%; height: 100%; background: linear-gradient(90deg, #ff6b2c, #ffb02c); transform-origin: left center; }
 
-      #hook { position: absolute; left: 40px; top: 30px; width: 1000px; height: calc(var(--band) - 60px); display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 6px; }
+      #hook { position: absolute; left: 40px; top: calc(var(--band-top) + 30px); width: 1000px; height: calc(var(--band) - 60px); display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 6px; }
       .hook-line { display: block; white-space: nowrap; font-weight: 900; line-height: 1.0; letter-spacing: -0.02em; text-transform: uppercase; color: #ffffff; }
       .hook-line.alt { color: #ff6b2c; }
 
-      .hl { position: absolute; left: 0; top: 0; width: 1080px; height: var(--band); opacity: 0; visibility: hidden; }
+      .hl { position: absolute; left: 0; top: var(--band-top); width: 1080px; height: var(--band); opacity: 0; visibility: hidden; }
       .slot { position: absolute; left: 56px; top: calc((var(--band) - 220px) / 2); width: 220px; height: 220px; }
       .slot svg { position: absolute; left: 0; top: 0; overflow: visible; }
       .hl-text {
@@ -57,8 +58,10 @@
   </head>
   <body>
     <div id="root" data-composition-id="main" data-start="0" data-duration="__DURATION__" data-width="1080" data-height="1920">
+      <div id="vwrap"><div id="vpunch">
       <video id="aroll" class="clip" src="assets/aroll.mp4" playsinline data-has-audio="true"
              data-start="0" data-duration="__DURATION__" data-track-index="0" data-volume="1"></video>
+      </div></div>
       <div id="brolls"></div>
       <div id="band"><div id="accent"><div id="prog"></div></div></div>
       <div id="hook"></div>
@@ -423,6 +426,26 @@
         if (L.band) document.documentElement.style.setProperty("--band", L.band + "px");
         if (L.captionsTop) document.documentElement.style.setProperty("--cap-top", L.captionsTop + "px");
         if (L.videoTop != null) document.documentElement.style.setProperty("--video-top", L.videoTop + "px");
+        if (L.bandTop != null) {
+          // Franja abajo: la línea de progreso pasa al borde superior de la franja
+          document.documentElement.style.setProperty("--band-top", L.bandTop + "px");
+          document.getElementById("accent").style.top = "0px";
+        }
+
+        // Zoom de cámara: un encuadre por corte con empuje lento + golpes de zoom en palabras clave
+        const Z = DATA.zoom || {};
+        const vwrap = document.getElementById("vwrap");
+        const vpunch = document.getElementById("vpunch");
+        const origin = (Z.origin || [540, 720]).map((v) => v + "px").join(" ");
+        vwrap.style.transformOrigin = origin;
+        vpunch.style.transformOrigin = origin;
+        (Z.plan || []).forEach((z, i) => {
+          tl.fromTo(vwrap, { scale: z.z0 }, { scale: z.z1, duration: z.e - z.s, ease: "none", immediateRender: i === 0 }, z.s);
+        });
+        (Z.punches || []).forEach((t, i) => {
+          tl.fromTo(vpunch, { scale: 1 }, { scale: 1.09, duration: 0.12, ease: "power2.out", immediateRender: i === 0 }, t);
+          tl.to(vpunch, { scale: 1, duration: 0.55, ease: "power2.inOut" }, t + 0.12);
+        });
         tl.fromTo("#prog", { scaleX: 0 }, { scaleX: 1, duration: DATA.duration, ease: "none" }, 0);
 
         // Gancho: dos líneas grandes en mayúsculas durante los 2 primeros segundos
@@ -494,13 +517,14 @@
           const spans = g.words.map((w) => H(inner, "span", null, w.t + " "));
           spans[spans.length - 1].textContent = g.words[g.words.length - 1].t;
           fitLine(inner, 40, 980);
-          tl.fromTo(el, { autoAlpha: 0, y: 10 }, { autoAlpha: 1, y: 0, duration: 0.1 }, g.start);
+          // Entra de golpe (sin fundido: a media opacidad el contraste cae) con un pequeño salto
+          tl.fromTo(el, { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.01 }, g.start);
+          tl.fromTo(inner, { y: 8 }, { y: 0, duration: 0.12, ease: "power2.out" }, g.start);
           spans.forEach((s, k) => {
             tl.set(s, { color: "#ff8855" }, g.words[k].s);  // naranja aclarado: contraste AA sobre fondos claros
             if (k + 1 < spans.length) tl.set(s, { color: C.white }, g.words[k + 1].s);
           });
           if (g.end < DATA.duration - 0.05) {
-            tl.to(el, { autoAlpha: 0, duration: 0.08 }, g.end - 0.08);
             tl.set(el, { autoAlpha: 0, visibility: "hidden" }, g.end);
           }
         });

@@ -15,9 +15,18 @@ reel.json:
   "layout": {"band": 380, "captionsTop": 1688, "videoTop": 0},   # opcional; videoTop por defecto = band
   "hook": {"end": 2.0, "l1": "LÍNEA 1", "l2": "LÍNEA 2"},
   "headlines": [[t0, t1, "Texto con *acento*", "tipo", {opciones}], ...],
-  "broll": [{"src": "assets/lamina.jpg", "start": 29.7, "end": 31.75, "alt": "..."}]
+  "broll": [{"src": "assets/lamina.jpg", "start": 29.7, "end": 31.75, "alt": "..."}],
+  "zoom": {                                 # opcional: zoom de cámara por corte
+    "segments": "proyecto/assets/aroll.segments.json",   # lo escribe cut_aroll.py
+    "origin": [540, 720],                   # punto (px) hacia el que se hace zoom: la cara
+    "pattern": [1.0, 1.14, 1.06, 1.26, 1.0, 1.18, 1.1, 1.3],  # encuadre base de cada corte
+    "push": 0.05,                           # acercamiento/alejamiento lento dentro de cada tramo
+    "calm": 1.0,                            # zoom máximo mientras hay b-roll (para que no lo tape)
+    "punches": [10.6, 41.0]                 # golpes de zoom en palabras clave (segundos)
+  }
 }
-Rutas relativas de "words" se resuelven respecto a reel.json.
+Rutas relativas ("words", "zoom.segments") se resuelven respecto a reel.json.
+Franja abajo: "layout": {"bandTop": 1280, "band": 360, "captionsTop": 1190, "videoTop": 0}.
 """
 import json
 import pathlib
@@ -53,6 +62,23 @@ def caption_groups(words, duration, max_chars=30, gap=0.3):
     return out
 
 
+def zoom_plan(z, segments, broll):
+    """Un encuadre por tramo: alterna acercarse/alejarse lento; tramos muy cortos siguen el anterior."""
+    pattern, push, calm = z.get("pattern", [1.0, 1.14, 1.06, 1.26]), z.get("push", 0.05), z.get("calm", 1.0)
+    plan, prev = [], 1.0
+    for i, (s, e) in enumerate(segments):
+        if e - s < 0.6 and plan:
+            z0 = z1 = prev
+        else:
+            base = pattern[i % len(pattern)]
+            z0, z1 = (base, base + push) if i % 2 == 0 else (base + push, base)
+        if any(b["start"] - 0.3 < e and b["end"] + 0.3 > s for b in broll):
+            z0, z1 = min(z0, calm), min(z1, calm)
+        plan.append({"s": s, "e": e, "z0": round(z0, 3), "z1": round(z1, 3)})
+        prev = z1
+    return plan
+
+
 def main():
     cfg_path = pathlib.Path(sys.argv[1]).resolve()
     out = pathlib.Path(sys.argv[2]).resolve()
@@ -72,6 +98,11 @@ def main():
         "broll": cfg.get("broll", []),
         "captions": caption_groups(words, duration),
     }
+    if "zoom" in cfg:
+        z = cfg["zoom"]
+        segments = json.loads((cfg_path.parent / z["segments"]).read_text())
+        data["zoom"] = {"origin": z.get("origin", [540, 720]), "punches": z.get("punches", []),
+                        "plan": zoom_plan(z, segments, cfg.get("broll", []))}
 
     (out / "assets").mkdir(parents=True, exist_ok=True)
     for f in (SKILL / "assets" / "vendor").iterdir():
