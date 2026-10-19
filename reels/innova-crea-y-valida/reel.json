@@ -1,0 +1,397 @@
+{
+ "duration": 113.32,
+ "words": "words_final.json",
+ "layout": {
+  "band": 380,
+  "captionsTop": 1688,
+  "videoTop": 0
+ },
+ "hook": {
+  "end": 2.0,
+  "l1": "¿EMPRESA CON +18 MESES?",
+  "l2": "2 FONDOS CORFO PARA TI"
+ },
+ "headlines": [
+  [
+   2.0,
+   4.5,
+   "Empresas con *+18 meses*",
+   "counter",
+   {
+    "from": 0,
+    "to": 18,
+    "prefix": "",
+    "label": "MESES"
+   }
+  ],
+  [
+   4.5,
+   6.9,
+   "Con *facturación* previa",
+   "checklist",
+   {}
+  ],
+  [
+   6.9,
+   9.3,
+   "*2 fondos* Corfo",
+   "logo",
+   {
+    "src": "assets/corfo-logo.png",
+    "alt": "CORFO",
+    "badge": "×2"
+   }
+  ],
+  [
+   9.3,
+   11.7,
+   "Innova Región: *$60 millones*",
+   "counter",
+   {
+    "from": 0,
+    "to": 60
+   }
+  ],
+  [
+   11.7,
+   14.4,
+   "Desarrollo y *lanzamiento*",
+   "rocket",
+   {}
+  ],
+  [
+   14.4,
+   17.5,
+   "Productos, servicios, *procesos*",
+   "chips",
+   {}
+  ],
+  [
+   17.5,
+   20.4,
+   "Se lanza *cada semestre*",
+   "calendarGrid",
+   {}
+  ],
+  [
+   20.4,
+   23.5,
+   "Fechas distintas *por región*",
+   "flag",
+   {}
+  ],
+  [
+   23.5,
+   26.4,
+   "Abrió y cerró *hace 2 meses*",
+   "calendarCheck",
+   {}
+  ],
+  [
+   26.4,
+   29.9,
+   "Valparaíso, *Araucanía…*",
+   "globe",
+   {}
+  ],
+  [
+   29.9,
+   33.1,
+   "Cada región, *su convocatoria*",
+   "chat",
+   {}
+  ],
+  [
+   33.1,
+   35.6,
+   "Te recomiendo *otro más*",
+   "star",
+   {}
+  ],
+  [
+   35.6,
+   38.4,
+   "Su *hermano mayor*",
+   "plus",
+   {
+    "left": "60",
+    "right": "220"
+   }
+  ],
+  [
+   38.4,
+   40.9,
+   "Fondo *Crea y Valida*",
+   "rocket",
+   {}
+  ],
+  [
+   40.9,
+   43.0,
+   "*$220 millones*",
+   "counter",
+   {
+    "from": 60,
+    "to": 220
+   }
+  ],
+  [
+   43.0,
+   46.4,
+   "*Mismo foco:* desarrollo y lanzamiento",
+   "magnifier",
+   {}
+  ],
+  [
+   46.4,
+   49.8,
+   "Exige *innovación*",
+   "bulb",
+   {}
+  ],
+  [
+   49.8,
+   52.6,
+   "Y además *I+D*",
+   "neural",
+   {}
+  ],
+  [
+   52.6,
+   55.4,
+   "I+D que *tú ejecutas*",
+   "docStamp",
+   {
+    "text": "I+D"
+   }
+  ],
+  [
+   55.4,
+   58.0,
+   "*Financiado* por Corfo",
+   "logo",
+   {
+    "src": "assets/corfo-logo.png",
+    "alt": "CORFO"
+   }
+  ],
+  [
+   58.0,
+   61.4,
+   "Empresas *+18 meses*",
+   "calendarCheck",
+   {}
+  ],
+  [
+   61.4,
+   63.1,
+   "*Estos 2 fondos*",
+   "chips",
+   {
+    "labels": [
+     "Innova Región",
+     "Crea y Valida"
+    ]
+   }
+  ],
+  [
+   63.1,
+   65.3,
+   "Innova Región: *$60M*",
+   "counter",
+   {
+    "from": 0,
+    "to": 60
+   }
+  ],
+  [
+   65.3,
+   67.8,
+   "Crea y Valida: *$220M*",
+   "bars",
+   {
+    "a": "$60M",
+    "b": "$220M"
+   }
+  ],
+  [
+   67.8,
+   69.8,
+   "Ambos para *desarrollo*",
+   "rocket",
+   {}
+  ],
+  [
+   69.8,
+   72.0,
+   "Y *lanzamiento comercial*",
+   "star",
+   {}
+  ],
+  [
+   72.0,
+   74.6,
+   "La *única diferencia*",
+   "plus",
+   {
+    "left": "60",
+    "right": "220"
+   }
+  ],
+  [
+   74.6,
+   76.3,
+   "$60M: *solo innovación*",
+   "bulb",
+   {}
+  ],
+  [
+   76.3,
+   78.3,
+   "$220M: *innovación*",
+   "gauge",
+   {}
+  ],
+  [
+   78.3,
+   80.4,
+   "+ *I+D* futuro",
+   "neural",
+   {}
+  ],
+  [
+   80.4,
+   83.5,
+   "*Totalmente* recomendados",
+   "checklist",
+   {}
+  ],
+  [
+   83.5,
+   85.4,
+   "Los más populares de *Corfo*",
+   "logo",
+   {
+    "src": "assets/corfo-logo.png",
+    "alt": "CORFO",
+    "at": 84.9
+   }
+  ],
+  [
+   85.4,
+   87.8,
+   "Abren desde *noviembre*",
+   "calendarGrid",
+   {}
+  ],
+  [
+   87.8,
+   89.7,
+   "Crea y Valida: *noviembre*",
+   "calendarCheck",
+   {}
+  ],
+  [
+   89.7,
+   91.7,
+   "A nivel *nacional*",
+   "flag",
+   {}
+  ],
+  [
+   91.7,
+   94.7,
+   "Innova Región: *sin fecha aún*",
+   "magnifier",
+   {}
+  ],
+  [
+   94.7,
+   97.3,
+   "Abrirá en *todas las regiones*",
+   "globe",
+   {}
+  ],
+  [
+   97.3,
+   99.4,
+   "¿Dudas? *Conversemos*",
+   "chat",
+   {}
+  ],
+  [
+   99.4,
+   101.6,
+   "Juan Fierro, *especialista Corfo*",
+   "badge",
+   {}
+  ],
+  [
+   101.6,
+   103.9,
+   "*+13 fondos* adjudicados",
+   "counterLogo",
+   {
+    "to": 13,
+    "at": 101.85,
+    "logo": {
+     "src": "assets/corfo-logo.png",
+     "alt": "CORFO"
+    }
+   }
+  ],
+  [
+   103.9,
+   106.3,
+   "De $15 a *$149 millones*",
+   "bars",
+   {
+    "a": "$15M",
+    "b": "$149M"
+   }
+  ],
+  [
+   106.3,
+   109.4,
+   "Más *probabilidades* de éxito",
+   "gauge",
+   {}
+  ],
+  [
+   109.4,
+   113.32,
+   "Te esperamos en *capitalparanegocios.cl*",
+   "logoWeb",
+   {}
+  ]
+ ],
+ "broll": [
+  {
+   "src": "assets/card-innova.jpg",
+   "start": 9.4,
+   "end": 14.3,
+   "alt": "Innova Región hasta $60M",
+   "top": 990,
+   "width": 760,
+   "height": 640
+  },
+  {
+   "src": "assets/card-creayvalida.jpg",
+   "start": 38.5,
+   "end": 43.0,
+   "alt": "Crea y Valida $220.000.000",
+   "top": 1060,
+   "width": 760,
+   "height": 462
+  },
+  {
+   "src": "assets/calendario-innovacion.jpg",
+   "start": 85.4,
+   "end": 91.7,
+   "alt": "Calendario oficial CORFO Innovación 2026",
+   "top": 990,
+   "width": 900,
+   "height": 648
+  }
+ ]
+}

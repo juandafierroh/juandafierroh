@@ -12,7 +12,7 @@
       html, body { margin: 0; width: 1080px; height: 1920px; overflow: hidden; background: #0b1636; }
       #root { position: relative; width: 100%; height: 100%; overflow: hidden; font-family: "Archivo", sans-serif; background: #0b1636; }
 
-      #aroll { position: absolute; left: 0; top: var(--band); width: 1080px; height: 1920px; object-fit: cover; }
+      #aroll { position: absolute; left: 0; top: var(--video-top, var(--band)); width: 1080px; height: 1920px; object-fit: cover; }
 
       #band {
         position: absolute; left: 0; top: 0; width: 1080px; height: var(--band);
@@ -50,7 +50,7 @@
 
       #captions { position: absolute; left: 0; top: var(--cap-top); width: 1080px; height: 76px; }
       .cg { position: absolute; left: 0; top: 0; width: 1080px; height: 76px; display: flex; justify-content: center; align-items: center; opacity: 0; visibility: hidden; }
-      .cg-inner { padding: 10px 22px; border-radius: 16px; background: rgba(8, 16, 40, 0.78); color: #ffffff; font-weight: 700;
+      .cg-inner { padding: 10px 22px; border-radius: 16px; background: rgba(8, 16, 40, 0.9); color: #ffffff; font-weight: 700;
                   font-size: 40px; line-height: 1.1; white-space: nowrap; letter-spacing: -0.005em; }
       .cg-inner span { color: #ffffff; }
     </style>
@@ -422,6 +422,7 @@
         const L = DATA.layout || {};
         if (L.band) document.documentElement.style.setProperty("--band", L.band + "px");
         if (L.captionsTop) document.documentElement.style.setProperty("--cap-top", L.captionsTop + "px");
+        if (L.videoTop != null) document.documentElement.style.setProperty("--video-top", L.videoTop + "px");
         tl.fromTo("#prog", { scaleX: 0 }, { scaleX: 1, duration: DATA.duration, ease: "none" }, 0);
 
         // Gancho: dos líneas grandes en mayúsculas durante los 2 primeros segundos
@@ -463,7 +464,13 @@
         const br = document.getElementById("brolls");
         DATA.broll.forEach((b, i) => {
           const box = H(br, "div", "broll");
+          // Tamaño/posición opcionales (p. ej. una tarjeta recortada sobre el torso, sin tapar la cara)
+          if (b.top != null) box.style.top = b.top + "px";
+          if (b.width) { box.style.width = b.width + "px"; box.style.left = (1080 - b.width) / 2 + "px"; }
+          if (b.height) box.style.height = b.height + "px";
           const img = H(box, "img");
+          if (b.width) img.style.width = "100%";
+          if (b.height) img.style.height = "100%";
           img.setAttribute("data-layout-allow-overflow", "");
           img.src = b.src;
           img.alt = b.alt || "Lámina " + (i + 1);
@@ -489,7 +496,7 @@
           fitLine(inner, 40, 980);
           tl.fromTo(el, { autoAlpha: 0, y: 10 }, { autoAlpha: 1, y: 0, duration: 0.1 }, g.start);
           spans.forEach((s, k) => {
-            tl.set(s, { color: C.orange }, g.words[k].s);
+            tl.set(s, { color: "#ff8855" }, g.words[k].s);  // naranja aclarado: contraste AA sobre fondos claros
             if (k + 1 < spans.length) tl.set(s, { color: C.white }, g.words[k + 1].s);
           });
           if (g.end < DATA.duration - 0.05) {

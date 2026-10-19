@@ -110,7 +110,7 @@ transcripción anterior y ajusta sus tiempos con la energía). Ejemplo real: `re
 El vídeo va a ancho completo debajo de una franja de diseño (`layout.band`, 380 px por defecto) donde
 viven gancho y titulares. Elige `band` mirando fotogramas: la parte de arriba del pelo debe quedar por
 debajo de la franja. Si el usuario está encuadrado con mucho aire arriba, la franja puede ir encima del
-vídeo sin bajarlo, pero entonces ajusta la plantilla. Los subtítulos (`layout.captionsTop`, 1688 por
+vídeo sin bajarlo: `layout.videoTop: 0`. Los subtítulos (`layout.captionsTop`, 1688 por
 defecto) van bajo la barbilla incluso en los tramos con zoom; pruébalo en fotogramas con zoom.
 
 ## Paso 6 — Titulares, gráficos, logos y b-roll

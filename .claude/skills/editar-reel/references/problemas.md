@@ -30,6 +30,17 @@ botón). npm, PyPI y GitHub suelen estar permitidos de serie.
   energía (si es silencio, son inventadas).
 - Tiempos de palabra con ±0,2–0,5 s de error, peor en tomas repetidas: corta por energía, no solo por
   Whisper.
+- El prompt de muletillas también **inventa** muletillas ("o sea" donde no lo hay) y frases repetidas al
+  verificar un montaje. Antes de dar por mala una zona, transcríbela aislada **sin** prompt y mira la
+  energía. Lo mismo con cierres típicos inventados: "¡Suscríbete!", "Gracias por ver el video" (palabras
+  con duración cero o sobre silencio).
+- Palabras clave dudosas (p. ej. "sin"/"de inicio de actividades"): contrasta con medium y small en la
+  ventana aislada; si la mayoría coincide y encaja con las láminas, usa esa.
+
+## Grabaciones en exterior
+
+- El ruido de fondo ronda -32 dB: usa `loudness.py --silences --thr -27` (en interior, -38).
+- Plano medio con mucho cielo/fondo arriba: `layout.videoTop: 0` (la franja va sobre el fondo).
 
 ## ffmpeg
 

@@ -44,7 +44,10 @@ los `repeat: -1` o relojes reales lo rompen. Colores en `C`. Después, `hyperfra
 - `hook`: `{ "end": 2.0, "l1": "LÍNEA 1", "l2": "LÍNEA 2" }`. Cada línea se ajusta sola al ancho; la
   segunda sale en naranja. Escríbelas en mayúsculas, cortas y con la promesa concreta del reel (cifra,
   beneficio). Ejemplo real: `FONDOS CORFO` / `HASTA $220 MILLONES`.
-- `broll`: `[{ "src", "start", "end", "alt" }]`. Imagen a 960x1200 sobre el vídeo con zoom lento.
+- `broll`: `[{ "src", "start", "end", "alt", "top", "width", "height" }]`. Por defecto 960x1200 desde
+  y=430 con zoom lento. Con `top/width/height` puedes poner una tarjeta recortada de una lámina sobre el
+  torso (p. ej. `top: 1000, width: 760`) para que se vea la lámina y la cara a la vez.
   Con `start: 0` se ve desde el fotograma 0, pero tapa la cara durante el gancho: solo si lo pide.
-- `layout`: `{ "band": 380, "captionsTop": 1688 }`. `band` es la altura de la franja y el desplazamiento del
-  vídeo hacia abajo.
+- `layout`: `{ "band": 380, "captionsTop": 1688, "videoTop": 0 }`. `band` es la altura de la franja;
+  `videoTop` cuánto baja el vídeo (por defecto = `band`). Con mucho aire sobre la cabeza (planos medios),
+  usa `videoTop: 0` y la franja queda encima del fondo sin recortar al usuario.

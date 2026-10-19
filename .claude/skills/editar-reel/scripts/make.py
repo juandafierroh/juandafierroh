@@ -12,7 +12,7 @@ reel.json:
 {
   "duration": 62.33,                      # duración de aroll.mp4 (ffprobe)
   "words": "words_final.json",            # [{text,start,end}] sobre el vídeo YA cortado
-  "layout": {"band": 380, "captionsTop": 1688},   # opcional
+  "layout": {"band": 380, "captionsTop": 1688, "videoTop": 0},   # opcional; videoTop por defecto = band
   "hook": {"end": 2.0, "l1": "LÍNEA 1", "l2": "LÍNEA 2"},
   "headlines": [[t0, t1, "Texto con *acento*", "tipo", {opciones}], ...],
   "broll": [{"src": "assets/lamina.jpg", "start": 29.7, "end": 31.75, "alt": "..."}]
