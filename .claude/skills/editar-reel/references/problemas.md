@@ -47,6 +47,10 @@ botón). npm, PyPI y GitHub suelen estar permitidos de serie.
 - Hacer 20+ `trim` del mismo archivo en un solo `filter_complex` agota la memoria (SIGKILL). Usa
   `cut_aroll.py`, que codifica tramo a tramo y concatena.
 - Los clips de OBS suelen venir a 60 fps; el reel va a 30 (`fps=30` en cada tramo).
+- HyperFrames avisa "sparse keyframes" si el vídeo base tiene pocos fotogramas clave (puede congelar
+  imagen al buscar). `cut_aroll.py` ya codifica con uno por segundo (`-g 30`); si ves congelados en otro
+  vídeo, compruébalo con `ffmpeg -vf freezedetect=n=-55dB:d=0.6`.
+- Clips de móvil en HEVC: ffmpeg los corta bien; el `aroll.mp4` resultante ya es H.264.
 
 ## HyperFrames
 

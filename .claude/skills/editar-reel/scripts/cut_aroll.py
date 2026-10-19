@@ -44,13 +44,14 @@ def main():
             subprocess.run([
                 "ffmpeg", "-v", "error", "-y", "-ss", f"{s}", "-i", a.src, "-t", f"{d}",
                 "-vf", vf, "-af", af, "-c:v", "libx264", "-preset", "medium", "-crf", "16",
+                "-g", str(a.fps), "-keyint_min", str(a.fps),  # keyframe por segundo: HyperFrames busca sin congelarse
                 "-pix_fmt", "yuv420p", "-r", str(a.fps), "-c:a", "aac", "-b:a", "192k", "-ar", "48000",
                 str(tmp / name),
             ], check=True)
             names.append(name)
         (tmp / "list.txt").write_text("\n".join(f"file '{n}'" for n in names))
         subprocess.run(["ffmpeg", "-v", "error", "-y", "-f", "concat", "-safe", "0",
-                        "-i", str(tmp / "list.txt"), "-c", "copy", a.out], check=True)
+                        "-i", str(tmp / "list.txt"), "-c", "copy", "-movflags", "+faststart", a.out], check=True)
     dur = subprocess.run(["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", a.out],
                          capture_output=True, text=True).stdout.strip()
     print(f"{a.out}: {len(cuts)} tramos, {float(dur):.2f} s")
