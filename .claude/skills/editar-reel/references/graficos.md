@@ -48,7 +48,7 @@ los `repeat: -1` o relojes reales lo rompen. Colores en `C`. Después, `hyperfra
   y=430 con zoom lento. Con `top/width/height` puedes poner una tarjeta recortada de una lámina sobre el
   torso (p. ej. `top: 1000, width: 760`) para que se vea la lámina y la cara a la vez.
   Con `start: 0` se ve desde el fotograma 0, pero tapa la cara durante el gancho: solo si lo pide.
-- `layout` por defecto: `{ "bandTop": 1280, "band": 360, "captionsTop": 1186, "videoTop": 0 }` (franja en
-  el tercio inferior). Variante franja arriba: `{ "band": 380, "captionsTop": 1688, "videoTop": 0 }`. `band` es la altura de la franja;
+- `layout` por defecto: `{ "bandTop": 1560, "band": 360, "captionsTop": 1466, "videoTop": 0 }` (franja
+  pegada al borde inferior). Más arriba, fuera de la interfaz de Instagram: `bandTop` 1280, `captionsTop` 1186. Variante franja arriba: `{ "band": 380, "captionsTop": 1688, "videoTop": 0 }`. `band` es la altura de la franja;
   `videoTop` cuánto baja el vídeo (por defecto = `band`). Con mucho aire sobre la cabeza (planos medios),
   usa `videoTop: 0` y la franja queda encima del fondo sin recortar al usuario.

@@ -18,7 +18,7 @@ Si el usuario no dice otra cosa, el reel sale así; no le vuelvas a preguntar po
 1. **Limpieza**: sin silencios, sin muletillas (eh, mmm, este, o sea…) y sin tomas repetidas. Si repite
    una frase, **se queda la última toma**.
 2. **Formato**: 1080x1920, 30 fps, H.264 + AAC.
-3. **Titulares**: en una franja en el **tercio inferior** (preferencia actual; antes iba arriba), de 2 a 5
+3. **Titulares**: en una franja **pegada al borde inferior** (preferencia actual; antes iba arriba), de 2 a 5
    palabras, cambian cada 2–3 s y resumen lo que dice, cada uno con un gráfico animado propio.
 4. **Logos**: cuando nombra una herramienta o marca, su **logo real** en pantalla. Nunca un logo inventado
    ni redibujado: si no tienes el real, díselo y pídeselo.
@@ -110,11 +110,11 @@ transcripción anterior y ajusta sus tiempos con la energía). Ejemplo real: `re
 
 ## Paso 5 — Layout
 
-Por defecto (lo que pide ahora): vídeo a pantalla completa sin desplazar y franja de gancho/titulares en el
-tercio inferior, dejando libres los últimos ~280 px (ahí Instagram pone usuario y texto del post):
+Por defecto (lo que pidió explícitamente): vídeo a pantalla completa sin desplazar y franja de
+gancho/titulares **al borde inferior**, aunque Instagram ponga encima su texto del post:
 
 ```json
-"layout": {"bandTop": 1280, "band": 360, "captionsTop": 1186, "videoTop": 0}
+"layout": {"bandTop": 1560, "band": 360, "captionsTop": 1466, "videoTop": 0}
 ```
 
 Subtítulos justo encima de la franja; deben quedar bajo la barbilla en todos los encuadres (compruébalo en

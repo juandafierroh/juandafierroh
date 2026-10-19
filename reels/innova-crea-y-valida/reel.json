@@ -2,9 +2,9 @@
  "duration": 113.32,
  "words": "words_final.json",
  "layout": {
-  "bandTop": 1280,
+  "bandTop": 1560,
   "band": 360,
-  "captionsTop": 1186,
+  "captionsTop": 1466,
   "videoTop": 0
  },
  "hook": {
